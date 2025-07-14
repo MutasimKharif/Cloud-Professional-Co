@@ -1,5 +1,5 @@
 <?php
-// --- FILE: process_form.php ---
+// --- FILE: process-form.php ---
 
 // **SECURITY:** Set headers to only allow JSON responses and prevent direct access.
 header('Content-Type: application/json');
