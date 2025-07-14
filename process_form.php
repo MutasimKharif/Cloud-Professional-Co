@@ -8,8 +8,8 @@ header('Content-Type: application/json');
 // IMPORTANT: For production, move these credentials to a secure configuration file
 // outside of the public web root.
 $db_host = 'localhost';     // Or your database host
-$db_user = 'your_username'; // Your database username
-$db_pass = 'your_password'; // Your database password
+$db_user = 'Mutasim'; // Your database username
+$db_pass = 'Moe5rief$'; // Your database password
 $db_name = 'moedb';         // Your database name
 
 // --- 2. ESTABLISH DATABASE CONNECTION ---
