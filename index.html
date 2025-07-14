@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudPros - AWS Cloud Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <svg class="h-8 w-8 text-[#FF9900]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+                    <span class="text-2xl font-bold text-gray-800">CloudPros</span>
+                </a>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <nav class="flex items-center space-x-1">
+                        <a href="index.html" class="nav-link px-4 py-2 rounded-md text-sm font-medium" data-translate="nav_home">Home</a>
+                        <a href="services.html" class="nav-link px-4 py-2 rounded-md text-sm font-medium" data-translate="nav_services">Services</a>
+                        <a href="about.html" class="nav-link px-4 py-2 rounded-md text-sm font-medium" data-translate="nav_about">About Us</a>
+                        <a href="contact.html" class="nav-link px-4 py-2 rounded-md text-sm font-medium" data-translate="nav_contact">Contact</a>
+                        <a href="teammembers.html" class="nav-link px-4 py-2 rounded-md text-sm font-medium" data-translate="nav_contact">Our Team</a>
+                        <a href="signin.html" class="nav-link px-4 py-2 rounded-md text-sm font-medium" data-translate="nav_contact">Signin</a>
+                    </nav>
+                    <div class="flex items-center space-x-3 lang-switcher">
+                        <a href="en.json" data-lang="en" class="text-sm hover:underline" data-translate="lang_en_short">EN</a>
+                        <span class="text-gray-300">|</span>
+                        <a href="ar.json" data-lang="ar" class="text-sm hover:underline" data-translate="lang_ar_short">AR</a>
+                    </div>
+                </div>
+
+                <div class="md:hidden">
+                    <button id="menu-btn" class="p-2 text-gray-600 hover:text-gray-800">
+                        <svg id="menu-open-icon" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+                        <svg id="menu-close-icon" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-200">
+            <a href="index.html" class="block py-2 px-4 text-sm hover:bg-orange-50 nav-link" data-translate="nav_home">Home</a>
+            <a href="services.html" class="block py-2 px-4 text-sm hover:bg-orange-50 nav-link" data-translate="nav_services">Services</a>
+            <a href="about.html" class="block py-2 px-4 text-sm hover:bg-orange-50 nav-link" data-translate="nav_about">About Us</a>
+            <a href="contact.html" class="block py-2 px-4 text-sm hover:bg-orange-50 nav-link" data-translate="nav_contact">Contact</a>
+            <div class="border-t border-gray-200">
+                <div class="flex items-center justify-center space-x-6 py-4 lang-switcher">
+                     <a href="en.json" data-lang="en" class="text-sm hover:underline" data-translate="lang_en_long">English</a>
+                     <span class="text-gray-300">|</span>
+                     <a href="ar.json" data-lang="ar" class="text-sm hover:underline" data-translate="lang_ar_long">العربية</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="bg-gray-50 py-20 lg:py-32 px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-gray-800 mb-4 tracking-tight">
+                <span data-translate="main_headline">Building a Resilient Future with</span> <span class="text-[#FF9900]" data-translate="main_headline_span">AWS Cloud</span>
+            </h1>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-600 mb-8" data-translate="main_subtitle">
+                Your strategic partner in AWS Cloud. We deliver secure, scalable, and high-performance solutions to accelerate business growth and drive innovation across the Middle East.
+            </p>
+            <a href="contact.html" class="bg-[#FF9900] text-white font-bold py-3 px-8 rounded-lg text-lg shadow-lg hover:bg-[#E68A00] transition-all duration-300" data-translate="main_cta_button">
+                Get a Consultation
+            </a>
+        </div>
+
+        <div class="py-16 lg:py-24 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                     <h2 class="text-3xl lg:text-4xl font-bold text-gray-800" data-translate="solutions_title">Our Core Solutions</h2>
+                     <p class="text-lg text-gray-600 mt-2" data-translate="solutions_subtitle">Solutions tailored for your success in the cloud.</p>
+                </div>
+                <div id="featured-services" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+                 <div class="text-center mt-12">
+                    <a href="services.html" class="text-[#FF9900] font-semibold hover:text-[#E68A00] transition-colors duration-300" data-translate="view_all_services">
+                        View All Services &rarr;
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
+             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                   <a href="index.html" class="flex items-center space-x-2 mb-4">
+                        <svg class="h-8 w-8 text-[#FF9900]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+                        <span class="text-2xl font-bold">CloudPros</span>
+                    </a>
+                    <p class="text-gray-400 max-w-md" data-translate="footer_tagline">Your expert partner for AWS cloud solutions, from migration and DevOps to security and data analytics.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4" data-translate="footer_links_title">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white" data-translate="nav_home">Home</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white" data-translate="nav_services">Services</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white" data-translate="nav_about">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white" data-translate="nav_contact">Contact</a></li>
+<li><a href="teammembers.html" class="text-gray-400 hover:text-white" data-translate="nav_contact">Our Team</a></li>
+<li><a href="signin.html" class="text-gray-400 hover:text-white" data-translate="nav_contact">Signin</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4" data-translate="footer_contact_title">Contact</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center" data-translate="footer_address">Riyadh, Saudi Arabia</li>
+                        <li class="flex items-center">contact@cloudpros.com</li>
+                        <li class="flex items-center">(123) 456-7890</li>
+                    </ul>
+                </div>
+              </div>
+            <div class="mt-8 border-t border-gray-700 pt-8 text-center text-gray-500">
+                <p data-translate="footer_copyright">&copy; 2025 CloudPros. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

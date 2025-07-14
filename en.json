@@ -1,0 +1,22 @@
+{
+    "nav_home": "Home",
+    "nav_services": "Services",
+    "nav_about": "About Us",
+    "nav_contact": "Contact",
+    "lang_en_short": "EN",
+    "lang_ar_short": "AR",
+    "lang_en_long": "English",
+    "lang_ar_long": "العربية",
+    "main_headline": "Building a Resilient Future with",
+    "main_headline_span": "AWS Cloud",
+    "main_subtitle": "Your strategic partner in AWS Cloud. We deliver secure, scalable, and high-performance solutions to accelerate business growth and drive innovation across the Middle East.",
+    "main_cta_button": "Get a Consultation",
+    "solutions_title": "Our Core Solutions",
+    "solutions_subtitle": "Solutions tailored for your success in the cloud.",
+    "view_all_services": "View All Services &rarr;",
+    "footer_tagline": "Your expert partner for AWS cloud solutions, from migration and DevOps to security and data analytics.",
+    "footer_links_title": "Quick Links",
+    "footer_contact_title": "Contact",
+    "footer_address": "Riyadh, Saudi Arabia",
+    "footer_copyright": "&copy; 2025 CloudPros. All rights reserved."
+}

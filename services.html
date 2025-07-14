@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudPros - Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <svg class="h-8 w-8 text-[#FF9900]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+                    <span class="text-2xl font-bold text-gray-800">CloudPros</span>
+                </a>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <nav class="flex items-center space-x-1">
+                        <a href="index.html" class="nav-link px-4 py-2 rounded-md text-sm font-medium" data-translate="nav_home">Home</a>
+                        <a href="services.html" class="nav-link px-4 py-2 rounded-md text-sm font-medium" data-translate="nav_services">Services</a>
+                        <a href="about.html" class="nav-link px-4 py-2 rounded-md text-sm font-medium" data-translate="nav_about">About Us</a>
+                        <a href="contact.html" class="nav-link px-4 py-2 rounded-md text-sm font-medium" data-translate="nav_contact">Contact</a>
+                        <a href="teammembers.html" class="nav-link px-4 py-2 rounded-md text-sm font-medium" data-translate="nav_contact">Our Team</a>
+                        <a href="signin.html" class="nav-link px-4 py-2 rounded-md text-sm font-medium" data-translate="nav_contact">Signin</a>
+                    </nav>
+                    <div class="flex items-center space-x-3 lang-switcher">
+                        <a href="en.json" data-lang="en" class="text-sm hover:underline" data-translate="lang_en_short">EN</a>
+                        <span class="text-gray-300">|</span>
+                        <a href="ar.json" data-lang="ar" class="text-sm hover:underline" data-translate="lang_ar_short">AR</a>
+                    </div>
+                </div>
+
+                <div class="md:hidden">
+                    <button id="menu-btn" class="p-2 text-gray-600 hover:text-gray-800">
+                        <svg id="menu-open-icon" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+                        <svg id="menu-close-icon" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-200">
+            <a href="index.html" class="block py-2 px-4 text-sm hover:bg-orange-50 nav-link" data-translate="nav_home">Home</a>
+            <a href="services.html" class="block py-2 px-4 text-sm hover:bg-orange-50 nav-link" data-translate="nav_services">Services</a>
+            <a href="about.html" class="block py-2 px-4 text-sm hover:bg-orange-50 nav-link" data-translate="nav_about">About Us</a>
+            <a href="contact.html" class="block py-2 px-4 text-sm hover:bg-orange-50 nav-link" data-translate="nav_contact">Contact</a>
+            <a href="teammembers.html" class="block py-2 px-4 text-sm hover:bg-orange-50 nav-link" data-translate="nav_contact">Our Team</a>
+            <a href="signin.html" class="block py-2 px-4 text-sm hover:bg-orange-50 nav-link" data-translate="nav_contact">Signin</a>
+
+            <div class="border-t border-gray-200">
+                <div class="flex items-center justify-center space-x-6 py-4 lang-switcher">
+                     <a href="en.json" data-lang="en" class="text-sm hover:underline" data-translate="lang_en_long">English</a>
+                     <span class="text-gray-300">|</span>
+                     <a href="ar.json" data-lang="ar" class="text-sm hover:underline" data-translate="lang_ar_long">العربية</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+         <!-- Section 1: AWS Cloud Services -->
+        <div class="py-12 lg:py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl lg:text-4xl font-bold text-gray-900">CloudPros  Services</h2>
+                    <p class="text-gray-600 mt-3 text-lg">End-to-end AWS solutions to build, scale, and manage your infrastructure efficiently and securely.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <!-- Card: Migration -->
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col">
+                        <div class="flex-shrink-0 bg-orange-100 p-3 rounded-full w-fit mb-4"><svg class="h-8 w-8 text-[#FF9900]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l-3 3m3-3l3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" /></svg></div>
+                        <h3 class="text-xl font-bold text-gray-900">Cloud Migration & Strategy</h3>
+                        <p class="text-gray-600 mt-2 flex-grow">Seamlessly transition to AWS with minimal disruption, from initial planning to post-migration optimization.</p>
+                        <a href="service-migration-strategy.html" class="text-[#E68A00] font-semibold mt-4 inline-block hover:underline">Learn More →</a>
+                    </div>
+                    <!-- Card: DevOps -->
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col">
+                        <div class="flex-shrink-0 bg-green-100 p-3 rounded-full w-fit mb-4"><svg class="h-8 w-8 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" /></svg></div>
+                        <h3 class="text-xl font-bold text-gray-900">DevOps & Automation</h3>
+                        <p class="text-gray-600 mt-2 flex-grow">Accelerate release cycles and improve reliability with CI/CD, Infrastructure as Code, and containerization.</p>
+                        <a href="service-devops-automation.html" class="text-[#E68A00] font-semibold mt-4 inline-block hover:underline">Learn More →</a>
+                    </div>
+                    <!-- Card: Security -->
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col">
+                        <div class="flex-shrink-0 bg-red-100 p-3 rounded-full w-fit mb-4"><svg class="h-8 w-8 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.75M12 3.75a9.75 9.75 0 015.402 1.598" /></svg></div>
+                        <h3 class="text-xl font-bold text-gray-900">Security & Compliance</h3>
+                        <p class="text-gray-600 mt-2 flex-grow">Implement a robust security posture and achieve compliance with standards like ISO 27001, SOC 2, and GDPR.</p>
+                        <a href="service-security-compliance.html" class="text-[#E68A00] font-semibold mt-4 inline-block hover:underline">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 2: Networking Solutions -->
+        <div class="py-12 lg:py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl lg:text-4xl font-bold text-gray-900">Networking Solutions</h2>
+                    <p class="text-gray-600 mt-3 text-lg">Designing, implementing, and maintaining secure, high-performance network infrastructures for cloud and on-premise.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <!-- Card: Network Architecture -->
+                     <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col">
+                        <div class="flex-shrink-0 bg-blue-100 p-3 rounded-full w-fit mb-4"><svg class="h-8 w-8 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M8.25 3.75H19.5M8.25 6.75H19.5M8.25 9.75H19.5M8.25 12.75H19.5M8.25 15.75H19.5M8.25 18.75H19.5M3.75 3.75H5.25V5.25H3.75V3.75ZM3.75 6.75H5.25V8.25H3.75V6.75ZM3.75 9.75H5.25V11.25H3.75V9.75ZM3.75 12.75H5.25V14.25H3.75V12.75ZM3.75 15.75H5.25V17.25H3.75V15.75ZM3.75 18.75H5.25V20.25H3.75V18.75Z" /></svg></div>
+                        <h3 class="text-xl font-bold text-gray-900">Network Architecture</h3>
+                        <p class="text-gray-600 mt-2 flex-grow">Bespoke, resilient network foundations using AWS best practices, including multi-region VPCs and Transit Gateway.</p>
+                        <a href="service-network-architecture.html" class="text-[#E68A00] font-semibold mt-4 inline-block hover:underline">Learn More →</a>
+                    </div>
+                    <!-- Card: Connectivity Solutions -->
+                     <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col">
+                        <div class="flex-shrink-0 bg-cyan-100 p-3 rounded-full w-fit mb-4"><svg class="h-8 w-8 text-cyan-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" /></svg></div>
+                        <h3 class="text-xl font-bold text-gray-900">Connectivity Solutions</h3>
+                        <p class="text-gray-600 mt-2 flex-grow">Securely extend your on-premises network to the cloud with Site-to-Site VPN and AWS Direct Connect.</p>
+                        <a href="service-connectivity-solutions.html" class="text-[#E68A00] font-semibold mt-4 inline-block hover:underline">Learn More →</a>
+                    </div>
+                    <!-- Card: IT Infrastructure Maintenance -->
+                    <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col">
+                        <div class="flex-shrink-0 bg-teal-100 p-3 rounded-full w-fit mb-4"><svg class="h-8 w-8 text-teal-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div>
+                        <h3 class="text-xl font-bold text-gray-900">IT Infrastructure Maintenance</h3>
+                        <p class="text-gray-600 mt-2 flex-grow">Proactive monitoring, patch management, and support to ensure the health and longevity of your IT systems.</p>
+                        <a href="service-infrastructure-maintenance.html" class="text-[#E68A00] font-semibold mt-4 inline-block hover:underline">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Data Center Solutions -->
+        <div class="py-12 lg:py-16 bg-white">
+            <div class="container mx-auto px-4">
+                 <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl lg:text-4xl font-bold text-gray-900">Data Center Solutions</h2>
+                    <p class="text-gray-600 mt-3 text-lg">Building robust physical infrastructures for mission-critical operations.</p>
+                </div>
+                <div class="lg:col-span-2 bg-gray-50 p-8 rounded-2xl shadow-lg flex flex-col md:flex-row items-center gap-8 max-w-6xl mx-auto">
+                    <div class="flex-shrink-0 bg-slate-100 p-4 rounded-full w-fit"><svg class="h-16 w-16 text-slate-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3V7.5a3 3 0 013-3h13.5a3 3 0 013 3v3.75a3 3 0 01-3 3m-13.5 0h13.5m-13.5 0a3 3 0 00-3 3v.75a3 3 0 003 3h13.5a3 3 0 003-3v-.75a3 3 0 00-3-3m-13.5 0h13.5" /></svg></div>
+                    <div class="text-center md:text-left flex-grow">
+                        <h3 class="text-2xl font-bold text-gray-900">End-to-End Data Center Build</h3>
+                        <p class="text-gray-600 mt-2">End-to-end services for building and managing mission-critical data centers, from raised floors and cooling to power and security.</p>
+                    </div>
+                    <a href="service-data-center.html" class="bg-[#FF9900] text-white font-bold py-3 px-8 rounded-lg text-lg shadow-lg hover:bg-[#E68A00] transition-all duration-300 mt-4 md:mt-0 flex-shrink-0">
+                        Explore This Service
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: On-Premise IT Solutions -->
+        <div class="py-12 lg:py-16 bg-gray-50">
+             <div class="container mx-auto px-4">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                     <h2 class="text-3xl lg:text-4xl font-bold text-gray-900">On-Premise IT Solutions</h2>
+                     <p class="text-gray-600 mt-3 text-lg">Enhancing physical security and workplace collaboration with cutting-edge technology.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <!-- Card: CCTV -->
+                    <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col">
+                        <div class="flex-shrink-0 bg-indigo-100 p-3 rounded-full w-fit mb-4"><svg class="h-8 w-8 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1.125-1.5M10.875 15L12 13.875m0 0L13.125 15m-3.375 0h6.75m-6.75 0H6.75m0 0v3.75c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V15m-1.5-3.75l-1.5-1.5" /></svg></div>
+                        <h3 class="text-xl font-bold text-gray-900">CCTV Surveillance</h3>
+                        <p class="text-gray-600 mt-2 flex-grow">Advanced, high-resolution monitoring and recording systems to enhance your physical security posture.</p>
+                        <a href="service-cctv.html" class="text-[#E68A00] font-semibold mt-4 inline-block hover:underline">Learn More →</a>
+                    </div>
+                    <!-- Card: Meeting Rooms -->
+                    <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col">
+                        <div class="flex-shrink-0 bg-purple-100 p-3 rounded-full w-fit mb-4"><svg class="h-8 w-8 text-purple-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-1.621-1.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" /></svg></div>
+                        <h3 class="text-xl font-bold text-gray-900">Meeting Room Solutions</h3>
+                        <p class="text-gray-600 mt-2 flex-grow">Integrated, easy-to-use audio-visual and conferencing systems for seamless collaboration.</p>
+                        <a href="service-meeting-rooms.html" class="text-[#E68A00] font-semibold mt-4 inline-block hover:underline">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white">
+        <!-- Add your consistent footer content here -->
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
