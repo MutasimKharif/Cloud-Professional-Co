@@ -6,63 +6,140 @@
     <title>Connectivity Solutions - CloudPros</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Applying the new font and styles -->
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+        }
+        /* Custom prose styles for better heading contrast with the new font */
+        .prose h2, .prose h3 {
+            font-weight: 700;
+            color: #1f2937; /* A darker gray for better contrast */
+        }
+    </style>
 </head>
-<body class="bg-white">
-    <!-- Header: Copy from services.html -->
-<main>
-        <div class="bg-gray-50">
-            <div class="container mx-auto px-4 py-16 lg:py-20 text-center">
-                <p class="text-base font-semibold text-[#FF9900]">AWS Cloud Services</p>
-                <h1 class="text-4xl lg:text-5xl font-bold text-gray-800 mt-2">Connectivity Solutions</h1>
-                <p class="text-lg text-gray-600 mt-4 max-w-3xl mx-auto"> We establish secure and reliable pathways between your on-premises data centers and the AWS cloud, creating a true hybrid environment.</p> </div></div>
+<body class="bg-white text-gray-800">
 
+    <!-- Your Standard Header Goes Here -->
+    <header class="bg-white shadow-md sticky top-0 z-40">
+        <!-- Paste your full header code here -->
+    </header>
 
-   <div class="py-16 lg:py-24">
-            <div class="container mx-auto px-4 max-w-4xl">
+    <main>
+        <!-- Hero Section with Background Image -->
+        <div class="relative bg-gray-900">
+            <div class="absolute inset-0">
+                <img src="assets/images/devops-cityscape.jpg" alt="Futuristic cityscape with data flowing from a central cloud" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-slate-800 mix-blend-multiply" aria-hidden="true"></div>
+            </div>
+            <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8 text-center">
+                <p class="text-base font-semibold text-[#FF9900] uppercase tracking-wider">Network Solutions</p>
+                <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">Connectivity Solutions</h1>
+                <p class="mt-6 max-w-3xl mx-auto text-xl text-gray-300">We establish secure and reliable pathways between your on-premises data centers and the AWS cloud, creating a true hybrid environment.</p>
+            </div>
+        </div>
+
+        <!-- Main Content Area with Dynamic Layout -->
+        <div class="py-16 lg:py-20">
+            <div class="container mx-auto px-4 max-w-5xl">
                 
-                <!-- Feature Image Section -->
-                <div class="mb-12 lg:mb-16">
-                 </div>
-                <div class="prose lg:prose-lg max-w-none text-gray-700">
-                    <h2>Keeping Your Systems Healthy and Secure</h2>
-                    <p>Your IT infrastructure is the engine that powers your business. Our maintenance services move beyond reactive fixes to a proactive approach, identifying and addressing potential issues before they can cause costly downtime. We act as an extension of your team to keep your systems running at peak efficiency.</p>
+                <!-- Dynamic "What We Offer" Section -->
+                <div class="space-y-16">
+
+                    <!-- Feature Block 1: AWS Site-to-Site VPN -->
+                    <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
+                        <div class="prose max-w-none text-gray-700">
+                            <h3>AWS Site-to-Site VPN</h3>
+                            <p>For flexible and secure connectivity, we configure encrypted IPsec VPN tunnels between your on-premise network and your AWS Virtual Private Cloud (VPC). This is a cost-effective solution ideal for moderate bandwidth requirements and establishing redundant connections.</p>
+                        </div>
+                        <img src="assets/images/service-img-vpn.jpg" alt="A diagram showing a secure VPN tunnel connecting an on-premise office to the AWS cloud." class="rounded-lg shadow-xl w-full h-auto">
+                    </div>
+
+                    <!-- Feature Block 2: AWS Direct Connect -->
+                    <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
+                        <img src="assets/images/service-img-direct-connect.jpg" alt="A diagram illustrating a dedicated, high-speed Direct Connect link between a data center and AWS." class="rounded-lg shadow-xl w-full h-auto md:order-first">
+                        <div class="prose max-w-none text-gray-700">
+                            <h3>AWS Direct Connect</h3>
+                            <p>When you need consistent, high-bandwidth performance, AWS Direct Connect is the premier solution. We help you establish a dedicated, private network connection from your data center to AWS, bypassing the public internet for lower latency and more reliable data transfer.</p>
+                        </div>
+                    </div>
                     
+                    <!-- Feature Block 3: VPC Peering -->
+                    <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
+                        <div class="prose max-w-none text-gray-700">
+                            <h3>VPC Peering</h3>
+                            <p>We connect your Virtual Private Clouds (VPCs) together, even across different AWS accounts, as if they were on the same private network. This allows you to share resources securely and privately within the AWS ecosystem without traffic ever traversing the public internet.</p>
+                        </div>
+                         <img src="assets/images/service-img-vpc-peering.jpg" alt="A diagram showing two separate VPCs within AWS connected directly via VPC Peering." class="rounded-lg shadow-xl w-full h-auto">
+                    </div>
 
-<h3>What We Offer</h3>
-                    <ul class="space-y-4">
-                        <li class="flex items-start gap-4">
-                            <svg class="w-6 h-6 text-green-500 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            <div><strong>AWS Site-to-Site VPN: </strong> Configuring secure, encrypted tunnels over the internet for flexible and cost-effective remote connectivity. </li>
-                        <li class="flex items-start gap-4">
-                             <svg class="w-6 h-6 text-green-500 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            <div><strong>AWS Direct Connect:</strong> Establishing a dedicated, private network connection from your premises to AWS for consistent, high-bandwidth performance.</div>
-                        </li>
-                        <li class="flex items-start gap-4">
-                             <svg class="w-6 h-6 text-green-500 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                           <div><strong>VPC Peering: </strong> Connecting VPCs privately using AWS's backbone, enabling them to communicate as if they are on the same network.</div>
-                        </li>
-                    </ul>
- <li class="flex items-start gap-4">
-                             <svg class="w-6 h-6 text-green-500 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            <div><strong>Network Performance & Cost Analysis: </strong> Analyzing your data transfer patterns to recommend the most efficient and cost-effective connectivity model.</div></div> </li>
+                    <!-- Feature Block 4: Network Analysis -->
+                     <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
+                        <img src="assets/images/service-img-cost-analysis.jpg" alt="A dashboard showing network performance graphs and cost analysis charts." class="rounded-lg shadow-xl w-full h-auto md:order-first">
+                        <div class="prose max-w-none text-gray-700">
+                            <h3>Network Performance & Cost Analysis</h3>
+                            <p>Choosing the right connectivity model is crucial for your budget and performance. We analyze your data transfer patterns, application requirements, and security needs to recommend the most efficient and cost-effective mix of connectivity solutions for your business.</p>
+                        </div>
+                    </div>
 
-                    <h3>Why Choose CloudPros?</h3>
-                    <p>Our AWS-certified experts have a track record of successful migrations across various industries. We act as your trusted partner, providing transparent communication and expert guidance to ensure your cloud transformation is a resounding success.</p>
                 </div>
 
                 <!-- CTA Section -->
-                <div class="text-center mt-16 lg:mt-24 bg-gray-50 p-10 rounded-xl">
-                    <h2 class="text-3xl font-bold text-gray-800">Ready to Start Your Cloud Journey?</h2>
-                    <p class="text-lg text-gray-600 mt-2">Let's discuss how we can build your future in the cloud.</p>
+                <div class="text-center mt-20 bg-gray-50 p-10 rounded-xl">
+                    <h2 class="text-3xl font-bold text-gray-900">Bridge Your On-Premise and Cloud Environments</h2>
+                    <p class="text-lg text-gray-600 mt-2">Let's design the optimal connectivity strategy for your hybrid cloud needs.</p>
                     <a href="contact.html" class="mt-6 inline-block bg-[#FF9900] text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-[#E68A00] transition-all duration-300">
-                        Get a Consultation
+                        Get a Connectivity Consultation
                     </a>
                 </div>
             </div>
         </div>
     </main>
     
-    <!-- Footer: Copy from services.html -->
+    <!-- Your Standard Footer Goes Here -->
+   <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
+             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div class="col-span-1 lg:col-span-4">
+                   <a href="index.html" class="flex items-center space-x-2 mb-4">
+                        <svg class="h-8 w-8 text-[#FF9900]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+                        <span class="text-2xl font-bold">CloudPros</span>
+                    </a>
+                    <p class="text-gray-400 max-w-md">Your expert partner for AWS cloud and on-premise IT solutions.</p>
+                     <div class="mt-6 flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white"><span class="sr-only">Twitter</span><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><span class="sr-only">LinkedIn</span><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg></a>
+                    </div>
+                </div>
+                <div class="col-span-1 lg:col-span-2">
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-white">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-span-1 lg:col-span-6">
+                     <h3 class="text-lg font-semibold mb-4">Subscribe to Our Newsletter</h3>
+                     <p class="text-gray-400 mb-4 text-sm">Get the latest insights on cloud technology and security delivered to your inbox.</p>
+                     <form id="newsletter-form" class="flex flex-col sm:flex-row gap-2">
+                        <label for="newsletter-email" class="sr-only">Email address</label>
+                        <input type="email" id="newsletter-email" required class="w-full px-4 py-2 rounded-md bg-gray-700 text-white border-gray-600 focus:ring-[#FF9900] focus:border-[#FF9900]" placeholder="Enter your email">
+                        <button type="submit" class="bg-[#FF9900] text-white font-bold py-2 px-6 rounded-md hover:bg-[#E68A00] transition-colors">Subscribe</button>
+                    </form>
+                </div>
+              </div>
+            <div class="mt-8 border-t border-gray-700 pt-8 text-center text-gray-500">
+                <p>© 2025 CloudPros. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
