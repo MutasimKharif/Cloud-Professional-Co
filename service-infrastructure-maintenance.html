@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IT Infrastructure Maintenance - CloudPros</title>
+    <title>DevOps & Automation - CloudPros</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
 
@@ -12,14 +12,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Applying the new font to the body -->
+    <!-- Applying the new font and styles -->
     <style>
         body { 
             font-family: 'Inter', sans-serif; 
         }
-        /* Custom prose styles to match the new font and aesthetic */
+        /* Custom prose styles for better heading contrast with the new font */
         .prose h2, .prose h3 {
             font-weight: 700;
+            color: #1f2937; /* A darker gray for better contrast */
         }
     </style>
 </head>
@@ -31,76 +32,76 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
-        <div class="bg-gray-50">
-            <div class="container mx-auto px-4 py-16 lg:py-20 text-center">
-                <p class="text-base font-semibold text-[#FF9900]">Networking Solutions</p>
-                <h1 class="text-4xl lg:text-5xl font-extrabold text-gray-900 mt-2">IT Infrastructure Maintenance</h1>
-                <p class="text-lg text-gray-600 mt-4 max-w-3xl mx-auto">Proactive maintenance and expert support to ensure the optimal performance, security, and longevity of your critical IT systems.</p>
+        <!-- Hero Section with Background Image -->
+        <div class="relative bg-gray-900">
+            <div class="absolute inset-0">
+                <img src="assets/images/devops-cityscape.jpg" alt="Futuristic cityscape with data flowing from a central cloud" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-slate-800 mix-blend-multiply" aria-hidden="true"></div>
+            </div>
+            <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8 text-center">
+                <p class="text-base font-semibold text-[#FF9900] uppercase tracking-wider">AWS Cloud Services</p>
+                <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">DevOps & Automation at Scale</h1>
+                <p class="mt-6 max-w-3xl mx-auto text-xl text-gray-300">We build automated pipelines that accelerate your software delivery, enhance reliability, and foster a culture of innovation.</p>
             </div>
         </div>
 
-        <!-- Main Content Area with Reduced Spacing -->
-        <div class="py-12 lg:py-16">
-            <div class="container mx-auto px-4 max-w-4xl">
 
-                <!-- Unified Text Content for Better Flow -->
-                <div class="prose lg:prose-lg max-w-none text-gray-700">
-                    <h2>Keeping Your Systems Healthy and Secure</h2>
-                    <p>Your IT infrastructure is the engine that powers your business. Our maintenance services move beyond reactive fixes to a proactive approach, identifying and addressing potential issues before they can cause costly downtime. We act as an extension of your team to keep your systems running at peak efficiency.</p>
-                    
-                    <h3>What We Offer</h3>
-                    <ul class="space-y-4">
-                        <li class="flex items-start gap-4">
-                            <svg class="w-6 h-6 text-green-500 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            <div><strong>Proactive Monitoring:</strong> 24/7 monitoring of your servers, network devices, and critical applications to detect performance bottlenecks, security threats, and potential failures in real-time.</div>
-                        </li>
-                        <li class="flex items-start gap-4">
-                             <svg class="w-6 h-6 text-green-500 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            <div><strong>Patch Management:</strong> Systematic testing and deployment of security patches and software updates for operating systems and applications to protect against vulnerabilities.</div>
-                        </li>
-                        <li class="flex items-start gap-4">
-                             <svg class="w-6 h-6 text-green-500 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                           <div><strong>Hardware Lifecycle Management:</strong> We track the age and performance of your hardware, providing recommendations for upgrades or replacements to prevent failures and maintain performance.</div>
-                        </li>
-                        <li class="flex items-start gap-4">
-                             <svg class="w-6 h-6 text-green-500 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                           <div><strong>Help Desk & Technical Support:</strong> Providing expert technical support for your employees, resolving issues quickly and efficiently to minimize disruptions to productivity.</div>
-                        </li>
-                    </ul>
-
-                    <h3>Why Choose CloudPros for Maintenance?</h3>
-                     <p>We provide peace of mind. By entrusting us with the health of your infrastructure, you can focus on your core business activities, confident that your IT environment is stable, secure, and optimized for performance.</p>
+        <!-- Main Content Area with Dynamic Layout -->
+        <div class="py-16 lg:py-20">
+            <div class="container mx-auto px-4 max-w-5xl">
+                
+                <div class="prose lg:prose-lg max-w-none text-gray-700 text-center mb-16">
+                    <h2>Our Approach to DevOps</h2>
+                    <p>DevOps is more than a set of tools; it's a cultural and technical shift that bridges the gap between development and operations. Our approach focuses on implementing automation at every stage of the software development lifecycle. By doing so, we help your teams release higher-quality software faster, improve system reliability, and spend more time on innovation instead of manual tasks.</p>
                 </div>
 
-                <!-- Dynamic Infographics Section -->
-                <div class="mt-12 pt-10 border-t border-gray-200">
-                    <div class="text-center mb-10">
-                         <h2 class="text-3xl font-bold text-gray-900">Built on a Foundation of Strong Design</h2>
-                         <p class="text-lg text-gray-600 mt-3 max-w-2xl mx-auto">Effective maintenance starts with intelligent architecture. Our expertise is built on core design principles that make your infrastructure manageable, scalable, and resilient from day one.</p>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <!-- Image 1 Card -->
-                        <div class="bg-slate-800 p-2 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                            <img src="assets/images/network-design-infographic-1.jpg" alt="Network Architecture & Design infographic with circular flow" class="rounded w-full h-auto">
+                <!-- Dynamic "What We Offer" Section -->
+                <div class="space-y-16">
+
+                    <!-- Feature Block 1: CI/CD -->
+                    <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
+                        <div class="prose max-w-none text-gray-700">
+                            <h3>CI/CD Pipeline Implementation</h3>
+                            <p>We automate your entire build, test, and deployment process using industry-leading tools like AWS CodePipeline, Jenkins, and GitLab CI. This ensures rapid, reliable, and repeatable software releases, reducing manual errors and accelerating your time-to-market.</p>
                         </div>
-                        <!-- Image 2 Card -->
-                        <div class="bg-slate-800 p-2 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                            <img src="assets/images/network-design-infographic-2.jpg" alt="Network Architecture & Design infographic with linear flow" class="rounded w-full h-auto">
-                        </div>
-                        <!-- Image 3 Card -->
-                        <div class="bg-slate-800 p-2 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                            <img src="assets/images/network-design-infographic-3.jpg" alt="Network Architecture & Design infographic with central logo" class="rounded w-full h-auto">
+                        <!-- Image in a Card -->
+                        <div class="bg-slate-800 p-3 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                            <img src="assets/images/devops-process-diagram.jpg" alt="Diagram showing the DevOps process: Build, Test, Deploy, Monitor" class="rounded-md w-full h-auto">
                         </div>
                     </div>
+
+                    <!-- Feature Block 2: IaC -->
+                    <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
+                         <!-- Image in a Card (first on mobile, last on desktop) -->
+                         <div class="bg-slate-800 p-3 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300 md:order-last">
+                            <img src="assets/images/devops-isometric.jpg" alt="Isometric diagram of cloud infrastructure and AWS services" class="rounded-md w-full h-auto">
+                        </div>
+                        <div class="prose max-w-none text-gray-700">
+                            <h3>Infrastructure as Code (IaC)</h3>
+                            <p>Manage and provision your entire infrastructure through code using Terraform or AWS CloudFormation. IaC brings version control, consistency, and repeatability to your server environments, eliminating configuration drift and enabling scalable, predictable deployments.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature Block 3: Containers -->
+                    <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
+                        <div class="prose max-w-none text-gray-700">
+                            <h3>Containerization & Orchestration</h3>
+                            <p>We help you build portable, scalable, and resilient microservices architectures using Docker for containerization and Kubernetes (via Amazon EKS) for orchestration. This modern approach isolates applications and simplifies management at scale.</p>
+                        </div>
+                         <!-- Image in a Card -->
+                         <div class="bg-slate-800 p-3 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                            <img src="assets/images/devops-on-desktop.jpg" alt="A complex DevOps workflow visualized on a desktop computer screen" class="rounded-md w-full h-auto">
+                        </div>
+                    </div>
+
                 </div>
 
                 <!-- CTA Section -->
-                <div class="text-center mt-12 lg:mt-16 bg-gray-50 p-10 rounded-xl">
-                    <h2 class="text-3xl font-bold text-gray-900">Ensure Your Infrastructure is Always On</h2>
-                    <p class="text-lg text-gray-600 mt-2">Let us handle the health of your IT systems.</p>
+                <div class="text-center mt-20 bg-gray-50 p-10 rounded-xl">
+                    <h2 class="text-3xl font-bold text-gray-900">Ready to Automate Your Workflow?</h2>
+                    <p class="text-lg text-gray-600 mt-2">Let's discuss how we can accelerate your development lifecycle.</p>
                     <a href="contact.html" class="mt-6 inline-block bg-[#FF9900] text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-[#E68A00] transition-all duration-300">
-                        Request a Maintenance Plan
+                        Get a DevOps Consultation
                     </a>
                 </div>
             </div>
@@ -109,7 +110,40 @@
     
     <!-- Your Standard Footer Goes Here -->
     <footer class="bg-gray-800 text-white">
-        <!-- Paste your full footer code here -->
+        <div class="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
+             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div class="col-span-1 lg:col-span-4">
+                   <a href="index.html" class="flex items-center space-x-2 mb-4">
+                        <svg class="h-8 w-8 text-[#FF9900]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+                        <span class="text-2xl font-bold">CloudPros</span>
+                    </a>
+                    <p class="text-gray-400 max-w-md">Your expert partner for AWS cloud and on-premise IT solutions.</p>
+                     <div class="mt-6 flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white"><span class="sr-only">Twitter</span><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><span class="sr-only">LinkedIn</span><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg></a>
+                    </div>
+                </div>
+                <div class="col-span-1 lg:col-span-2">
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-white">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-span-1 lg:col-span-6">
+                     <h3 class="text-lg font-semibold mb-4">Subscribe to Our Newsletter</h3>
+                     <p class="text-gray-400 mb-4 text-sm">Get the latest insights on cloud technology and security delivered to your inbox.</p>
+                     <form id="newsletter-form" class="flex flex-col sm:flex-row gap-2">
+                        <label for="newsletter-email" class="sr-only">Email address</label>
+                        <input type="email" id="newsletter-email" required class="w-full px-4 py-2 rounded-md bg-gray-700 text-white border-gray-600 focus:ring-[#FF9900] focus:border-[#FF9900]" placeholder="Enter your email">
+                        <button type="submit" class="bg-[#FF9900] text-white font-bold py-2 px-6 rounded-md hover:bg-[#E68A00] transition-colors">Subscribe</button>
+                    </form>
+                </div>
+              </div>
+            <div class="mt-8 border-t border-gray-700 pt-8 text-center text-gray-500">
+                <p>© 2025 CloudPros. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
 
     <script src="script.js"></script>
