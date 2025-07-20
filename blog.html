@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog & Insights - CloudPros</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <svg class="h-8 w-8 text-[#FF9900]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+                    <span class="text-2xl font-bold text-gray-800">CloudPros</span>
+                </a>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <nav class="flex items-center space-x-1">
+                        <a href="index.html" class="nav-link px-4 py-2 rounded-md text-sm font-medium" data-translate="nav_home">Home</a>
+                        <a href="services.html" class="nav-link px-4 py-2 rounded-md text-sm font-medium" data-translate="nav_services">Services</a>
+                        <a href="about.html" class="nav-link px-4 py-2 rounded-md text-sm font-medium" data-translate="nav_about">About Us</a>
+                        <a href="contact.html" class="nav-link px-4 py-2 rounded-md text-sm font-medium" data-translate="nav_contact">Contact</a>
+                        <a href="teammembers.html" class="nav-link px-4 py-2 rounded-md text-sm font-medium" data-translate="nav_teammembers">Our Team</a>
+                        <a href="signin.html" class="nav-link px-4 py-2 rounded-md text-sm font-medium" data-translate="nav_contact">Signin</a>
+                    </nav>
+                    <div class="flex items-center space-x-3 lang-switcher">
+                        <a href="en.json" data-lang="en" class="text-sm hover:underline" data-translate="lang_en_short">EN</a>
+                        <span class="text-gray-300">|</span>
+                        <a href="ar.json" data-lang="ar" class="text-sm hover:underline" data-translate="lang_ar_short">AR</a>
+                    </div>
+                </div>
+
+                <div class="md:hidden">
+                    <button id="menu-btn" class="p-2 text-gray-600 hover:text-gray-800">
+                        <svg id="menu-open-icon" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+                        <svg id="menu-close-icon" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-200">
+            <a href="index.html" class="block py-2 px-4 text-sm hover:bg-orange-50 nav-link" data-translate="nav_home">Home</a>
+            <a href="services.html" class="block py-2 px-4 text-sm hover:bg-orange-50 nav-link" data-translate="nav_services">Services</a>
+            <a href="about.html" class="block py-2 px-4 text-sm hover:bg-orange-50 nav-link" data-translate="nav_about">About Us</a>
+            <a href="contact.html" class="block py-2 px-4 text-sm hover:bg-orange-50 nav-link" data-translate="nav_contact">Contact</a>
+            <a href="teammembers.html" class="block py-2 px-4 text-sm hover:bg-orange-50 nav-link" data-translate="nav_contact">Our Team</a>
+            <a href="signin.html" class="block py-2 px-4 text-sm hover:bg-orange-50 nav-link" data-translate="nav_contact">Signin</a>
+
+            <div class="border-t border-gray-200">
+                <div class="flex items-center justify-center space-x-6 py-4 lang-switcher">
+                     <a href="en.json" data-lang="en" class="text-sm hover:underline" data-translate="lang_en_long">English</a>
+                     <span class="text-gray-300">|</span>
+                     <a href="ar.json" data-lang="ar" class="text-sm hover:underline" data-translate="lang_ar_long">العربية</a>
+                </div>
+            </div>
+        </div>
+    </header>
+<main>
+
+   <div class="relative bg-slate-900">
+             <div class="absolute inset-0">
+                <img src="assets/images/devops-cityscape.jpg" alt="A futuristic city representing digital transformation and cloud infrastructure" class="w-full h-full object-cover opacity-30">
+                <div class="absolute inset-0 bg-slate-800 mix-blend-multiply" aria-hidden="true"></div>
+            </div>
+            <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">CloudPros Insights</h1>
+                <p class="mt-6 max-w-3xl mx-auto text-xl text-gray-300">Your source for the latest news, articles, and expert analysis on cloud computing, DevOps, and enterprise IT.</p>
+                <div class="mt-10">
+                    <a href="contact.html" class="bg-[#FF9900] text-white font-bold py-3 px-8 rounded-lg text-lg shadow-lg hover:bg-[#E68A00] transition-all duration-300">
+                        Get a Consultation
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Featured Article -->
+        <div class="py-12 lg:py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center max-w-7xl mx-auto">
+                    <a href="article-placeholder.html" class="block group">
+                        <img src="https://placehold.co/800x600/ef4444/FFFFFF?text=Cloud+Security" alt="Abstract image representing cloud security" class="rounded-xl shadow-lg group-hover:shadow-2xl transition-shadow duration-300 w-full h-auto">
+                    </a>
+                    <div>
+                        <a href="article-placeholder.html" class="text-sm font-semibold text-[#FF9900] uppercase">Cloud Security</a>
+                        <a href="C-Security-article.html" class="block mt-2">
+                            <h2 class="text-3xl font-bold text-gray-900 tracking-tight hover:text-[#FF9900] transition-colors duration-300">Securing Your S3 Buckets: A Comprehensive Guide for 2025</h2>
+                        </a>
+                        <p class="mt-4 text-lg text-gray-600">Misconfigured S3 buckets remain a leading cause of data breaches. In this guide, we walk through the essential security settings, IAM policies, and monitoring best practices to keep your data safe.</p>
+                        <div class="mt-6 flex items-center gap-4">
+                            <img class="h-12 w-12 rounded-full" src="https://placehold.co/100x100/E2E8F0/4A5568?text=MA" alt="Author Mohammed Al-Zahrani">
+                            <div>
+                                <p class="font-semibold text-gray-900">Mohammed Al-Zahrani</p>
+                                <p class="text-gray-600 text-sm">March 15, 2025</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Latest Articles Grid -->
+        <div class="py-16 lg:py-20 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Latest Articles</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
+                    
+                    <!-- Article Card 1 -->
+                    <div class="bg-gray-50 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden">
+                        <a href="article-placeholder.html" class="block"><img src="https://placehold.co/600x400/f97316/FFFFFF?text=Cost+Optimization" alt="Article thumbnail" class="w-full h-48 object-cover"></a>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <a href="#" class="text-sm font-semibold text-[#FF9900]">Cost Optimization</a>
+                            <a href="article-placeholder.html" class="block mt-2"><h3 class="text-xl font-bold text-gray-900">5 Strategies for Optimizing Your AWS Costs</h3></a>
+                            <p class="mt-3 text-gray-600 text-sm flex-grow">Discover practical tips, from right-sizing instances to leveraging Savings Plans, that can significantly reduce your monthly AWS bill.</p>
+                            <p class="mt-4 text-xs text-gray-500">By Mutasim Kharif</p>
+                        </div>
+                    </div>
+
+                    <!-- Article Card 2 -->
+                    <div class="bg-gray-50 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden">
+                        <a href="article-placeholder.html" class="block"><img src="https://placehold.co/600x400/22c55e/FFFFFF?text=DevOps" alt="Article thumbnail" class="w-full h-48 object-cover"></a>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <a href="#" class="text-sm font-semibold text-green-600">DevOps</a>
+                            <a href="article-placeholder.html" class="block mt-2"><h3 class="text-xl font-bold text-gray-900">The Future of DevOps: Trends to Watch</h3></a>
+                            <p class="mt-3 text-gray-600 text-sm flex-grow">From GitOps to AI in automation, we explore the key trends that will shape the DevOps landscape in the coming year.</p>
+                            <p class="mt-4 text-xs text-gray-500">By Bashar Wahsh</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Article Card 3 -->
+                    <div class="bg-gray-50 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden">
+                        <a href="article-placeholder.html" class="block"><img src="https://placehold.co/600x400/3b82f6/FFFFFF?text=Cloud+Migration" alt="Article thumbnail" class="w-full h-48 object-cover"></a>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <a href="#" class="text-sm font-semibold text-blue-600">Cloud Migration</a>
+                            <a href="article-placeholder.html" class="block mt-2"><h3 class="text-xl font-bold text-gray-900">A Step-by-Step Migration Checklist</h3></a>
+                            <p class="mt-3 text-gray-600 text-sm flex-grow">Planning a move to the cloud? Our essential checklist covers every stage, from assessment to post-migration optimization.</p>
+                            <p class="mt-4 text-xs text-gray-500">By CloudPros Team</p>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <!-- Pagination -->
+                <nav class="mt-16 flex justify-center" aria-label="Pagination">
+                    <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                        <span>← Previous</span>
+                    </a>
+                    <a href="#" aria-current="page" class="relative z-10 inline-flex items-center px-4 py-2 border border-[#FF9900] bg-orange-50 text-sm font-medium text-[#FF9900]">1</a>
+                    <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">2</a>
+                    <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">3</a>
+                    <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                        <span>Next →</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+</main>
+
+        <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
+             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div class="col-span-1 lg:col-span-4">
+                   <a href="index.html" class="flex items-center space-x-2 mb-4">
+                        <svg class="h-8 w-8 text-[#FF9900]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+                        <span class="text-2xl font-bold">CloudPros</span>
+                    </a>
+                    <p class="text-gray-400 max-w-md">Your expert partner for AWS cloud and on-premise IT solutions.</p>
+                     <div class="mt-6 flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white"><span class="sr-only">Twitter</span><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><span class="sr-only">LinkedIn</span><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg></a>
+                    </div>
+                </div>
+                <div class="col-span-1 lg:col-span-2">
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-white">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-span-1 lg:col-span-6">
+                     <h3 class="text-lg font-semibold mb-4">Subscribe to Our Newsletter</h3>
+                     <p class="text-gray-400 mb-4 text-sm">Get the latest insights on cloud technology and security delivered to your inbox.</p>
+                     <form id="newsletter-form" action="newsletter.php" method="POST" class="flex flex-col sm:flex-row gap-2">
+                        <label for="newsletter-email" class="sr-only">Email address</label>
+                        <input type="email" id="newsletter-email" required class="w-full px-4 py-2 rounded-md bg-gray-700 text-white border-gray-600 focus:ring-[#FF9900] focus:border-[#FF9900]" placeholder="Enter your email">
+                        <button type="submit" class="bg-[#FF9900] text-white font-bold py-2 px-6 rounded-md hover:bg-[#E68A00] transition-colors">Subscribe</button>
+                    </form>
+                </div>
+              </div>
+            <div class="mt-8 border-t border-gray-700 pt-8 text-center text-gray-500">
+                <p>© 2025 CloudPros. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
