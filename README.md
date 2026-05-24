@@ -105,7 +105,7 @@ Configuration files are located in the `config/` directory. Update these files w
 
 ## 📄 License
 
-[Add your license here - e.g., MIT, Apache 2.0, etc.]
+MIT, Apache 2.0, etc.
 
 ## 👥 Authors
 
@@ -113,7 +113,7 @@ Configuration files are located in the `config/` directory. Update these files w
 
 ## 📞 Contact
 
-For inquiries about Cloud Professional Co services, please visit our website or contact us through the online form.
+For inquiries about Cloud Professional Co services: +966568783539
 
 ## 🙏 Acknowledgments
 
