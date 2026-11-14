@@ -1,88 +1,145 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - CloudPros</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Request client access | CloudPros</title>
+  <meta name="description" content="Request a CloudPros client account.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0B0F15">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CloudPros">
+  <meta property="og:title" content="Request client access | CloudPros">
+  <meta property="og:description" content="Request a CloudPros client account.">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="assets/og/cloudpros-en.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/site.css">
+  <script src="assets/js/site.js" defer></script>
 </head>
-<body class="bg-gray-50">
-    <header class="bg-white shadow-md sticky top-0 z-50">
-        </header>
-    <main class="flex items-center justify-center py-12 lg:py-16">
-        <div class="w-full max-w-lg p-8 space-y-6 bg-white rounded-xl shadow-lg">
-            <h1 class="text-3xl font-bold text-center text-gray-800">Create Your Account</h1>
-            
-            <form id="signup-form" action="signup.php" method="POST" class="space-y-4">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label for="first_name" class="block text-sm font-medium text-gray-700">First Name</label>
-                        <input type="text" name="first_name" id="first_name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500">
-                    </div>
-                     <div>
-                        <label for="last_name" class="block text-sm font-medium text-gray-700">Last Name</label>
-                        <input type="text" name="last_name" id="last_name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500">
-                    </div>
-                </div>
-                <div>
-                    <label for="middle_name" class="block text-sm font-medium text-gray-700">Middle Name <span class="text-gray-500">(Optional)</span></label>
-                    <input type="text" name="middle_name" id="middle_name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500">
-                </div>
-                <div>
-                    <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
-                    <input type="text" name="username" id="username" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500">
-                </div>
-                <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
-                    <input type="email" name="email" id="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500">
-                </div>
-                <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                    <input type="password" name="password" id="password" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500">
-                </div>
-                <div>
-                    <label for="confirm_password" class="block text-sm font-medium text-gray-700">Confirm Password</label>
-                    <input type="password" name="confirm_password" id="confirm_password" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500">
-                </div>
-                
-                <div class="flex items-center pt-2">
-                    <input id="privacy" name="privacy" type="checkbox" required class="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded">
-                    <label for="privacy" class="ml-2 block text-sm text-gray-900">
-                        I agree to the 
-                        <a href="privacy.html" target="_blank" class="font-medium text-orange-600 hover:text-orange-500">Privacy Policy</a>.
-                    </label>
-                </div>
-                
-                <div class="pt-2">
-                    <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#FF9900] hover:bg-[#E68A00] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">
-                        Sign Up
-                    </button>
-                </div>
-            </form>
-            
-            <p class="text-center text-sm text-gray-600">
-                Already have an account? 
-                <a href="signin.html" class="font-medium text-orange-600 hover:text-orange-500">
-                    Sign In
-                </a>
-            </p>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header" data-header>
+  <div class="container site-header__bar">
+    <a class="brand" href="index.html" aria-label="CloudPros home"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false"><path d="M8.5 25h15.25a5.75 5.75 0 0 0 1.6-11.27A8.75 8.75 0 0 0 8.62 11.4 6.75 6.75 0 0 0 8.5 25Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M11 19.5h10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="21" cy="19.5" r="2.6" fill="currentColor"/></svg><span>CloudPros</span></a>
+    <nav class="nav" aria-label="Main"><ul class="nav__list"><li><a class="nav__link" href="services.html">Services</a></li><li><a class="nav__link" href="about.html">About</a></li><li><a class="nav__link" href="teammembers.html">Team</a></li><li><a class="nav__link" href="blog.html">Insights</a></li><li><a class="nav__link" href="contact.html">Contact</a></li></ul></nav>
+    <div class="header-actions">
+      <a class="lang-link" href="ar/signup.html" hreflang="ar" lang="ar"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m10.5 21 5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 0 1 6-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 0 1-3.827-5.802"/></svg><span>العربية</span></a>
+      <a class="lang-link header-cta" href="signin.html"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg><span>Sign in</span></a>
+      <a class="btn btn--primary btn--sm header-cta" href="contact.html">Book a consultation</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav" data-menu-btn>
+        <span class="sr-only">Menu</span><svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg><svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 18 18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-nav" id="mobile-nav" hidden data-mobile-nav>
+    <nav aria-label="Mobile"><ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li><li><a href="teammembers.html">Team</a></li><li><a href="blog.html">Insights</a></li><li><a href="contact.html">Contact</a></li>
+      <li><a href="signin.html">Sign in</a></li>
+    </ul></nav>
+    <a class="btn btn--primary" href="contact.html">Book a consultation</a>
+  </div>
+</header>
+<main id="main">
+<section class="auth">
+  <div class="auth__card auth__card--wide panel stack-6">
+    <div class="stack-3">
+      <p class="eyebrow">Client area</p>
+      <h1>Request access</h1>
+      <p class="muted">Accounts are for existing clients and are approved by our team.</p>
+    </div>
+    <div class="alert alert--error" role="alert" data-status-msg="emptyfields"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/></svg><span>Fill in all the required fields.</span></div>
+    <div class="alert alert--error" role="alert" data-status-msg="passwordmismatch"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/></svg><span>The two passwords don’t match.</span></div>
+    <div class="alert alert--error" role="alert" data-status-msg="weakpassword"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/></svg><span>Use a password of at least 10 characters.</span></div>
+    <div class="alert alert--error" role="alert" data-status-msg="invalidemail"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/></svg><span>Enter a valid email address.</span></div>
+    <div class="alert alert--error" role="alert" data-status-msg="usertaken"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/></svg><span>That username or email is already registered. Try signing in instead.</span></div>
+    <div class="alert alert--error" role="alert" data-status-msg="servererror"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/></svg><span>Something went wrong on our side. Please try again shortly.</span></div>
+    <form class="form" action="signup.php" method="post" novalidate>
+      <input type="hidden" name="lang" value="en">
+      <div class="form__row form__row--3">
+        <div class="field"><label for="first_name">First name</label><input class="input" id="first_name" name="first_name" required autocomplete="given-name" maxlength="50" data-msg-required="This field is required."><p class="field__error" id="first_name-error" data-error-for="first_name"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/></svg><span></span></p></div>
+        <div class="field"><label for="middle_name">Middle name <span class="optional">(optional)</span></label><input class="input" id="middle_name" name="middle_name" autocomplete="additional-name" maxlength="50"></div>
+        <div class="field"><label for="last_name">Last name</label><input class="input" id="last_name" name="last_name" required autocomplete="family-name" maxlength="50" data-msg-required="This field is required."><p class="field__error" id="last_name-error" data-error-for="last_name"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/></svg><span></span></p></div>
+      </div>
+      <div class="form__row form__row--2">
+        <div class="field"><label for="su-username">Username</label><input class="input" id="su-username" name="username" required autocomplete="username" dir="ltr" maxlength="50" pattern="[A-Za-z0-9._-]{3,50}" data-msg-required="This field is required." data-msg-type="3–50 characters: letters, numbers, dot, dash or underscore."><p class="field__error" id="su-username-error" data-error-for="su-username"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/></svg><span></span></p></div>
+        <div class="field"><label for="su-email">Work email</label><input class="input" id="su-email" name="email" type="email" required autocomplete="email" dir="ltr" maxlength="100" data-msg-required="This field is required." data-msg-type="Enter a valid email, like name@company.com."><p class="field__error" id="su-email-error" data-error-for="su-email"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/></svg><span></span></p></div>
+      </div>
+      <div class="form__row form__row--2">
+        <div class="field"><label for="su-password">Password</label><span class="hint" id="su-password-hint">At least 10 characters.</span><input class="input" id="su-password" name="password" type="password" required minlength="10" autocomplete="new-password" dir="ltr" aria-describedby="su-password-hint" data-msg-required="This field is required." data-msg-short="Use at least 10 characters."><p class="field__error" id="su-password-error" data-error-for="su-password"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/></svg><span></span></p></div>
+        <div class="field"><label for="su-confirm">Confirm password</label><span class="hint">&nbsp;</span><input class="input" id="su-confirm" name="confirm_password" type="password" required autocomplete="new-password" dir="ltr" data-match="su-password" data-msg-required="This field is required." data-msg-match="The two passwords don’t match."><p class="field__error" id="su-confirm-error" data-error-for="su-confirm"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/></svg><span></span></p></div>
+      </div>
+      <div class="field">
+        <label style="display:flex;gap:10px;align-items:flex-start;font-weight:400"><input id="su-privacy" name="privacy" type="checkbox" required style="width:20px;height:20px;margin-top:3px;accent-color:var(--signal)" data-msg-required="Please accept the privacy policy to continue."><span>I agree to the <a href="privacy.html">privacy policy</a>.</span></label>
+        <p class="field__error" id="su-privacy-error" data-error-for="su-privacy"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/></svg><span></span></p>
+      </div>
+      <button class="btn btn--primary btn--block" type="submit">Request access</button>
+    </form>
+    <p class="auth__alt">Already have an account? <a href="signin.html">Sign in</a></p>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a class="brand" href="index.html"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false"><path d="M8.5 25h15.25a5.75 5.75 0 0 0 1.6-11.27A8.75 8.75 0 0 0 8.62 11.4 6.75 6.75 0 0 0 8.5 25Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M11 19.5h10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="21" cy="19.5" r="2.6" fill="currentColor"/></svg><span>CloudPros</span></a>
+        <p>AWS cloud, networking and data center engineering for organizations across Saudi Arabia — from one accountable team in Riyadh.</p>
+      </div>
+      <div class="footer__col">
+        <h2>Services</h2>
+        <ul><li><a href="cloud-mig.html">Cloud migration & strategy</a></li><li><a href="service-devops-automation.html">DevOps & automation</a></li><li><a href="service-security-compliance.html">Security & compliance</a></li><li><a href="service-network-architecture.html">Network architecture & design</a></li><li><a href="service-connectivity-solutions.html">Connectivity solutions</a></li><li><a href="service-infrastructure-maintenance.html">IT infrastructure maintenance</a></li><li><a href="service-data-center.html">Data center design & build</a></li><li><a href="service-cctv.html">CCTV surveillance</a></li><li><a href="service-meeting-rooms.html">Meeting room solutions</a></li></ul>
+      </div>
+      <div class="footer__col">
+        <h2>Company</h2>
+        <ul>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="teammembers.html">Leadership team</a></li>
+          <li><a href="blog.html">Insights</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="signin.html">Client sign in</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h2>Contact</h2>
+        <ul>
+          <li>Riyadh, Saudi Arabia</li>
+          <li><a href="mailto:info@cloudpros.com">info@cloudpros.com</a></li>
+          <li><a href="tel:+966568783539" dir="ltr">+966 56 878 3539</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__news">
+      <div>
+        <h2>Cloud and infrastructure notes, once a month</h2>
+        <p>Practical guidance from our engineers. No spam; unsubscribe any time.</p>
+      </div>
+      <form class="news-form" action="newsletter.php" method="post" data-async-form novalidate>
+        <input type="hidden" name="lang" value="en">
+        <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <label class="sr-only" for="news-email">Email address</label>
+        <div class="news-form__row">
+          <input class="input" id="news-email" type="email" name="email" required autocomplete="email" placeholder="you@company.com" data-msg-required="Enter your email address." data-msg-type="Enter a valid email, like name@company.com.">
+          <button class="btn btn--primary" type="submit"><span class="spinner" aria-hidden="true"></span><span>Subscribe</span></button>
         </div>
-    </main>
-
-    <footer class="bg-gray-800 text-white">
-        </footer>
-
+        <p class="field__error" data-error-for="news-email" id="news-email-error"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/></svg><span></span></p>
+        <div class="alert alert--success" role="status" data-form-success><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg><span>You're subscribed. Look out for the next issue.</span></div>
+        <div class="alert alert--error" role="alert" data-form-failure><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/></svg><span>We couldn't subscribe you just now. Please try again in a moment.</span></div>
+      </form>
+    </div>
+    <div class="footer__legal">
+      <p>© 2026 CloudPros. All rights reserved.</p>
+      <ul><li><a href="privacy.html">Privacy policy</a></li></ul>
+    </div>
+  </div>
+</footer>
 </body>
-<script>
-document.getElementById('signup-form').addEventListener('submit', function(e) {
-    const pwd = document.getElementById('password').value;
-    const confirm = document.getElementById('confirm_password').value;
-    if (pwd !== confirm) {
-        e.preventDefault();
-        alert('Passwords do not match.');
-    }
-});
-</script>
-
 </html>
