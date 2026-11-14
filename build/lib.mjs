@@ -1,6 +1,7 @@
 // Shared site data, layout and components for the static build.
 import { readFileSync } from 'node:fs';
 import { icon, logoMark } from './icons.mjs';
+import { DETAILS } from './service-details.mjs';
 
 const images = JSON.parse(readFileSync(new URL('./images.json', import.meta.url), 'utf8'));
 
@@ -162,7 +163,7 @@ function header(ctx, page) {
     <div class="header-actions">
       ${langLink('lang-link')}
       <a class="lang-link header-cta" href="${href('signin')}"${current === 'signin' ? ' aria-current="page"' : ''}>${icon('user')}<span>${t('Sign in', 'تسجيل الدخول')}</span></a>
-      <a class="btn btn--primary btn--sm header-cta" href="${href('contact')}">${t('Book a consultation', 'احجز استشارة')}</a>
+      <a class="btn btn--primary btn--sm header-cta" href="${href('contact')}">${t('Talk to an engineer', 'تحدّث مع مهندس')}</a>
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav" data-menu-btn>
         <span class="sr-only">${t('Menu', 'القائمة')}</span>${icon('menu', 'icon-open')}${icon('close', 'icon-close')}
       </button>
@@ -174,7 +175,7 @@ function header(ctx, page) {
       ${NAV.map(([slug, label]) => `<li><a href="${href(slug)}"${current === slug ? ' aria-current="page"' : ''}>${L(label)}</a></li>`).join('')}
       <li><a href="${href('signin')}">${t('Sign in', 'تسجيل الدخول')}</a></li>
     </ul></nav>
-    <a class="btn btn--primary" href="${href('contact')}">${t('Book a consultation', 'احجز استشارة')}</a>
+    <a class="btn btn--primary" href="${href('contact')}">${t('Talk to an engineer', 'تحدّث مع مهندس')}</a>
   </div>
 </header>`;
 }
@@ -256,19 +257,21 @@ ${page.minimalFooter ? '' : footer(ctx)}
 }
 
 // ---------- Components ----------
-export function pageHero(ctx, { eyebrow, title, lead, crumbs = [], actions = '' }) {
+export function pageHero(ctx, { eyebrow, title, lead, crumbs = [], actions = '', aside = '', meta = '' }) {
   const { t, href } = ctx;
   const items = [[t('Home', 'الرئيسية'), href('index')], ...crumbs];
   const bc = items.map(([label, url], i) => i === items.length - 1 && !url
     ? `<li><span aria-current="page">${label}</span></li>`
     : `<li><a href="${url}">${label}</a></li>`).join('');
+  const main = `${eyebrow ? `<p class="eyebrow">${eyebrow}</p>` : ''}
+    <h1>${title}</h1>
+    ${lead ? `<p class="lead">${lead}</p>` : ''}
+    ${meta}
+    ${actions ? `<div class="btn-row mt-3">${actions}</div>` : ''}`;
   return `<section class="page-hero">
   <div class="container page-hero__inner">
     <nav aria-label="${t('Breadcrumb', 'مسار التنقل')}"><ol class="breadcrumb">${bc}</ol></nav>
-    ${eyebrow ? `<p class="eyebrow">${eyebrow}</p>` : ''}
-    <h1>${title}</h1>
-    ${lead ? `<p class="lead">${lead}</p>` : ''}
-    ${actions ? `<div class="btn-row mt-3">${actions}</div>` : ''}
+    ${aside ? `<div class="page-hero__grid"><div class="page-hero__inner" style="padding:0">${main}</div>${aside}</div>` : main}
   </div>
 </section>`;
 }
@@ -284,7 +287,7 @@ export function ctaBand(ctx, { title, text, primary, secondary }) {
     <h2>${title || t('Tell us what you run today. We’ll show you the next step.', 'أخبرنا بما تشغّله اليوم، وسنوضح لك الخطوة التالية.')}</h2>
     <p>${text || t('A short call with one of our engineers to understand your environment and where we can help.', 'مكالمة قصيرة مع أحد مهندسينا لفهم بيئتك وأين يمكننا المساعدة.')}</p>
     <div class="btn-row">
-      ${btn(ctx, primary || t('Book a consultation', 'احجز استشارة'), href('contact'), 'primary', true)}
+      ${btn(ctx, primary || t('Talk to an engineer', 'تحدّث مع مهندس'), href('contact'), 'primary', true)}
       ${secondary === false ? '' : btn(ctx, secondary || t('Browse services', 'تصفّح الخدمات'), href('services'), 'secondary')}
     </div>
     <p class="cta-band__contact"><a href="tel:${SITE.phone}" dir="ltr">${SITE.phoneDisplay}</a><span aria-hidden="true">·</span><a href="mailto:${SITE.email}">${SITE.email}</a></p>
@@ -309,9 +312,9 @@ export function mediaImg(ctx, name, alt, cls = '') {
   return `<figure class="media ${cls}">${ctx.img(name, alt)}</figure>`;
 }
 
-export function relatedServices(ctx, slugs, title) {
+export function relatedServices(ctx, slugs, title, alt = true) {
   const { t, L, href } = ctx;
-  return `<section class="section section--alt">
+  return `<section class="section${alt ? ' section--alt' : ''}">
   <div class="container">
     <div class="section-head"><p class="eyebrow">${t('Related', 'خدمات ذات صلة')}</p><h2>${title || t('Often delivered together', 'غالبًا ما تُنفّذ معًا')}</h2></div>
     <div class="grid grid--3">
@@ -332,16 +335,65 @@ export function serviceCard(ctx, slug) {
   </a>`;
 }
 
+// [en, ar] pair -> current language
+const pick = (ctx, pair) => (ctx.lang === 'ar' ? pair[1] : pair[0]);
+
+export function glanceList(ctx, rows) {
+  // In Arabic, lists of Latin product names read better split by an Arabic comma than joined with "و",
+  // which the bidi algorithm attaches to the wrong neighbour.
+  const val = (v) => (ctx.lang === 'ar' ? pick(ctx, v).replace(/ و(?=[A-Za-z])/g, '، ') : pick(ctx, v));
+  return `<ul class="glance" aria-label="${ctx.t('At a glance', 'لمحة سريعة')}">${rows.map(([k, v]) => `<li><span class="glance__k">${pick(ctx, k)}</span><span class="glance__v">${val(v)}</span></li>`).join('')}</ul>`;
+}
+
+export function faqList(ctx, items, { openFirst = true } = {}) {
+  return `<div class="faq">${items.map(([q, a], i) => `<details${openFirst && i === 0 ? ' open' : ''}><summary>${q}${ctx.icon('plus')}</summary><p>${a}</p></details>`).join('')}</div>`;
+}
+
+function faqJsonLd(items) {
+  const strip = (h) => h.replace(/<[^>]+>/g, '');
+  return `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: items.map(([q, a]) => ({ '@type': 'Question', name: strip(q), acceptedAnswer: { '@type': 'Answer', text: strip(a) } })) })}</script>`;
+}
+
+function serviceDetails(ctx, slug, startAlt) {
+  const { t, L, icon: ic } = ctx;
+  const d = DETAILS[slug];
+  if (!d) return { html: '', alt: startAlt };
+  let alt = startAlt;
+  const cls = () => { const c = `section${alt ? ' section--alt' : ''}`; alt = !alt; return c; };
+  const deliver = `<section class="${cls()}" aria-labelledby="deliver-h">
+  <div class="container">
+    <div class="section-head section-head--row">
+      <div class="stack-4"><p class="eyebrow">${t('Deliverables', 'المخرجات')}</p><h2 id="deliver-h">${t('What you get', 'ما الذي تحصل عليه')}</h2></div>
+      <p class="lead">${t('What you’ll have in hand at the end — written down, so your team can run it with or without us.', 'ما سيكون بين يديك في النهاية — موثّقًا، ليستطيع فريقك تشغيله معنا أو من دوننا.')}</p>
+    </div>
+    <ul class="deliver">${d.deliver.map(([h, p]) => `<li>${ic('check')}<div><b>${pick(ctx, h)}</b><span>${pick(ctx, p)}</span></div></li>`).join('')}</ul>
+  </div>
+</section>`;
+  const faqs = d.faqs.map(([q, a]) => [pick(ctx, q), pick(ctx, a)]);
+  const faq = `<section class="${cls()}" aria-labelledby="faq-h">
+  <div class="container split">
+    <div class="stack-4"><p class="eyebrow">FAQ</p><h2 id="faq-h">${t('Questions we hear about this', 'أسئلة تتكرر حول هذه الخدمة')}</h2><p class="muted">${t('Something else on your mind?', 'لديك سؤال آخر؟')} <a href="${ctx.href('contact')}">${t('Ask an engineer', 'اسأل مهندسًا')}</a>.</p></div>
+    ${faqList(ctx, faqs)}
+  </div>
+  ${faqJsonLd(faqs)}
+</section>`;
+  return { html: deliver + '\n' + faq, alt };
+}
+
 export function servicePage(ctx, { slug, eyebrowArea, lead, intro, features, extra = '', related, cta }) {
   const { t, L, href } = ctx;
   const s = SERVICES[slug];
   const area = AREAS.find((a) => a.id === s.area);
+  const d = DETAILS[slug];
+  // Sections after the features alternate backgrounds; `extra` blocks are always the alt colour.
+  const details = serviceDetails(ctx, slug, !extra);
   return `${pageHero(ctx, {
     eyebrow: L(area.title),
     title: L(s.title),
     lead,
     crumbs: [[t('Services', 'الخدمات'), href('services')], [L(area.title), href('services', area.id)], [L(s.title)]],
-    actions: btn(ctx, cta || t('Book a consultation', 'احجز استشارة'), href('contact'), 'primary', true),
+    actions: btn(ctx, cta || t('Talk to an engineer', 'تحدّث مع مهندس'), href('contact'), 'primary', true),
+    aside: d ? glanceList(ctx, d.glance) : '',
   })}
 ${intro ? `<section class="section section--tight"><div class="container"><div class="section-head section-head--row" style="margin-bottom:0">${intro}</div></div></section>` : ''}
 <section class="section"${intro ? ' style="padding-top:0"' : ''} aria-labelledby="included-h">
@@ -353,6 +405,41 @@ ${intro ? `<section class="section section--tight"><div class="container"><div c
   </div>
 </section>
 ${extra}
-${related ? relatedServices(ctx, related) : ''}
+${details.html}
+${related ? relatedServices(ctx, related, undefined, details.alt) : ''}
 ${ctaBand(ctx, {})}`;
+}
+
+// ---------- Selected work ----------
+// Real client projects only. Add entries like the commented example and rebuild;
+// the "Selected work" section appears on the home page once this list isn't empty.
+export const CASES = [
+  // {
+  //   sector: { en: 'FinTech', ar: 'التقنية المالية' },
+  //   title: { en: 'Core banking reporting moved to AWS', ar: '…' },
+  //   problem: { en: '…', ar: '…' },
+  //   work: { en: '…', ar: '…' },
+  //   result: { en: '…', ar: '…' },
+  // },
+];
+
+export function selectedWork(ctx) {
+  if (!CASES.length) return '';
+  const { t, L } = ctx;
+  return `<section class="section" aria-labelledby="work-h">
+  <div class="container">
+    <div class="section-head"><p class="eyebrow">${t('Selected work', 'من أعمالنا')}</p><h2 id="work-h">${t('Recent projects', 'مشاريع حديثة')}</h2></div>
+    <div class="grid grid--${CASES.length >= 3 ? 3 : 2}">
+      ${CASES.map((c) => `<article class="case">
+        <p class="card__tag">${L(c.sector)}</p>
+        <h3 style="font-size:var(--fs-h4)">${L(c.title)}</h3>
+        <dl>
+          <div><dt>${t('The problem', 'المشكلة')}</dt><dd>${L(c.problem)}</dd></div>
+          <div><dt>${t('What we did', 'ما قمنا به')}</dt><dd>${L(c.work)}</dd></div>
+          <div><dt>${t('Result', 'النتيجة')}</dt><dd>${L(c.result)}</dd></div>
+        </dl>
+      </article>`).join('')}
+    </div>
+  </div>
+</section>`;
 }

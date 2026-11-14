@@ -1,4 +1,5 @@
-import { SITE, pageHero, ctaBand, btn } from '../lib.mjs';
+import { SITE, pageHero, ctaBand, btn, faqList } from '../lib.mjs';
+import { ARTICLES } from './insights.mjs';
 import { linkedinIcon } from '../icons.mjs';
 
 const about = {
@@ -11,23 +12,23 @@ const about = {
   render(ctx) {
     const { t, icon, href } = ctx;
     const values = [
-      ['people', t('Customer success', 'نجاح العميل'), t('Your goals are our goals. We measure ourselves by the outcomes we help you reach.', 'أهدافك هي أهدافنا. نقيس نجاحنا بالنتائج التي نساعدك على تحقيقها.')],
-      ['badge', t('Technical excellence', 'التميز التقني'), t('We keep learning so you always get current, best-in-class solutions.', 'نواصل التعلّم لتحصل دائمًا على أحدث الحلول وأفضلها.')],
-      ['shield', t('Integrity', 'النزاهة'), t('Transparent communication and honest advice — including when the answer is “you don’t need this”.', 'تواصل شفاف ونصيحة صادقة — حتى حين تكون الإجابة «لا تحتاج إلى هذا».')],
-      ['link', t('Collaborative partnership', 'شراكة تعاونية'), t('We work with you, not just for you, and leave knowledge behind in your team.', 'نعمل معك لا من أجلك فقط، ونترك المعرفة لدى فريقك.')],
+      ['search', t('Honest scope', 'نطاق صادق'), t('We tell you when you don’t need something — including when the answer is to keep what you have.', 'نخبرك حين لا تحتاج إلى شيء — حتى لو كانت الإجابة أن تُبقي ما لديك.')],
+      ['docCheck', t('Everything written down', 'كل شيء موثّق'), t('Every design decision, diagram and runbook is documented and handed over, not kept in an engineer’s head.', 'كل قرار تصميم ومخطط ودليل تشغيل يُوثَّق ويُسلَّم، ولا يبقى في ذهن مهندس.')],
+      ['people', t('Your team learns it', 'فريقك يتعلّمه'), t('We build alongside your engineers, so the knowledge stays with you when the project ends.', 'نعمل إلى جانب مهندسيك، فتبقى المعرفة لديك بعد انتهاء المشروع.')],
+      ['pie', t('Agreed measures of success', 'مقاييس نجاح متفق عليها'), t('Uptime, cost, audit findings — we agree up front what success means for you and report against it.', 'التوفر والتكلفة وملاحظات التدقيق — نتفق مسبقًا على معنى النجاح لديك ونرفع التقارير على أساسه.')],
     ];
     const faqs = [
       [t('What makes CloudPros different from other cloud consultants?', 'ما الذي يميز CloudPros عن غيرها من مستشاري السحابة؟'),
-        t('We cover the whole stack — AWS, the network and the physical data center — with one team, and we work as an extension of yours. You get certified expertise, designs tailored to your business and transparent communication, not just a delivered project.', 'نغطي البنية بالكامل — AWS والشبكة ومركز البيانات المادي — بفريق واحد، ونعمل امتدادًا لفريقك. تحصل على خبرة معتمدة وتصاميم مفصّلة لأعمالك وتواصل شفاف، لا مجرد مشروع مُسلَّم.')],
+        t('We cover the whole stack — AWS, the network and the physical data center — with one team, and we work as an extension of yours. Problems that cross layers have one owner, and everything we build is documented and handed to your people.', 'نغطي البنية بالكامل — AWS والشبكة ومركز البيانات المادي — بفريق واحد، ونعمل امتدادًا لفريقك. للمشكلات التي تمتد بين الطبقات مسؤول واحد، وكل ما نبنيه يُوثَّق ويُسلَّم لفريقك.')],
       [t('Which industries do you work with?', 'ما القطاعات التي تعملون معها؟'),
-        t('We have experience across FinTech, e-commerce, government and enterprise IT. The principles we build on — security, scalability and compliance — apply to any organization moving to the cloud.', 'لدينا خبرة في قطاعات التقنية المالية والتجارة الإلكترونية والجهات الحكومية وتقنية المعلومات في المؤسسات. والمبادئ التي نبني عليها — الأمان وقابلية التوسع والامتثال — تنطبق على أي جهة تنتقل إلى السحابة.')],
+        t('We have experience across FinTech, e-commerce, government and enterprise IT. The principles we build on — security, resilience and compliance with Saudi regulation — apply to any organization moving to the cloud.', 'لدينا خبرة في قطاعات التقنية المالية والتجارة الإلكترونية والجهات الحكومية وتقنية المعلومات في المؤسسات. والمبادئ التي نبني عليها — الأمان والاعتمادية والامتثال للأنظمة السعودية — تنطبق على أي جهة تنتقل إلى السحابة.')],
       [t('How do you keep my data and infrastructure secure?', 'كيف تحافظون على أمان بياناتي وبنيتي التحتية؟'),
-        t('Security is designed in from the start. We follow the AWS Well-Architected Framework with defense in depth: strict IAM policies, network segmentation, encryption at rest and in transit, and continuous threat monitoring. We also help clients meet standards such as ISO 27001 and SOC 2.', 'الأمان جزء من التصميم منذ البداية. نتبع إطار AWS Well-Architected بنهج الدفاع متعدد الطبقات: سياسات IAM صارمة، وتقسيم الشبكة، والتشفير أثناء التخزين والنقل، ومراقبة مستمرة للتهديدات. كما نساعد عملاءنا على استيفاء معايير مثل ISO 27001 وSOC 2.')],
+        t('Security is designed in from the start. We follow the AWS Well-Architected Framework with defense in depth: strict IAM policies, network segmentation, encryption at rest and in transit, and continuous threat monitoring. We map controls to the NCA’s Essential and Cloud Cybersecurity Controls — and to SAMA’s framework or the PDPL where they apply — and to ISO 27001.', 'الأمان جزء من التصميم منذ البداية. نتبع إطار AWS Well-Architected بنهج الدفاع متعدد الطبقات: سياسات IAM صارمة، وتقسيم الشبكة، والتشفير أثناء التخزين والنقل، ومراقبة مستمرة للتهديدات. ونطابق الضوابط مع الضوابط الأساسية وضوابط الحوسبة السحابية للهيئة الوطنية للأمن السيبراني — ومع إطار ساما أو نظام حماية البيانات الشخصية حيث ينطبقان — ومع ISO 27001.')],
     ];
     return `${pageHero(ctx, {
       eyebrow: t('About CloudPros', 'عن CloudPros'),
       title: t('Cloud transformation, built in Riyadh', 'التحول السحابي، من الرياض'),
-      lead: t('We are more than a service provider: we are a partner for organizations navigating cloud, network and data center decisions.', 'نحن أكثر من مزوّد خدمة: نحن شريك للمؤسسات في قراراتها المتعلقة بالسحابة والشبكات ومراكز البيانات.'),
+      lead: t('An engineering firm in Riyadh for the parts of IT that have to work together: AWS, the network and the data center.', 'شركة هندسية في الرياض للأجزاء التي يجب أن تعمل معًا في تقنية المعلومات: سحابة AWS والشبكة ومركز البيانات.'),
       crumbs: [[t('About', 'من نحن')]],
     })}
 <section class="section">
@@ -41,20 +42,20 @@ const about = {
 </section>
 <section class="section section--alt">
   <div class="container grid grid--2">
-    <div class="panel stack-3"><p class="eyebrow">${t('Mission', 'رسالتنا')}</p><p class="lead" style="color:var(--text)">${t('To design, build and manage secure, scalable and cost-effective solutions that deliver real business value and accelerate innovation for our clients.', 'تصميم حلول آمنة وقابلة للتوسع وفعّالة التكلفة وبناؤها وإدارتها، بما يحقق قيمة حقيقية لأعمال عملائنا ويسرّع ابتكارهم.')}</p></div>
-    <div class="panel stack-3"><p class="eyebrow">${t('Vision', 'رؤيتنا')}</p><p class="lead" style="color:var(--text)">${t('To be the leading catalyst for digital transformation in the Middle East, known for technical excellence, integrity and genuine partnership.', 'أن نكون المحفّز الرائد للتحول الرقمي في الشرق الأوسط، معروفين بالتميز التقني والنزاهة والشراكة الحقيقية.')}</p></div>
+    <div class="panel stack-3"><p class="eyebrow">${t('Mission', 'رسالتنا')}</p><p class="lead" style="color:var(--text)">${t('Design, build and run infrastructure that organizations in the Kingdom can rely on and understand — from the AWS account to the server room.', 'تصميم بنية تحتية تعتمد عليها المؤسسات في المملكة وتفهمها، وبناؤها وتشغيلها — من حساب AWS إلى غرفة الخوادم.')}</p></div>
+    <div class="panel stack-3"><p class="eyebrow">${t('Vision', 'رؤيتنا')}</p><p class="lead" style="color:var(--text)">${t('To be the first team organizations in the Kingdom call for anything between their users and the rack.', 'أن نكون الفريق الأول الذي تتصل به المؤسسات في المملكة لكل ما يقع بين مستخدميها والخوادم.')}</p></div>
   </div>
 </section>
 <section class="section">
   <div class="container">
-    <div class="section-head"><p class="eyebrow">${t('Values', 'قيمنا')}</p><h2>${t('The principles behind every decision', 'المبادئ التي توجّه كل قرار')}</h2></div>
+    <div class="section-head"><p class="eyebrow">${t('Commitments', 'التزاماتنا')}</p><h2>${t('What you can hold us to', 'ما يمكنك أن تحاسبنا عليه')}</h2></div>
     <div class="grid grid--4">${values.map(([ic, h, p]) => `<div class="stack-3"><span class="card__icon">${icon(ic)}</span><h3 style="font-size:var(--fs-h4)">${h}</h3><p class="muted" style="color:var(--text-2)">${p}</p></div>`).join('')}</div>
   </div>
 </section>
 <section class="section section--alt">
   <div class="container split">
     <div class="stack-4"><p class="eyebrow">FAQ</p><h2>${t('Questions we hear often', 'أسئلة تتكرر علينا')}</h2><p class="muted">${t('Something else on your mind?', 'لديك سؤال آخر؟')} <a href="${href('contact')}">${t('Ask us directly', 'اسألنا مباشرة')}</a>.</p></div>
-    <div class="faq">${faqs.map(([q, a], i) => `<details${i === 0 ? ' open' : ''}><summary>${q}${icon('plus')}</summary><p>${a}</p></details>`).join('')}</div>
+    ${faqList(ctx, faqs)}
   </div>
 </section>
 ${ctaBand(ctx, { secondary: t('Meet the team', 'تعرّف على الفريق') }).replace(`href="${href('services')}"`, `href="${href('teammembers')}"`)}`;
@@ -76,12 +77,12 @@ const team = {
       { name: 'Bashar Wahsh', role: t('Head of DevOps', 'رئيس قسم DevOps'), mono: 'BW',
         bio: t('Specializes in CI/CD automation and infrastructure as code. Focused on shortening development cycles and improving operational efficiency.', 'متخصص في أتمتة CI/CD والبنية التحتية ككود. يركز على تقصير دورات التطوير ورفع الكفاءة التشغيلية.') },
       { name: 'Mohammed Al-Zahrani', role: t('Lead Security Analyst', 'كبير محللي الأمن'), mono: 'MZ',
-        bio: t('Cloud security specialist covering threat detection, identity management and compliance with standards such as ISO 27001 and SOC 2.', 'متخصص في أمن السحابة يغطي اكتشاف التهديدات وإدارة الهويات والامتثال لمعايير مثل ISO 27001 وSOC 2.') },
+        bio: t('Cloud security specialist covering threat detection, identity management and compliance with the NCA controls and ISO 27001.', 'متخصص في أمن السحابة يغطي اكتشاف التهديدات وإدارة الهويات والامتثال لضوابط الهيئة الوطنية للأمن السيبراني وISO 27001.') },
     ];
     return `${pageHero(ctx, {
       eyebrow: t('Leadership', 'القيادة'),
       title: t('The people you’ll work with', 'الأشخاص الذين ستعمل معهم'),
-      lead: t('Our leadership combines deep technical expertise with strategic vision to deliver world-class cloud solutions.', 'تجمع قيادتنا بين الخبرة التقنية العميقة والرؤية الاستراتيجية لتقديم حلول سحابية بمستوى عالمي.'),
+      lead: t('The engineers who lead your project, from the first assessment to go-live — and who you can call directly.', 'المهندسون الذين يقودون مشروعك من التقييم الأول حتى الإطلاق — ويمكنك التواصل معهم مباشرة.'),
       crumbs: [[t('Team', 'الفريق')]],
     })}
 <section class="section">
@@ -105,8 +106,8 @@ const contact = {
   slug: 'contact',
   title: { en: 'Contact us', ar: 'تواصل معنا' },
   description: {
-    en: 'Book a consultation with CloudPros in Riyadh. Tell us about your cloud, network or data center project and an engineer will get back to you.',
-    ar: 'احجز استشارة مع CloudPros في الرياض. أخبرنا عن مشروعك في السحابة أو الشبكات أو مراكز البيانات وسيتواصل معك أحد مهندسينا.',
+    en: 'Talk to a CloudPros engineer in Riyadh. Tell us about your cloud, network or data center project and an engineer will reply by email.',
+    ar: 'تحدّث مع أحد مهندسي CloudPros في الرياض. أخبرنا عن مشروعك في السحابة أو الشبكات أو مراكز البيانات وسيتواصل معك أحد مهندسينا.',
   },
   render(ctx) {
     const { t, icon, php } = ctx;
@@ -191,31 +192,24 @@ const blog = {
     ar: 'أدلة عملية من مهندسي CloudPros حول أمن AWS وتحسين التكاليف وDevOps والترحيل إلى السحابة.',
   },
   render(ctx) {
-    const { t } = ctx;
-    const posts = [
-      [t('Cloud security', 'أمن السحابة'), t('Securing your S3 buckets: a practical guide', 'تأمين حاويات S3: دليل عملي'), t('Misconfigured S3 buckets remain a leading cause of data breaches. The settings, IAM policies and monitoring that keep your data private.', 'لا تزال حاويات S3 سيئة الإعداد سببًا رئيسيًا لتسرب البيانات. الإعدادات وسياسات IAM والمراقبة التي تبقي بياناتك خاصة.'), 'Mohammed Al-Zahrani'],
-      [t('Cost optimization', 'تحسين التكاليف'), t('5 strategies for lowering your AWS bill', '5 استراتيجيات لخفض فاتورة AWS'), t('From right-sizing instances to Savings Plans: practical steps that reduce monthly spend without hurting performance.', 'من ضبط أحجام الخوادم إلى خطط التوفير: خطوات عملية تخفض الإنفاق الشهري دون المساس بالأداء.'), 'Mutasim Kharif'],
-      [t('DevOps', 'DevOps'), t('The future of DevOps: trends to watch', 'مستقبل DevOps: توجهات تستحق المتابعة'), t('From GitOps to AI-assisted automation — what will shape delivery pipelines in the year ahead.', 'من GitOps إلى الأتمتة بمساعدة الذكاء الاصطناعي — ما الذي سيشكّل خطوط التسليم في العام المقبل.'), 'Bashar Wahsh'],
-      [t('Cloud migration', 'الترحيل إلى السحابة'), t('A step-by-step cloud migration checklist', 'قائمة تحقق خطوة بخطوة للترحيل إلى السحابة'), t('Planning a move to AWS? Every stage, from assessment to post-migration optimization.', 'تخطط للانتقال إلى AWS؟ كل المراحل، من التقييم إلى التحسين بعد الترحيل.'), t('CloudPros team', 'فريق CloudPros')],
-    ];
+    const { t, L, href, icon } = ctx;
     return `${pageHero(ctx, {
       eyebrow: t('Insights', 'المقالات'),
       title: t('Notes from the field', 'ملاحظات من الميدان'),
-      lead: t('Practical writing from our engineers on cloud, DevOps, security and infrastructure. The first articles are being written now.', 'كتابات عملية من مهندسينا عن السحابة وDevOps والأمن والبنية التحتية. نعمل الآن على كتابة المقالات الأولى.'),
+      lead: t('Practical writing from our engineers on cloud, security and infrastructure — the checks and steps we use on real projects.', 'كتابات عملية من مهندسينا عن السحابة والأمن والبنية التحتية — الفحوص والخطوات التي نستخدمها في المشاريع الفعلية.'),
       crumbs: [[t('Insights', 'المقالات')]],
     })}
 <section class="section">
   <div class="container">
-    <div class="kicker-line mb-6" style="margin-bottom:var(--s-6)"><p class="eyebrow">${t('Coming soon', 'قريبًا')}</p></div>
     <div class="grid grid--2">
-      ${posts.map(([cat, h, p, by]) => `<article class="post">
-        <div class="post__meta"><span class="card__tag">${cat}</span><span class="status">${t('In progress', 'قيد الكتابة')}</span></div>
-        <h2 style="font-size:1.375rem">${h}</h2>
-        <p>${p}</p>
-        <p class="small muted">${t('By', 'بقلم')} ${by}</p>
-      </article>`).join('')}
+      ${ARTICLES.map((a) => `<a class="post post--link" href="${href(a.slug)}">
+        <div class="post__meta"><span class="card__tag">${L(a.category)}</span><span class="post__date"><time datetime="${a.date}">${L(a.dateLabel)}</time> · ${L(a.readTime)}</span></div>
+        <h2 style="font-size:1.375rem">${L(a.title)}</h2>
+        <p>${L(a.summary)}</p>
+        <span class="link-arrow">${t('Read the article', 'اقرأ المقال')}${icon('arrow')}</span>
+      </a>`).join('')}
     </div>
-    <p class="notice mt-7">${t('Want these when they’re published? Subscribe to our monthly notes at the bottom of this page.', 'هل تريد قراءتها فور نشرها؟ اشترك في ملاحظاتنا الشهرية أسفل هذه الصفحة.')}</p>
+    <p class="notice mt-7">${t('New articles go out with our monthly notes — subscribe at the bottom of this page.', 'تصل المقالات الجديدة مع ملاحظاتنا الشهرية — اشترك أسفل هذه الصفحة.')}</p>
   </div>
 </section>`;
   },

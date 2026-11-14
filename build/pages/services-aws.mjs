@@ -97,8 +97,8 @@ const security = {
   slug: 'service-security-compliance',
   title: { en: 'Security & compliance', ar: 'الأمن والامتثال' },
   description: {
-    en: 'Security posture assessments, IAM with least privilege, threat detection with GuardDuty, WAF and Security Hub, and compliance automation for ISO 27001, SOC 2, HIPAA and GDPR.',
-    ar: 'تقييم الوضع الأمني، وإدارة الهويات وفق مبدأ أقل الصلاحيات، واكتشاف التهديدات عبر GuardDuty وWAF وSecurity Hub، وأتمتة الامتثال لمعايير ISO 27001 وSOC 2 وHIPAA وGDPR.',
+    en: 'AWS security posture assessments, least-privilege IAM, threat detection with GuardDuty, WAF and Security Hub, and controls mapped to NCA ECC and CCC, SAMA CSF, PDPL and ISO 27001.',
+    ar: 'تقييم الوضع الأمني على AWS، وصلاحيات وفق مبدأ الحد الأدنى، واكتشاف التهديدات عبر GuardDuty وWAF وSecurity Hub، وضوابط مطابقة لضوابط الهيئة الوطنية للأمن السيبراني وإطار ساما ونظام حماية البيانات الشخصية وISO 27001.',
   },
   render(ctx) {
     const { t, icon } = ctx;
@@ -106,7 +106,7 @@ const security = {
       ['search', t('Security posture assessment', 'تقييم الوضع الأمني'), t('A full audit of your environment that finds the gaps and turns them into a prioritized roadmap.', 'تدقيق شامل لبيئتك يكشف الثغرات ويحوّلها إلى خارطة طريق مرتبة حسب الأولوية.')],
       ['key', t('Identity & access management', 'إدارة الهويات والصلاحيات'), t('Least-privilege access, so the right people have the right access to the right resources — and nothing more.', 'صلاحيات وفق مبدأ الحد الأدنى، ليحصل الأشخاص المناسبون على الوصول المناسب إلى الموارد المناسبة — لا أكثر.')],
       ['eye', t('Threat detection & prevention', 'اكتشاف التهديدات ومنعها'), t('Amazon GuardDuty, AWS WAF and Security Hub configured to spot and respond to threats early.', 'تهيئة Amazon GuardDuty وAWS WAF وSecurity Hub لرصد التهديدات والاستجابة لها مبكرًا.')],
-      ['docCheck', t('Compliance automation', 'أتمتة الامتثال'), t('Automated controls and reporting that help you meet ISO 27001, SOC 2, HIPAA and GDPR — and stay compliant.', 'ضوابط وتقارير آلية تساعدك على استيفاء ISO 27001 وSOC 2 وHIPAA وGDPR — والبقاء ممتثلًا.')],
+      ['docCheck', t('Compliance automation', 'أتمتة الامتثال'), t('Automated checks and reporting mapped to NCA ECC and CCC, SAMA CSF, PDPL and ISO 27001 — so staying compliant isn’t a yearly scramble.', 'فحوص وتقارير آلية مطابقة لضوابط الهيئة الوطنية للأمن السيبراني وإطار ساما ونظام حماية البيانات الشخصية وISO 27001 — حتى لا يكون الامتثال سباقًا سنويًا.')],
     ];
     return servicePage(ctx, {
       slug: 'service-security-compliance',

@@ -133,7 +133,7 @@ export function securityLayers(t) {
   <rect x="150" y="196" width="260" height="52" rx="8" style="fill:var(--signal-soft);stroke:var(--signal);stroke-width:1.5"/>
   <text class="dg-sub" x="280" y="216" text-anchor="middle" style="fill:var(--text)">${t('YOUR DATA', 'بياناتك')}</text>
   <text class="dg-text" x="280" y="236" text-anchor="middle" style="font-size:12px;font-weight:500">${t('Encrypted at rest and in transit', 'مشفّرة أثناء التخزين والنقل')}</text>
-  <text class="dg-sub" x="280" y="358" text-anchor="middle">${t('MAPPED TO', 'متوافقة مع')}  ISO 27001 · SOC 2 · GDPR · HIPAA</text>
+  <text class="dg-sub" x="280" y="358" text-anchor="middle">${t('MAPPED TO', 'مطابقة مع')}  NCA ECC · NCA CCC · SAMA CSF · PDPL · ISO 27001</text>
 </svg>`;
 }
 

@@ -26,9 +26,16 @@ for (const f of files) {
     console.log(`built ${page.slug}`);
   }
 }
-if (SITE.url && !only.length) {
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `  <url><loc>${SITE.url}/${u}</loc></url>`).join('\n')}\n</urlset>\n`;
-  await writeFile(path.join(root, 'sitemap.xml'), xml);
-  await writeFile(path.join(root, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /adminpanel.php\nSitemap: ${SITE.url}/sitemap.xml\n`);
-  console.log('wrote sitemap.xml and robots.txt');
+if (!only.length) {
+  const robots = `User-agent: *\nAllow: /\nDisallow: /adminpanel.php\nDisallow: /userdashboard.php\nDisallow: /api.php\n`;
+  if (SITE.url) {
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `  <url><loc>${SITE.url}/${u}</loc></url>`).join('\n')}\n</urlset>\n`;
+    await writeFile(path.join(root, 'sitemap.xml'), xml);
+    await writeFile(path.join(root, 'robots.txt'), `${robots}Sitemap: ${SITE.url}/sitemap.xml\n`);
+    console.log('wrote sitemap.xml and robots.txt');
+  } else {
+    // No live domain yet: robots.txt without a sitemap. Set SITE_URL and rebuild to add one.
+    await writeFile(path.join(root, 'robots.txt'), robots);
+    console.log('wrote robots.txt (set SITE_URL to add a sitemap)');
+  }
 }

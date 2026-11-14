@@ -15,7 +15,7 @@ const architecture = {
     const { t } = ctx;
     return servicePage(ctx, {
       slug: 'service-network-architecture',
-      lead: t('Secure, scalable and highly available networks that form the backbone of your digital operations — ready for today’s load and tomorrow’s growth.', 'شبكات آمنة وقابلة للتوسع وعالية التوفر تشكّل العمود الفقري لعملياتك الرقمية — جاهزة لأحمال اليوم ونمو الغد.'),
+      lead: t('One network design that covers your AWS accounts, offices and data center — addressed, routed and documented so your team knows where every packet goes.', 'تصميم شبكة واحد يشمل حسابات AWS ومكاتبك ومركز بياناتك — بعناوين وتوجيه وتوثيق يعرف معه فريقك مسار كل حزمة.'),
       features: [
         `<div class="split split--center">
           <div class="stack-5">
@@ -33,7 +33,7 @@ const architecture = {
         ]),
       ],
       related: ['service-connectivity-solutions', 'service-security-compliance', 'service-infrastructure-maintenance'],
-      cta: t('Get a network consultation', 'احصل على استشارة شبكات'),
+      cta: t('Talk to a network engineer', 'تحدّث مع مهندس شبكات'),
     });
   },
 };

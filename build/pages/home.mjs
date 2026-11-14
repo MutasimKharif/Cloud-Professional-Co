@@ -1,4 +1,4 @@
-import { AREAS, SERVICES, SITE, btn, ctaBand } from '../lib.mjs';
+import { AREAS, SERVICES, SITE, btn, ctaBand, selectedWork } from '../lib.mjs';
 import { heroStack } from '../diagrams.mjs';
 
 export default {
@@ -31,9 +31,8 @@ export default {
         : a.services.map((s) => `<li><a href="${href(s)}"><span>${L(SERVICES[s].title)}</span>${icon('chevron')}</a></li>`).join('');
       return `<div class="practice__row" id="${a.id}">
         <span class="practice__num">${a.num}</span>
-        <div class="practice__title"><h3>${L(a.title)}</h3><p>${L(a.blurb)}</p></div>
+        <div class="practice__title"><h3>${L(a.title)}</h3><p>${L(a.blurb)}</p><a class="link-arrow practice__more" href="${href('services', a.id)}">${t('Practice overview', 'نظرة عامة على المجال')}${icon('arrow')}</a></div>
         <ul class="practice__list">${links}</ul>
-        <a class="link-arrow practice__more" href="${href('services', a.id)}">${t('Overview', 'نظرة عامة')}${icon('arrow')}</a>
       </div>`;
     }).join('');
 
@@ -42,10 +41,10 @@ export default {
   <div class="container hero__inner">
     <div>
       <p class="eyebrow">${t('AWS · Networking · Data centers — Riyadh', 'AWS · الشبكات · مراكز البيانات — الرياض')}</p>
-      <h1 class="mt-4">${t('One team for your cloud, your network <em>and</em> your data center.', 'فريق واحد لسحابتك وشبكتك <em>و</em>مركز بياناتك.')}</h1>
+      <h1 class="mt-4">${t('<em>One team</em> for your cloud, your network and your data center.', '<em>فريق واحد</em> لسحابتك وشبكتك ومركز بياناتك.')}</h1>
       <p class="lead mt-5">${t('CloudPros designs, builds and runs AWS environments, enterprise networks and the physical facilities underneath them — so every layer of your infrastructure has one accountable partner.', 'تصمم CloudPros وتبني وتشغّل بيئات AWS والشبكات المؤسسية والمرافق المادية التي تقوم عليها — ليكون لكل طبقة من بنيتك التحتية شريك واحد مسؤول.')}</p>
       <div class="btn-row mt-6">
-        ${btn(ctx, t('Book a consultation', 'احجز استشارة'), href('contact'), 'primary', true)}
+        ${btn(ctx, t('Talk to an engineer', 'تحدّث مع مهندس'), href('contact'), 'primary', true)}
         ${btn(ctx, t('Explore services', 'استكشف الخدمات'), href('services'), 'secondary')}
       </div>
       <div class="hero__meta">
@@ -75,13 +74,13 @@ export default {
   <div class="container split">
     <div class="stack-4">
       <p class="eyebrow">${t('Why CloudPros', 'لماذا CloudPros')}</p>
-      <h2>${t('More than technology — a partner that stays', 'أكثر من مجرد تقنية — شريك يبقى معك')}</h2>
+      <h2>${t('What changes when one team owns every layer', 'ما الذي يتغير حين يتولى فريق واحد كل الطبقات')}</h2>
       <p class="lead">${t('We work as an extension of your IT team: we design with you, build alongside you, and leave your people able to run what we deliver.', 'نعمل امتدادًا لفريق تقنية المعلومات لديك: نصمم معك، وننفّذ إلى جانبك، ونترك فريقك قادرًا على تشغيل ما نسلّمه.')}</p>
     </div>
     <div class="points">
-      <div class="point"><span class="point__icon">${icon('badge')}</span><div><h3>${t('Certified expertise', 'خبرة معتمدة')}</h3><p>${t('AWS-certified architects and engineers with hands-on experience in complex, multi-site deployments.', 'معماريون ومهندسون معتمدون من AWS بخبرة عملية في عمليات النشر المعقدة متعددة المواقع.')}</p></div></div>
-      <div class="point"><span class="point__icon">${icon('sliders')}</span><div><h3>${t('Designed for your business', 'مصمم لأعمالك')}</h3><p>${t('No one-size-fits-all packages. Every design starts from your workloads, budget and compliance needs.', 'لا حلول جاهزة تناسب الجميع. كل تصميم ينطلق من أحمال عملك وميزانيتك ومتطلبات الامتثال لديك.')}</p></div></div>
-      <div class="point"><span class="point__icon">${icon('people')}</span><div><h3>${t('Partnership, not hand-off', 'شراكة لا مجرد تسليم')}</h3><p>${t('Clear communication, documented decisions and knowledge transfer, so you are never locked in.', 'تواصل واضح وقرارات موثقة ونقل للمعرفة، حتى لا تبقى مقيدًا بنا.')}</p></div></div>
+      <div class="point"><span class="point__icon">${icon('link')}</span><div><h3>${t('No gaps between vendors', 'لا فجوات بين الموردين')}</h3><p>${t('The engineers who design your AWS environment also design the network that reaches it and the room your servers sit in. When something breaks across layers, there is one team to call — not three pointing at each other.', 'المهندسون الذين يصممون بيئة AWS لديك يصممون أيضًا الشبكة التي تصل إليها والغرفة التي تقف فيها خوادمك. وحين يتعطل شيء بين الطبقات، هناك فريق واحد تتصل به — لا ثلاثة يلقي كل منهم المسؤولية على الآخر.')}</p></div></div>
+      <div class="point"><span class="point__icon">${icon('docCheck')}</span><div><h3>${t('Designed for Saudi regulation', 'مصمم وفق الأنظمة السعودية')}</h3><p>${t('Designs are mapped to the NCA controls — and SAMA’s framework or the PDPL where they apply — from the first diagram, not patched in before an audit.', 'تُطابَق التصاميم مع ضوابط الهيئة الوطنية للأمن السيبراني — وإطار ساما أو نظام حماية البيانات الشخصية حيث ينطبقان — منذ المخطط الأول، لا قبيل التدقيق.')}</p></div></div>
+      <div class="point"><span class="point__icon">${icon('people')}</span><div><h3>${t('Written down, never locked in', 'موثّق، دون أن تبقى مقيدًا بنا')}</h3><p>${t('Diagrams, runbooks and access are handed to your team with a walkthrough. Run it yourselves, or keep us on for support — your choice.', 'تُسلَّم المخططات وأدلة التشغيل والصلاحيات لفريقك مع جلسة شرح. شغّلها بنفسك أو أبقنا معك للدعم — القرار لك.')}</p></div></div>
     </div>
   </div>
 </section>
@@ -101,18 +100,28 @@ export default {
   </div>
 </section>
 
-<section class="section section--alt">
-  <div class="container split split--center">
+<section class="section section--alt" aria-labelledby="standards-h">
+  <div class="container split">
     <div class="stack-4">
       <p class="eyebrow">${t('Standards we design to', 'المعايير التي نصمم وفقها')}</p>
-      <h2>${t('Built on published frameworks, not guesswork', 'مبني على أطر منشورة، لا على التخمين')}</h2>
-      <p class="lead">${t('Every design is checked against the AWS Well-Architected Framework, and we help you put the controls in place for the compliance standards your sector requires.', 'يُراجَع كل تصميم وفق إطار AWS Well-Architected، ونساعدك على تطبيق الضوابط اللازمة لمعايير الامتثال التي يتطلبها قطاعك.')}</p>
+      <h2 id="standards-h">${t('Built for the rules your auditors check', 'مبني على الضوابط التي يراجعها مدققوك')}</h2>
+      <p class="lead">${t('We map every design to the Saudi frameworks that apply to you and check AWS designs against the Well-Architected Framework, so the evidence exists before anyone asks for it.', 'نطابق كل تصميم مع الأطر السعودية التي تنطبق عليك، ونراجع تصاميم AWS وفق إطار Well-Architected، لتكون الأدلة جاهزة قبل أن يطلبها أحد.')}</p>
     </div>
-    <ul class="tags" aria-label="${t('Frameworks and standards', 'الأطر والمعايير')}">
-      <li class="tag">AWS Well-Architected</li><li class="tag">ISO 27001</li><li class="tag">SOC 2</li><li class="tag">GDPR</li><li class="tag">HIPAA</li><li class="tag">Infrastructure as Code</li><li class="tag">Defense in depth</li><li class="tag">${t('Least-privilege access', 'مبدأ أقل الصلاحيات')}</li>
-    </ul>
+    <div>
+      <ul class="standards">
+        <li><b>NCA ECC-2:2024</b><span>${t('The National Cybersecurity Authority’s Essential Cybersecurity Controls — the baseline for organizations in the Kingdom.', 'الضوابط الأساسية للأمن السيبراني من الهيئة الوطنية للأمن السيبراني — الأساس للجهات في المملكة.')}</span></li>
+        <li><b>NCA CCC-2:2024</b><span>${t('Cloud Cybersecurity Controls — the extra requirements when your systems or data run in the cloud.', 'ضوابط الأمن السيبراني للحوسبة السحابية — المتطلبات الإضافية حين تعمل أنظمتك أو بياناتك في السحابة.')}</span></li>
+        <li><b>SAMA CSF</b><span>${t('The Saudi Central Bank’s Cyber Security Framework, for banks, insurers, finance and payment companies.', 'إطار الأمن السيبراني من البنك المركزي السعودي، للبنوك وشركات التأمين والتمويل والمدفوعات.')}</span></li>
+        <li><b>PDPL</b><span>${t('The Personal Data Protection Law, which governs how personal data is collected, stored and transferred.', 'نظام حماية البيانات الشخصية، الذي ينظّم جمع البيانات الشخصية وتخزينها ونقلها.')}</span></li>
+        <li><b>ISO 27001</b><span>${t('The international standard for information security management.', 'المعيار الدولي لإدارة أمن المعلومات.')}</span></li>
+        <li><b>AWS Well-Architected</b><span>${t('AWS’s review of security, reliability, performance and cost — applied to every AWS design.', 'مراجعة AWS للأمان والاعتمادية والأداء والتكلفة — نطبقها على كل تصميم في AWS.')}</span></li>
+      </ul>
+      <p class="residency">${icon('pin')}<span><b>${t('Need data to stay in the Kingdom?', 'تحتاج أن تبقى البيانات داخل المملكة؟')}</b> ${t('We design for it: on-premises, in Saudi data centers, or in the AWS Region in Saudi Arabia, which AWS has announced for launch by December 2026.', 'نصمم لذلك: في مقرك، أو في مراكز بيانات داخل المملكة، أو في منطقة AWS في المملكة التي أعلنت AWS إطلاقها بحلول ديسمبر 2026.')}</span></p>
+    </div>
   </div>
 </section>
+
+${selectedWork(ctx)}
 
 ${ctaBand(ctx, {})}`;
   },

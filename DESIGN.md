@@ -14,11 +14,11 @@ block). Pages use the variable names below, never raw values.
 
 | Token | Light | Dark | Role |
 |---|---|---|---|
-| `--paper` | `#FAFAF7` | `#0B0F15` | Page background |
-| `--surface` | `#FFFFFF` | `#121821` | Cards, inputs, raised panels |
-| `--surface-2` | `#F2F2EE` | `#0F141C` | Alternate section background |
-| `--line` | `#E3E3DD` | `#232B37` | Dividers, card borders |
-| `--line-strong` | `#8A8F96` | `#5B6573` | Input borders (3:1 against surface) |
+| `--paper` | `#FAFAF7` | `#10151D` | Page background |
+| `--surface` | `#FFFFFF` | `#161D27` | Cards, inputs, raised panels |
+| `--surface-2` | `#F2F2EE` | `#131922` | Alternate section background |
+| `--line` | `#E3E3DD` | `#262F3C` | Dividers, card borders |
+| `--line-strong` | `#8A8F96` | `#66717F` | Input borders (3:1 against surface) |
 | `--text` | `#12161C` | `#EEF0EC` | Headings, body |
 | `--text-2` | `#3D434C` | `#BAC1CA` | Secondary text, leads |
 | `--text-3` | `#5F6670` | `#8D96A2` | Captions, meta, labels |
@@ -32,7 +32,9 @@ block). Pages use the variable names below, never raw values.
 | `--success` | `#1E7B45` | `#4ADE80` | Form success |
 | `--error` | `#B42318` | `#F87171` | Form errors |
 
-Rules: one brand color, no gradients, no second accent. White text never sits
+Rules: one brand color, no gradients, no second accent. In dark mode the page
+(`--paper`) stays visibly lighter than `--ink`, so the hero, CTA band and footer
+still read as separate bands. White text never sits
 on orange (2.1:1 fails); orange buttons carry ink text. All body text pairs
 are ≥ 4.5:1 in both themes.
 
@@ -100,6 +102,23 @@ Body copy max width 68ch.
 - **Footer**: ink band, four columns (brand, services, company, contact),
   newsletter row, legal line.
 - **CTA band**: ink background, centered heading, primary + secondary action.
+  The primary action everywhere is **"Talk to an engineer"** (Arabic
+  "تحدّث مع مهندس") — it opens the contact form, so it never promises a booking.
+- **Page hero aside ("at a glance")**: service pages show three label/value
+  rows (`.glance`) beside the title: what it covers, the tools, what you get.
+  `--ink-2` panel, `--ink-line` border, mono labels.
+- **Deliverables list** (`.deliver`): check icon + bold item + one line of
+  explanation, two columns on desktop. Every service page has one.
+- **FAQ** (`.faq`): native `<details>`, first item open, plus `FAQPage`
+  structured data. Three questions per service.
+- **Standards list** (`.standards`): framework name + one plain sentence on what
+  it is. Saudi frameworks first (NCA ECC, NCA CCC, SAMA CSF, PDPL), then
+  ISO 27001 and AWS Well-Architected.
+- **Case study** (`.case`): sector tag, title, then problem / what we did /
+  result. Only real projects; the section is hidden while the list is empty.
+- **Article**: 68ch body column with a sticky aside (key takeaways + related
+  service cards). Code blocks are ink panels, always left-to-right, scrolling
+  horizontally instead of wrapping.
 
 ## Imagery and icons
 

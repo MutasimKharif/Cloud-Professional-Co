@@ -12,7 +12,7 @@ const dataCenter = {
     const { t } = ctx;
     return servicePage(ctx, {
       slug: 'service-data-center',
-      lead: t('We design, build and maintain mission-critical data center environments with a focus on reliability, efficiency and security — every system, from the floor tiles up.', 'نصمم ونبني ونصون بيئات مراكز البيانات الحرجة بتركيز على الموثوقية والكفاءة والأمان — كل نظام، من بلاط الأرضية إلى الأعلى.'),
+      lead: t('Power, cooling, fire suppression and monitoring designed together and delivered by one contractor — from the raised floor to the UPS, with a handover file for every system.', 'الطاقة والتبريد والإطفاء والمراقبة مصممة معًا ومنفّذة عبر مقاول واحد — من الأرضية المرفوعة إلى أنظمة UPS، مع ملف تسليم لكل نظام.'),
       intro: `<div class="stack-4"><p class="eyebrow">${t('The whole lifecycle', 'دورة الحياة كاملة')}</p><h2>${t('The heart of your IT operations', 'قلب عمليات تقنية المعلومات لديك')}</h2></div><p class="lead">${t('A data center is only as reliable as its weakest system. We handle every part of the facility so power, cooling, fire protection and monitoring are designed to work together.', 'مركز البيانات موثوق بقدر أضعف أنظمته. نتولى كل جزء من المرفق لتُصمَّم أنظمة الطاقة والتبريد والحماية من الحريق والمراقبة لتعمل معًا.')}</p>`,
       features: [
         feature(ctx, {
@@ -59,7 +59,7 @@ const cctv = {
     const { t } = ctx;
     return servicePage(ctx, {
       slug: 'service-cctv',
-      lead: t('End-to-end design, installation and management of modern camera systems that protect your sites and give you peace of mind.', 'تصميم وتركيب وإدارة متكاملة لأنظمة كاميرات حديثة تحمي مواقعك وتمنحك راحة البال.'),
+      lead: t('IP camera systems planned around what you actually need to see, on their own network, with recordings kept as long as you need them and viewable securely from anywhere.', 'أنظمة كاميرات IP مخططة حول ما تحتاج إلى رؤيته فعلًا، على شبكة خاصة بها، مع حفظ التسجيلات للمدة التي تحتاجها ومشاهدتها بأمان من أي مكان.'),
       features: [
         feature(ctx, {
           index: '01', title: t('Professional installation', 'تركيب احترافي'),

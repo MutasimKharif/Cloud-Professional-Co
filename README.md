@@ -16,7 +16,10 @@ index.html, services.html, …     generated pages (English) — don't edit by h
 ar/*.html                        generated pages (Arabic)
 build/                           page sources and the generator
   pages/*.mjs                    content for every page, English + Arabic side by side
-  lib.mjs                        layout, header/footer, shared components, service list
+  pages/insights.mjs             Insights articles (each becomes its own page)
+  lib.mjs                        layout, header/footer, shared components, service list,
+                                 and CASES (the "Selected work" section on the home page)
+  service-details.mjs            per-service "at a glance", deliverables and FAQ
   diagrams.mjs                   the SVG diagrams
   images.mjs                     converts photos in assets/images/ to WebP in assets/img/
 assets/css, assets/js            styles and scripts (site + admin)
@@ -39,6 +42,18 @@ database/create-admin.php        CLI script to create the first administrator
 2. Run `npm run build`. It regenerates every page in both languages.
 3. Commit the source **and** the generated `.html` files — the server needs no build step.
 
+### Adding real projects ("Selected work")
+
+The home page has a "Selected work" section that stays hidden until there is at
+least one real project. Add entries to `CASES` in `build/lib.mjs` (sector, title,
+problem, what we did, result — English and Arabic), then run `npm run build`.
+
+### Adding an article
+
+Add an entry to `ARTICLES` in `build/pages/insights.mjs` (slug, category, title,
+summary, takeaways, body in both languages) and rebuild. It appears on
+`blog.html` and gets its own page in `/` and `/ar/`.
+
 To add photos, put the original in `assets/images/`, map it in
 `build/images.mjs`, then run `npm install` once and `npm run images`.
 
@@ -48,6 +63,8 @@ absolute social-preview URLs:
 ```bash
 SITE_URL=https://www.your-domain.com npm run build
 ```
+
+Without `SITE_URL` the build still writes a `robots.txt`, just without a sitemap.
 
 ## Running locally
 
@@ -73,7 +90,11 @@ php -S localhost:8080                    # then open http://localhost:8080
 4. Create your admin with `php database/create-admin.php` (from the App Service
    SSH console or locally against the same database).
 5. Deploy with `.github/workflows/azure-webapps-php.yml` — set `AZURE_WEBAPP_NAME`
-   and the `AZURE_WEBAPP_PUBLISH_PROFILE` secret first.
+   and the `AZURE_WEBAPP_PUBLISH_PROFILE` secret first (the workflow stops with a
+   clear error while the name is still `your-app-name`). It publishes only the
+   public files — about 3.5 MB — and leaves out `build/`, the original photos in
+   `assets/images/`, SQL files and docs. Run `database/schema.sql` from your own
+   machine or the Azure portal.
 
 ## Security notes
 
