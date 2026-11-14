@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>حلول الربط والاتصال | CloudPros</title>
+  <meta name="description" content="روابط آمنة وموثوقة بين مواقعك وAWS: شبكات VPN بين المواقع، وAWS Direct Connect، وربط VPC، وتحليل لاختيار المزيج الأنسب للأداء والتكلفة.">
+  
+  <meta name="theme-color" content="#0B0F15">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CloudPros">
+  <meta property="og:title" content="حلول الربط والاتصال | CloudPros">
+  <meta property="og:description" content="روابط آمنة وموثوقة بين مواقعك وAWS: شبكات VPN بين المواقع، وAWS Direct Connect، وربط VPC، وتحليل لاختيار المزيج الأنسب للأداء والتكلفة.">
+  <meta property="og:locale" content="ar_SA">
+  <meta property="og:image" content="../assets/og/cloudpros-ar.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="preload" href="../assets/fonts/plex-arabic-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/plex-arabic-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <script src="../assets/js/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">تخطَّ إلى المحتوى</a>
+<header class="site-header" data-header>
+  <div class="container site-header__bar">
+    <a class="brand" href="index.html" aria-label="الصفحة الرئيسية لـ CloudPros"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false"><path d="M8.5 25h15.25a5.75 5.75 0 0 0 1.6-11.27A8.75 8.75 0 0 0 8.62 11.4 6.75 6.75 0 0 0 8.5 25Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M11 19.5h10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="21" cy="19.5" r="2.6" fill="currentColor"/></svg><span>CloudPros</span></a>
+    <nav class="nav" aria-label="الرئيسية"><ul class="nav__list"><li><a class="nav__link" href="services.html">الخدمات</a></li><li><a class="nav__link" href="about.html">من نحن</a></li><li><a class="nav__link" href="teammembers.html">الفريق</a></li><li><a class="nav__link" href="blog.html">المقالات</a></li><li><a class="nav__link" href="contact.html">تواصل معنا</a></li></ul></nav>
+    <div class="header-actions">
+      <a class="lang-link" href="../service-connectivity-solutions.html" hreflang="en" lang="en"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m10.5 21 5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 0 1 6-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 0 1-3.827-5.802"/></svg><span>English</span></a>
+      <a class="lang-link header-cta" href="signin.html"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg><span>تسجيل الدخول</span></a>
+      <a class="btn btn--primary btn--sm header-cta" href="contact.html">تحدّث مع مهندس</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav" data-menu-btn>
+        <span class="sr-only">القائمة</span><svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg><svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 18 18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-nav" id="mobile-nav" hidden data-mobile-nav>
+    <nav aria-label="قائمة الجوال"><ul>
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="services.html">الخدمات</a></li><li><a href="about.html">من نحن</a></li><li><a href="teammembers.html">الفريق</a></li><li><a href="blog.html">المقالات</a></li><li><a href="contact.html">تواصل معنا</a></li>
+      <li><a href="signin.html">تسجيل الدخول</a></li>
+    </ul></nav>
+    <a class="btn btn--primary" href="contact.html">تحدّث مع مهندس</a>
+  </div>
+</header>
+<main id="main">
+<section class="page-hero">
+  <div class="container page-hero__inner">
+    <nav aria-label="مسار التنقل"><ol class="breadcrumb"><li><a href="index.html">الرئيسية</a></li><li><a href="services.html">الخدمات</a></li><li><a href="services.html#network">الشبكات</a></li><li><span aria-current="page">حلول الربط والاتصال</span></li></ol></nav>
+    <div class="page-hero__grid"><div class="page-hero__inner" style="padding:0"><p class="eyebrow">الشبكات</p>
+    <h1>حلول الربط والاتصال</h1>
+    <p class="lead">مسارات آمنة وموثوقة بين مراكز بياناتك ومكاتبك وAWS — بيئة هجينة حقيقية تعمل كشبكة واحدة.</p>
+    
+    <div class="btn-row mt-3"><a class="btn btn--primary" href="contact.html">صمّم اتصال شبكتي<svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg></a></div></div><ul class="glance" aria-label="لمحة سريعة"><li><span class="glance__k">الخيارات</span><span class="glance__v">VPN بين المواقع، AWS Direct Connect وربط VPC</span></li><li><span class="glance__k">نمط شائع</span><span class="glance__v">Direct Connect للإنتاج، VPN كمسار احتياطي</span></li><li><span class="glance__k">تحصل على</span><span class="glance__v">توصية مكتوبة مع التكاليف الشهرية المتوقعة</span></li></ul></div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="included-h">
+  <div class="container">
+    <h2 class="sr-only" id="included-h">ما الذي تشمله الخدمة</h2>
+    <div class="features">
+      <figure class="diagram"><svg viewBox="0 0 640 340" role="img" aria-label="رسم توضيحي: موقع محلي متصل بـ AWS عبر شبكة VPN بين المواقع وعبر AWS Direct Connect، مع شبكتي VPC مرتبطتين بالربط المباشر" direction="rtl" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="cx" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="dg-signal-fill"/></marker><marker id="cx-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" style="fill:var(--line-strong)"/></marker></defs>
+  <rect class="dg-box" x="16" y="40" width="176" height="260" rx="10"/>
+  <text class="dg-sub" x="104" y="66" text-anchor="middle">الموقع المحلي</text>
+  <rect class="dg-box-2" x="44" y="88" width="32" height="96" rx="4"/><line class="dg-line" x1="50" y1="100" x2="70" y2="100" stroke-width="1.5"/><line class="dg-line" x1="50" y1="117" x2="70" y2="117" stroke-width="1.5"/><line class="dg-line" x1="50" y1="134" x2="70" y2="134" stroke-width="1.5"/><line class="dg-line" x1="50" y1="151" x2="70" y2="151" stroke-width="1.5"/><line class="dg-line" x1="50" y1="168" x2="70" y2="168" stroke-width="1.5"/><rect class="dg-box-2" x="86" y="88" width="32" height="96" rx="4"/><line class="dg-line" x1="92" y1="100" x2="112" y2="100" stroke-width="1.5"/><line class="dg-line" x1="92" y1="117" x2="112" y2="117" stroke-width="1.5"/><line class="dg-line" x1="92" y1="134" x2="112" y2="134" stroke-width="1.5"/><line class="dg-line" x1="92" y1="151" x2="112" y2="151" stroke-width="1.5"/><line class="dg-line" x1="92" y1="168" x2="112" y2="168" stroke-width="1.5"/><rect class="dg-box-2" x="128" y="88" width="32" height="96" rx="4"/><line class="dg-line" x1="134" y1="100" x2="154" y2="100" stroke-width="1.5"/><line class="dg-line" x1="134" y1="117" x2="154" y2="117" stroke-width="1.5"/><line class="dg-line" x1="134" y1="134" x2="154" y2="134" stroke-width="1.5"/><line class="dg-line" x1="134" y1="151" x2="154" y2="151" stroke-width="1.5"/><line class="dg-line" x1="134" y1="168" x2="154" y2="168" stroke-width="1.5"/>
+  <text class="dg-text" x="104" y="212" text-anchor="middle">مركز بياناتك</text>
+  <rect class="dg-box-2" x="44" y="232" width="120" height="44" rx="6"/>
+  <text class="dg-text" x="104" y="252" text-anchor="middle" style="font-size:12px">بوابة</text>
+  <text class="dg-text" x="104" y="268" text-anchor="middle" style="font-size:12px">العميل</text>
+
+  <rect class="dg-box" x="432" y="20" width="192" height="300" rx="10" style="stroke-dasharray:5 4"/>
+  <text class="dg-sub" x="528" y="46" text-anchor="middle">منطقة AWS</text>
+  <rect class="dg-box-2" x="452" y="64" width="152" height="84" rx="8"/>
+  <text class="dg-text" x="528" y="100" text-anchor="middle">VPC</text>
+  <text class="dg-sub" x="528" y="120" text-anchor="middle">الإنتاج</text>
+  <rect class="dg-box-2" x="452" y="212" width="152" height="84" rx="8"/>
+  <text class="dg-text" x="528" y="248" text-anchor="middle">VPC</text>
+  <text class="dg-sub" x="528" y="268" text-anchor="middle">الخدمات المشتركة</text>
+  <line class="dg-line" x1="528" y1="148" x2="528" y2="212" stroke-width="1.5" marker-start="url(#cx-g)" marker-end="url(#cx-g)"/>
+  <text class="dg-sub" x="540" y="184" text-anchor="end">ربط</text>
+
+  <path class="dg-signal" d="M192 110 C 300 110, 330 106, 452 106" fill="none" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#cx)"/>
+  <text class="dg-text" x="312" y="88" text-anchor="middle" style="font-size:12.5px">Site-to-Site VPN</text>
+  <text class="dg-sub" x="312" y="130" text-anchor="middle">IPsec · عبر الإنترنت</text>
+
+  <rect class="dg-box-2" x="270" y="232" width="84" height="40" rx="6"/>
+  <text class="dg-sub" x="312" y="256" text-anchor="middle">موقع DX</text>
+  <line class="dg-line" x1="192" y1="254" x2="270" y2="254" stroke-width="3"/>
+  <line class="dg-line" x1="354" y1="254" x2="452" y2="254" stroke-width="3" marker-end="url(#cx-g)"/>
+  <text class="dg-text" x="312" y="216" text-anchor="middle" style="font-size:12.5px">AWS Direct Connect</text>
+  <text class="dg-sub" x="312" y="292" text-anchor="middle">خاص · مخصص</text>
+</svg><figcaption>طريقتان للاتصال: VPN مشفّرة عبر الإنترنت، ودائرة Direct Connect خاصة. من الأنماط الشائعة تشغيل الاثنين معًا، مع VPN كخط احتياطي.</figcaption></figure>
+<article class="feature">
+  <div class="feature__body">
+    <span class="eyebrow feature__index">01</span>
+    <h3>AWS Site-to-Site VPN</h3>
+    <p>أنفاق IPsec مشفّرة بين شبكتك وAmazon VPC. حل مرن وفعّال التكلفة — مثالي للاحتياجات المتوسطة من النطاق الترددي وكمسار احتياطي إلى جانب Direct Connect.</p>
+    <ul class="checks"><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4.5 12.75 6 6 9-13.5"/></svg><span>أنفاق مكررة لتوفر عالٍ</span></li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4.5 12.75 6 6 9-13.5"/></svg><span>يعمل مع جدار الحماية أو الموجّه الحالي لديك</span></li></ul>
+  </div>
+  <div class="feature__media"><div class="card"><span class="card__icon"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg></span><p class="card__tag">الأنسب لـ</p><p>الفروع، والإعداد السريع، وروابط الاحتياط، والنطاق الترددي المتوسط.</p></div></div>
+</article>
+<article class="feature">
+  <div class="feature__body">
+    <span class="eyebrow feature__index">02</span>
+    <h3>AWS Direct Connect</h3>
+    <p>اتصال خاص ومخصص من مركز بياناتك إلى AWS يتجاوز الإنترنت العام — لنطاق ترددي عالٍ ومستقر وزمن استجابة أقل وتكاليف نقل بيانات أكثر قابلية للتنبؤ.</p>
+    
+  </div>
+  <div class="feature__media"><div class="card"><span class="card__icon"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"/></svg></span><p class="card__tag">الأنسب لـ</p><p>أحمال الإنتاج، ونقل البيانات الكبيرة، والتطبيقات الحساسة لزمن الاستجابة.</p></div></div>
+</article>
+<article class="feature">
+  <div class="feature__body">
+    <span class="eyebrow feature__index">03</span>
+    <h3>ربط شبكات VPC</h3>
+    <p>اربط شبكات VPC — حتى عبر حسابات AWS مختلفة — كأنها شبكة خاصة واحدة. تُشارك الموارد بأمان، ولا تمر الحركة عبر الإنترنت العام أبدًا.</p>
+    
+  </div>
+  <div class="feature__media"><div class="card"><span class="card__icon"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"/></svg></span><p class="card__tag">الأنسب لـ</p><p>الخدمات المشتركة، والحسابات المتعددة، وفصل بيئة الإنتاج عن التطوير.</p></div></div>
+</article>
+<article class="feature">
+  <div class="feature__body">
+    <span class="eyebrow feature__index">04</span>
+    <h3>تحليل أداء الشبكة وتكلفتها</h3>
+    <p>اختيار نموذج الاتصال قرار مالي بقدر ما هو تقني. نحلل أنماط حركة بياناتك واحتياجات تطبيقاتك ومتطلباتك الأمنية ونوصي بالمزيج الأكثر كفاءة.</p>
+    
+  </div>
+  <div class="feature__media"><div class="card"><span class="card__icon"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z"/><path d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z"/></svg></span><p class="card__tag">تحصل على</p><p>توصية مكتوبة مع التكاليف الشهرية المتوقعة لكل خيار.</p></div></div>
+</article>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt" aria-labelledby="deliver-h">
+  <div class="container">
+    <div class="section-head section-head--row">
+      <div class="stack-4"><p class="eyebrow">المخرجات</p><h2 id="deliver-h">ما الذي تحصل عليه</h2></div>
+      <p class="lead">ما سيكون بين يديك في النهاية — موثّقًا، ليستطيع فريقك تشغيله معنا أو من دوننا.</p>
+    </div>
+    <ul class="deliver"><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4.5 12.75 6 6 9-13.5"/></svg><div><b>تحليل الحركة</b><span>حجم البيانات التي تنتقل وإلى أين، وزمن الاستجابة الذي يحتاجه كل تطبيق.</span></div></li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4.5 12.75 6 6 9-13.5"/></svg><div><b>مقارنة الخيارات</b><span>مقارنة VPN وDirect Connect والربط المباشر من حيث التكلفة والنطاق الترددي والاعتمادية.</span></div></li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4.5 12.75 6 6 9-13.5"/></svg><div><b>تصميم عالي الاعتمادية</b><span>أنفاق أو دوائر مكررة، حتى لا يقطعك عطل واحد.</span></div></li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4.5 12.75 6 6 9-13.5"/></svg><div><b>التهيئة</b><span>تهيئة جهة AWS والجهاز في مقرك وتوثيقهما.</span></div></li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4.5 12.75 6 6 9-13.5"/></svg><div><b>مراقبة الروابط</b><span>تنبيهات على حالة الأنفاق والدوائر، ليُكتشف الانقطاع قبل أن يبلّغ عنه المستخدمون.</span></div></li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4.5 12.75 6 6 9-13.5"/></svg><div><b>اختبار التحويل</b><span>إثبات أن الحركة تنتقل إلى المسار الاحتياطي عند تعطل المسار الأساسي.</span></div></li></ul>
+  </div>
+</section>
+<section class="section" aria-labelledby="faq-h">
+  <div class="container split">
+    <div class="stack-4"><p class="eyebrow">FAQ</p><h2 id="faq-h">أسئلة تتكرر حول هذه الخدمة</h2><p class="muted">لديك سؤال آخر؟ <a href="contact.html">اسأل مهندسًا</a>.</p></div>
+    <div class="faq"><details open><summary>كم يستغرق إعداد Direct Connect؟<svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4.5v15m7.5-7.5h-15"/></svg></summary><p>أطول من VPN، لأن الدائرة المادية تُطلب عبر موقع Direct Connect أو أحد الشركاء. ويمكن إعداد VPN بسرعة أكبر بكثير، لذا يُستخدم غالبًا ريثما تُسلَّم الدائرة.</p></details><details><summary>هل VPN آمنة بما يكفي؟<svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4.5v15m7.5-7.5h-15"/></svg></summary><p>تشفّر VPN بين المواقع الحركة عبر IPsec وتناسب كثيرًا من الأحمال. أما Direct Connect فاتصال خاص لكنه غير مشفّر افتراضيًا؛ وحين يكون التشفير مطلوبًا نضيفه، مثلًا عبر MACsec على الاتصالات التي تدعمه أو عبر VPN فوق الدائرة.</p></details><details><summary>ماذا يحدث إذا انقطع الرابط؟<svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4.5v15m7.5-7.5h-15"/></svg></summary><p>في التصميم المكرر تنتقل الحركة تلقائيًا إلى النفق أو الدائرة أو الـ VPN الثانية. ونختبر هذا التحويل قبل التسليم.</p></details></div>
+  </div>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"كم يستغرق إعداد Direct Connect؟","acceptedAnswer":{"@type":"Answer","text":"أطول من VPN، لأن الدائرة المادية تُطلب عبر موقع Direct Connect أو أحد الشركاء. ويمكن إعداد VPN بسرعة أكبر بكثير، لذا يُستخدم غالبًا ريثما تُسلَّم الدائرة."}},{"@type":"Question","name":"هل VPN آمنة بما يكفي؟","acceptedAnswer":{"@type":"Answer","text":"تشفّر VPN بين المواقع الحركة عبر IPsec وتناسب كثيرًا من الأحمال. أما Direct Connect فاتصال خاص لكنه غير مشفّر افتراضيًا؛ وحين يكون التشفير مطلوبًا نضيفه، مثلًا عبر MACsec على الاتصالات التي تدعمه أو عبر VPN فوق الدائرة."}},{"@type":"Question","name":"ماذا يحدث إذا انقطع الرابط؟","acceptedAnswer":{"@type":"Answer","text":"في التصميم المكرر تنتقل الحركة تلقائيًا إلى النفق أو الدائرة أو الـ VPN الثانية. ونختبر هذا التحويل قبل التسليم."}}]}</script>
+</section>
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-head"><p class="eyebrow">خدمات ذات صلة</p><h2>غالبًا ما تُنفّذ معًا</h2></div>
+    <div class="grid grid--3">
+      <a class="card card--link" href="service-network-architecture.html">
+    <span class="card__icon"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z"/></svg></span>
+    <h3>تصميم وهندسة الشبكات</h3>
+    <p>تصميم VPC وأنظمة DNS والتوجيه والشبكات الهجينة والتوزيع العالمي.</p>
+    <span class="card__foot link-arrow">اعرف المزيد<svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg></span>
+  </a><a class="card card--link" href="cloud-mig.html">
+    <span class="card__icon"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z"/></svg></span>
+    <h3>الترحيل إلى السحابة والاستراتيجية</h3>
+    <p>تقييم الجاهزية وخطة الترحيل وانتقال إلى AWS بأقل تعطّل ممكن.</p>
+    <span class="card__foot link-arrow">اعرف المزيد<svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg></span>
+  </a><a class="card card--link" href="service-data-center.html">
+    <span class="card__icon"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21.75 17.25v-.228a4.5 4.5 0 0 0-.12-1.03l-2.268-9.64a3.375 3.375 0 0 0-3.285-2.602H7.923a3.375 3.375 0 0 0-3.285 2.602l-2.268 9.64a4.5 4.5 0 0 0-.12 1.03v.228m19.5 0a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3m19.5 0a3 3 0 0 0-3-3H5.25a3 3 0 0 0-3 3m16.5 0h.008v.008h-.008v-.008Zm-3 0h.008v.008h-.008v-.008Z"/></svg></span>
+    <h3>تصميم وبناء مراكز البيانات</h3>
+    <p>بناء المرافق والطاقة والتبريد وأنظمة الإطفاء والمراقبة البيئية.</p>
+    <span class="card__foot link-arrow">اعرف المزيد<svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg></span>
+  </a>
+    </div>
+  </div>
+</section>
+<section class="cta-band">
+  <div class="container cta-band__inner">
+    <h2>أخبرنا بما تشغّله اليوم، وسنوضح لك الخطوة التالية.</h2>
+    <p>مكالمة قصيرة مع أحد مهندسينا لفهم بيئتك وأين يمكننا المساعدة.</p>
+    <div class="btn-row">
+      <a class="btn btn--primary" href="contact.html">تحدّث مع مهندس<svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg></a>
+      <a class="btn btn--secondary" href="services.html">تصفّح الخدمات</a>
+    </div>
+    <p class="cta-band__contact"><a href="tel:+966568783539" dir="ltr">+966 56 878 3539</a><span aria-hidden="true">·</span><a href="mailto:info@cloudpros.com">info@cloudpros.com</a></p>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a class="brand" href="index.html"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false"><path d="M8.5 25h15.25a5.75 5.75 0 0 0 1.6-11.27A8.75 8.75 0 0 0 8.62 11.4 6.75 6.75 0 0 0 8.5 25Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M11 19.5h10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="21" cy="19.5" r="2.6" fill="currentColor"/></svg><span>CloudPros</span></a>
+        <p>هندسة سحابة AWS والشبكات ومراكز البيانات للمؤسسات في جميع أنحاء المملكة العربية السعودية — من فريق واحد مسؤول في الرياض.</p>
+      </div>
+      <div class="footer__col">
+        <h2>الخدمات</h2>
+        <ul><li><a href="cloud-mig.html">الترحيل إلى السحابة والاستراتيجية</a></li><li><a href="service-devops-automation.html">DevOps والأتمتة</a></li><li><a href="service-security-compliance.html">الأمن والامتثال</a></li><li><a href="service-network-architecture.html">تصميم وهندسة الشبكات</a></li><li><a href="service-connectivity-solutions.html">حلول الربط والاتصال</a></li><li><a href="service-infrastructure-maintenance.html">صيانة البنية التحتية لتقنية المعلومات</a></li><li><a href="service-data-center.html">تصميم وبناء مراكز البيانات</a></li><li><a href="service-cctv.html">أنظمة المراقبة بالكاميرات</a></li><li><a href="service-meeting-rooms.html">حلول قاعات الاجتماعات</a></li></ul>
+      </div>
+      <div class="footer__col">
+        <h2>الشركة</h2>
+        <ul>
+          <li><a href="about.html">من نحن</a></li>
+          <li><a href="teammembers.html">فريق القيادة</a></li>
+          <li><a href="blog.html">المقالات</a></li>
+          <li><a href="contact.html">تواصل معنا</a></li>
+          <li><a href="signin.html">دخول العملاء</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h2>التواصل</h2>
+        <ul>
+          <li>الرياض، المملكة العربية السعودية</li>
+          <li><a href="mailto:info@cloudpros.com">info@cloudpros.com</a></li>
+          <li><a href="tel:+966568783539" dir="ltr">+966 56 878 3539</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__news">
+      <div>
+        <h2>ملاحظات عن السحابة والبنية التحتية، مرة كل شهر</h2>
+        <p>إرشادات عملية من مهندسينا. بلا رسائل مزعجة، ويمكنك إلغاء الاشتراك في أي وقت.</p>
+      </div>
+      <form class="news-form" action="../newsletter.php" method="post" data-async-form novalidate>
+        <input type="hidden" name="lang" value="ar">
+        <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <label class="sr-only" for="news-email">البريد الإلكتروني</label>
+        <div class="news-form__row">
+          <input class="input" id="news-email" type="email" name="email" required autocomplete="email" placeholder="you@company.com" data-msg-required="أدخل بريدك الإلكتروني." data-msg-type="أدخل بريدًا إلكترونيًا صحيحًا، مثل name@company.com.">
+          <button class="btn btn--primary" type="submit"><span class="spinner" aria-hidden="true"></span><span>اشترك</span></button>
+        </div>
+        <p class="field__error" data-error-for="news-email" id="news-email-error"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/></svg><span></span></p>
+        <div class="alert alert--success" role="status" data-form-success><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg><span>تم اشتراكك. ترقّب العدد القادم.</span></div>
+        <div class="alert alert--error" role="alert" data-form-failure><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/></svg><span>تعذّر إتمام اشتراكك الآن. حاول مرة أخرى بعد قليل.</span></div>
+      </form>
+    </div>
+    <div class="footer__legal">
+      <p>© 2026 CloudPros. جميع الحقوق محفوظة.</p>
+      <ul><li><a href="privacy.html">سياسة الخصوصية</a></li></ul>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

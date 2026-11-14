@@ -1,84 +1,54 @@
 <?php
-use moedb; 
+/** Client account request. New accounts are created unapproved; an admin approves them in the admin panel. */
+declare(strict_types=1);
+require __DIR__ . '/includes/bootstrap.php';
 
-// --- DATABASE CREDENTIALS ---
-$servername = "localhost";
-$username = "root";
-$password = "Moe5rief$"; // Your database password
-$dbname = "moedb";
-
-// --- DATABASE CONNECTION (using PDO for security) ---
-try {
-    $pdo = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8mb4", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Database connection failed: " . $e->getMessage());
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    redirect_page('signup.html');
 }
 
-// --- MAIN SCRIPT LOGIC ---
+$first = clean_text($_POST['first_name'] ?? '', 50);
+$middle = clean_text($_POST['middle_name'] ?? '', 50);
+$last = clean_text($_POST['last_name'] ?? '', 50);
+$username = clean_text($_POST['username'] ?? '', 50);
+$email = mb_strtolower(clean_text($_POST['email'] ?? '', 100));
+$password = (string) ($_POST['password'] ?? '');
+$confirm = (string) ($_POST['confirm_password'] ?? '');
 
-// Only process POST requests.
-if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    header("Location: signup.html");
-    exit();
+if ($first === '' || $last === '' || $username === '' || $email === '' || $password === '' || empty($_POST['privacy'])) {
+    redirect_page('signup.html', ['error' => 'emptyfields']);
 }
-
-// Retrieve and trim form data.
-
-$first_name = trim($_POST['first_name']);
-$last_name = trim($_POST['last_name']);
-$middle_name = trim($_POST['middle_name']) ?: null; // Set to null if empty
-$username = trim($_POST['username']);
-$email = trim($_POST['email']);
-$password = $_POST['password'];
-$confirm_password = $_POST['confirm_password'];
-
-// --- VALIDATION ---
-if ( empty($first_name) || empty($last_name)) || empty($middle_name) || empty($username) || empty($email) || empty($password) || {
-    header("Location: signup.html?error=emptyfields");
-    exit();
+if (!preg_match('/^[A-Za-z0-9._-]{3,50}$/', $username)) {
+    redirect_page('signup.html', ['error' => 'emptyfields']);
 }
-
-if ($password !== $confirm_password) {
-    header("Location: signup.html?error=passwordmismatch");
-    exit();
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    redirect_page('signup.html', ['error' => 'invalidemail']);
 }
-
-// Check if username or email already exists.
-$stmt = $pdo->prepare("SELECT * FROM users WHERE username = ? OR email = ?");
-$stmt->execute([$username, $email]);
-if ($stmt->fetch()) {
-    header("Location: signup.html?error=useroremailexists");
-    exit();
+if (mb_strlen($password) < 10) {
+    redirect_page('signup.html', ['error' => 'weakpassword']);
 }
-
-// --- USER CREATION ---
-
-// Hash the password securely.
-$password_hash = password_hash($password, PASSWORD_DEFAULT);
-
-// Prepare the SQL INSERT statement.
-// New users are created with role 'user' and approved = 0 by default.
-$sql = "INSERT INTO users (username, email, password_hash, first_name, last_name, middle_name, role, approved) VALUES (?, ?, ?, ?, ?, ?, 'user', 0)";
-$stmt = $pdo->prepare($sql);
+if (!hash_equals($password, $confirm)) {
+    redirect_page('signup.html', ['error' => 'passwordmismatch']);
+}
 
 try {
-    $stmt->execute([
-        $username,
-        $email,
-        $password_hash,
-        $first_name,
-        $last_name,
-        $middle_name
-    ]);
-    
-    // Redirect to the sign-in page with a success message.
-    header("Location: signin.html?success=registered");
-    exit();
-    
+    $pdo = db();
+    $exists = $pdo->prepare('SELECT 1 FROM users WHERE username = ? OR email = ? LIMIT 1');
+    $exists->execute([$username, $email]);
+    if ($exists->fetchColumn()) {
+        redirect_page('signup.html', ['error' => 'usertaken']);
+    }
+    $stmt = $pdo->prepare("INSERT INTO users (username, email, password_hash, first_name, last_name, middle_name, role, approved) VALUES (?, ?, ?, ?, ?, ?, 'user', 0)");
+    $stmt->execute([$username, $email, password_hash($password, PASSWORD_DEFAULT), $first, $last, $middle ?: null]);
 } catch (PDOException $e) {
-    // Handle potential database errors (e.g., a race condition where a user was created between our check and insert).
-    header("Location: signup.html?error=dberror");
-    exit();
+    if ($e->getCode() === '23000') { // duplicate key race
+        redirect_page('signup.html', ['error' => 'usertaken']);
+    }
+    error_log('[signup] ' . $e->getMessage());
+    redirect_page('signup.html', ['error' => 'servererror']);
+} catch (Throwable $e) {
+    error_log('[signup] ' . $e->getMessage());
+    redirect_page('signup.html', ['error' => 'servererror']);
 }
-?>
+
+redirect_page('signin.html', ['status' => 'registered']);

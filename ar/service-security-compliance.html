@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>الأمن والامتثال | CloudPros</title>
+  <meta name="description" content="تقييم الوضع الأمني على AWS، وصلاحيات وفق مبدأ الحد الأدنى، واكتشاف التهديدات عبر GuardDuty وWAF وSecurity Hub، وضوابط مطابقة لضوابط الهيئة الوطنية للأمن السيبراني وإطار ساما ونظام حماية البيانات الشخصية وISO 27001.">
+  
+  <meta name="theme-color" content="#0B0F15">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CloudPros">
+  <meta property="og:title" content="الأمن والامتثال | CloudPros">
+  <meta property="og:description" content="تقييم الوضع الأمني على AWS، وصلاحيات وفق مبدأ الحد الأدنى، واكتشاف التهديدات عبر GuardDuty وWAF وSecurity Hub، وضوابط مطابقة لضوابط الهيئة الوطنية للأمن السيبراني وإطار ساما ونظام حماية البيانات الشخصية وISO 27001.">
+  <meta property="og:locale" content="ar_SA">
+  <meta property="og:image" content="../assets/og/cloudpros-ar.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="preload" href="../assets/fonts/plex-arabic-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/plex-arabic-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <script src="../assets/js/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">تخطَّ إلى المحتوى</a>
+<header class="site-header" data-header>
+  <div class="container site-header__bar">
+    <a class="brand" href="index.html" aria-label="الصفحة الرئيسية لـ CloudPros"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false"><path d="M8.5 25h15.25a5.75 5.75 0 0 0 1.6-11.27A8.75 8.75 0 0 0 8.62 11.4 6.75 6.75 0 0 0 8.5 25Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M11 19.5h10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="21" cy="19.5" r="2.6" fill="currentColor"/></svg><span>CloudPros</span></a>
+    <nav class="nav" aria-label="الرئيسية"><ul class="nav__list"><li><a class="nav__link" href="services.html">الخدمات</a></li><li><a class="nav__link" href="about.html">من نحن</a></li><li><a class="nav__link" href="teammembers.html">الفريق</a></li><li><a class="nav__link" href="blog.html">المقالات</a></li><li><a class="nav__link" href="contact.html">تواصل معنا</a></li></ul></nav>
+    <div class="header-actions">
+      <a class="lang-link" href="../service-security-compliance.html" hreflang="en" lang="en"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m10.5 21 5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 0 1 6-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 0 1-3.827-5.802"/></svg><span>English</span></a>
+      <a class="lang-link header-cta" href="signin.html"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg><span>تسجيل الدخول</span></a>
+      <a class="btn btn--primary btn--sm header-cta" href="contact.html">تحدّث مع مهندس</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav" data-menu-btn>
+        <span class="sr-only">القائمة</span><svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg><svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 18 18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-nav" id="mobile-nav" hidden data-mobile-nav>
+    <nav aria-label="قائمة الجوال"><ul>
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="services.html">الخدمات</a></li><li><a href="about.html">من نحن</a></li><li><a href="teammembers.html">الفريق</a></li><li><a href="blog.html">المقالات</a></li><li><a href="contact.html">تواصل معنا</a></li>
+      <li><a href="signin.html">تسجيل الدخول</a></li>
+    </ul></nav>
+    <a class="btn btn--primary" href="contact.html">تحدّث مع مهندس</a>
+  </div>
+</header>
+<main id="main">
+<section class="page-hero">
+  <div class="container page-hero__inner">
+    <nav aria-label="مسار التنقل"><ol class="breadcrumb"><li><a href="index.html">الرئيسية</a></li><li><a href="services.html">الخدمات</a></li><li><a href="services.html#aws">سحابة AWS</a></li><li><span aria-current="page">الأمن والامتثال</span></li></ol></nav>
+    <div class="page-hero__grid"><div class="page-hero__inner" style="padding:0"><p class="eyebrow">سحابة AWS</p>
+    <h1>الأمن والامتثال</h1>
+    <p class="lead">أمن مدمج في كل طبقة من سحابتك، لتبقى بياناتك محمية وتستطيع أن تُثبت للمدققين كيف تحميها بالضبط.</p>
+    
+    <div class="btn-row mt-3"><a class="btn btn--primary" href="contact.html">اطلب مراجعة أمنية<svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg></a></div></div><ul class="glance" aria-label="لمحة سريعة"><li><span class="glance__k">الأطر</span><span class="glance__v">NCA ECC-2:2024، NCA CCC-2:2024 وإطار ساما للأمن السيبراني ونظام حماية البيانات الشخصية، ISO 27001</span></li><li><span class="glance__k">خدمات AWS</span><span class="glance__v">IAM Identity Center، GuardDuty، Security Hub، AWS WAF، AWS Config</span></li><li><span class="glance__k">تحصل على</span><span class="glance__v">خارطة طريق مرتبة حسب الأولوية وأدلة تقدّمها للمدققين</span></li></ul></div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="included-h">
+  <div class="container">
+    <h2 class="sr-only" id="included-h">ما الذي تشمله الخدمة</h2>
+    <div class="features">
+      <div class="split split--center">
+          <div class="stack-5">
+            <p class="eyebrow">الدفاع متعدد الطبقات</p>
+            <h2>طبقات يدعم بعضها بعضًا</h2>
+            <p class="lead">نتبع ركيزة الأمان في إطار AWS Well-Architected: ضوابط هوية صارمة، وشبكات مقسّمة، وتشفير في كل مكان، ومراقبة مستمرة. إذا أخفقت طبقة، صمدت التي تليها.</p>
+          </div>
+          <figure class="diagram"><svg viewBox="0 0 560 400" role="img" aria-label="رسم توضيحي: الدفاع متعدد الطبقات — البيانات في المركز تحيط بها ضوابط الهوية ثم حماية الحافة ثم الاكتشاف والاستجابة" direction="rtl" xmlns="http://www.w3.org/2000/svg">
+  <rect class="dg-box-2" x="16" y="16" width="528" height="368" rx="14"/><text class="dg-sub" x="280" y="40" text-anchor="middle">الاكتشاف والاستجابة</text><text class="dg-text" x="280" y="60" text-anchor="middle" style="font-size:12px;font-weight:500">GuardDuty · Security Hub · CloudTrail</text><rect class="dg-box" x="56" y="76" width="448" height="248" rx="12"/><text class="dg-sub" x="280" y="100" text-anchor="middle">حماية الحافة</text><text class="dg-text" x="280" y="120" text-anchor="middle" style="font-size:12px;font-weight:500">AWS WAF · تقسيم الشبكة</text><rect class="dg-box" x="96" y="136" width="368" height="128" rx="10"/><text class="dg-sub" x="280" y="160" text-anchor="middle">التحكم في الهوية</text><text class="dg-text" x="280" y="180" text-anchor="middle" style="font-size:12px;font-weight:500">IAM · أقل الصلاحيات · المصادقة متعددة العوامل</text>
+  <rect x="150" y="196" width="260" height="52" rx="8" style="fill:var(--signal-soft);stroke:var(--signal);stroke-width:1.5"/>
+  <text class="dg-sub" x="280" y="216" text-anchor="middle" style="fill:var(--text)">بياناتك</text>
+  <text class="dg-text" x="280" y="236" text-anchor="middle" style="font-size:12px;font-weight:500">مشفّرة أثناء التخزين والنقل</text>
+  <text class="dg-sub" x="280" y="358" text-anchor="middle">مطابقة مع  NCA ECC · NCA CCC · SAMA CSF · PDPL · ISO 27001</text>
+</svg></figure>
+        </div>
+<div class="grid grid--2"><div class="card"><span class="card__icon"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/></svg></span><h3>تقييم الوضع الأمني</h3><p>تدقيق شامل لبيئتك يكشف الثغرات ويحوّلها إلى خارطة طريق مرتبة حسب الأولوية.</p></div><div class="card"><span class="card__icon"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25Z"/></svg></span><h3>إدارة الهويات والصلاحيات</h3><p>صلاحيات وفق مبدأ الحد الأدنى، ليحصل الأشخاص المناسبون على الوصول المناسب إلى الموارد المناسبة — لا أكثر.</p></div><div class="card"><span class="card__icon"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/><path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg></span><h3>اكتشاف التهديدات ومنعها</h3><p>تهيئة Amazon GuardDuty وAWS WAF وSecurity Hub لرصد التهديدات والاستجابة لها مبكرًا.</p></div><div class="card"><span class="card__icon"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 0 1 9 9v.375M10.125 2.25A3.375 3.375 0 0 1 13.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 0 1 3.375 3.375M9 15l2.25 2.25L15 12"/></svg></span><h3>أتمتة الامتثال</h3><p>فحوص وتقارير آلية مطابقة لضوابط الهيئة الوطنية للأمن السيبراني وإطار ساما ونظام حماية البيانات الشخصية وISO 27001 — حتى لا يكون الامتثال سباقًا سنويًا.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt" aria-labelledby="deliver-h">
+  <div class="container">
+    <div class="section-head section-head--row">
+      <div class="stack-4"><p class="eyebrow">المخرجات</p><h2 id="deliver-h">ما الذي تحصل عليه</h2></div>
+      <p class="lead">ما سيكون بين يديك في النهاية — موثّقًا، ليستطيع فريقك تشغيله معنا أو من دوننا.</p>
+    </div>
+    <ul class="deliver"><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4.5 12.75 6 6 9-13.5"/></svg><div><b>تقييم الوضع الأمني</b><span>ملاحظات مرتبة حسب الخطورة، لكل منها طريقة المعالجة والمسؤول عنها.</span></div></li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4.5 12.75 6 6 9-13.5"/></svg><div><b>مطابقة الضوابط</b><span>ضوابطك مطابَقة مع ضوابط NCA الأساسية والسحابية — وإطار ساما أو نظام حماية البيانات الشخصية حيث ينطبقان — مع بيان ما هو مطبّق وما ينقص.</span></div></li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4.5 12.75 6 6 9-13.5"/></svg><div><b>الهويات والصلاحيات</b><span>دخول موحّد وأدوار بأقل الصلاحيات، ودون مفاتيح وصول دائمة للأشخاص.</span></div></li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4.5 12.75 6 6 9-13.5"/></svg><div><b>الرصد والاستجابة</b><span>GuardDuty وSecurity Hub وتنبيهات مضبوطة على بيئتك، مع دليل للاستجابة.</span></div></li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4.5 12.75 6 6 9-13.5"/></svg><div><b>التشفير والسجلات</b><span>تشفير أثناء التخزين والنقل، وسجلات محمية تُحفظ للمدة التي تشترطها الجهة المنظمة.</span></div></li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4.5 12.75 6 6 9-13.5"/></svg><div><b>أدلة التدقيق</b><span>أدلة وتقارير تُجمع آليًا، جاهزة للتدقيق الداخلي أو الخارجي.</span></div></li></ul>
+  </div>
+</section>
+<section class="section" aria-labelledby="faq-h">
+  <div class="container split">
+    <div class="stack-4"><p class="eyebrow">FAQ</p><h2 id="faq-h">أسئلة تتكرر حول هذه الخدمة</h2><p class="muted">لديك سؤال آخر؟ <a href="contact.html">اسأل مهندسًا</a>.</p></div>
+    <div class="faq"><details open><summary>أي إطار ينطبق علينا؟<svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4.5v15m7.5-7.5h-15"/></svg></summary><p>يعتمد ذلك على قطاعك والجهة التي تنظّمك. تبدأ معظم الجهات في المملكة من الضوابط الأساسية للأمن السيبراني الصادرة عن الهيئة الوطنية للأمن السيبراني، وتضيف ضوابط الأمن السيبراني للحوسبة السحابية متطلبات عند استخدام الخدمات السحابية، وتلتزم البنوك وشركات التأمين والمدفوعات كذلك بإطار ساما للأمن السيبراني، وتخضع البيانات الشخصية لنظام حماية البيانات الشخصية. نحدد النطاق معك أولًا.</p></details><details><summary>هل تمنحوننا شهادة امتثال؟<svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4.5v15m7.5-7.5h-15"/></svg></summary><p>لا. الشهادات والتقييمات التنظيمية تصدر عن جهات معتمدة وعن الجهات المنظمة. نحن نجهّز بيئتك وأدلتك لها، ونساعدك على معالجة ما تجده من ملاحظات.</p></details><details><summary>أليست AWS ممتثلة أصلًا؟<svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4.5v15m7.5-7.5h-15"/></svg></summary><p>تؤمّن AWS السحابة نفسها، أما تأمين ما تضعه فيها — الحسابات والهويات والبيانات وقواعد الشبكة — فمسؤوليتك. هذا هو نموذج المسؤولية المشتركة، وهو الجزء الذي نساعدك فيه.</p></details></div>
+  </div>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"أي إطار ينطبق علينا؟","acceptedAnswer":{"@type":"Answer","text":"يعتمد ذلك على قطاعك والجهة التي تنظّمك. تبدأ معظم الجهات في المملكة من الضوابط الأساسية للأمن السيبراني الصادرة عن الهيئة الوطنية للأمن السيبراني، وتضيف ضوابط الأمن السيبراني للحوسبة السحابية متطلبات عند استخدام الخدمات السحابية، وتلتزم البنوك وشركات التأمين والمدفوعات كذلك بإطار ساما للأمن السيبراني، وتخضع البيانات الشخصية لنظام حماية البيانات الشخصية. نحدد النطاق معك أولًا."}},{"@type":"Question","name":"هل تمنحوننا شهادة امتثال؟","acceptedAnswer":{"@type":"Answer","text":"لا. الشهادات والتقييمات التنظيمية تصدر عن جهات معتمدة وعن الجهات المنظمة. نحن نجهّز بيئتك وأدلتك لها، ونساعدك على معالجة ما تجده من ملاحظات."}},{"@type":"Question","name":"أليست AWS ممتثلة أصلًا؟","acceptedAnswer":{"@type":"Answer","text":"تؤمّن AWS السحابة نفسها، أما تأمين ما تضعه فيها — الحسابات والهويات والبيانات وقواعد الشبكة — فمسؤوليتك. هذا هو نموذج المسؤولية المشتركة، وهو الجزء الذي نساعدك فيه."}}]}</script>
+</section>
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-head"><p class="eyebrow">خدمات ذات صلة</p><h2>غالبًا ما تُنفّذ معًا</h2></div>
+    <div class="grid grid--3">
+      <a class="card card--link" href="service-network-architecture.html">
+    <span class="card__icon"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z"/></svg></span>
+    <h3>تصميم وهندسة الشبكات</h3>
+    <p>تصميم VPC وأنظمة DNS والتوجيه والشبكات الهجينة والتوزيع العالمي.</p>
+    <span class="card__foot link-arrow">اعرف المزيد<svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg></span>
+  </a><a class="card card--link" href="service-devops-automation.html">
+    <span class="card__icon"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"/></svg></span>
+    <h3>DevOps والأتمتة</h3>
+    <p>خطوط CI/CD والبنية التحتية ككود والحاويات.</p>
+    <span class="card__foot link-arrow">اعرف المزيد<svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg></span>
+  </a><a class="card card--link" href="cloud-mig.html">
+    <span class="card__icon"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z"/></svg></span>
+    <h3>الترحيل إلى السحابة والاستراتيجية</h3>
+    <p>تقييم الجاهزية وخطة الترحيل وانتقال إلى AWS بأقل تعطّل ممكن.</p>
+    <span class="card__foot link-arrow">اعرف المزيد<svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg></span>
+  </a>
+    </div>
+  </div>
+</section>
+<section class="cta-band">
+  <div class="container cta-band__inner">
+    <h2>أخبرنا بما تشغّله اليوم، وسنوضح لك الخطوة التالية.</h2>
+    <p>مكالمة قصيرة مع أحد مهندسينا لفهم بيئتك وأين يمكننا المساعدة.</p>
+    <div class="btn-row">
+      <a class="btn btn--primary" href="contact.html">تحدّث مع مهندس<svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg></a>
+      <a class="btn btn--secondary" href="services.html">تصفّح الخدمات</a>
+    </div>
+    <p class="cta-band__contact"><a href="tel:+966568783539" dir="ltr">+966 56 878 3539</a><span aria-hidden="true">·</span><a href="mailto:info@cloudpros.com">info@cloudpros.com</a></p>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a class="brand" href="index.html"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false"><path d="M8.5 25h15.25a5.75 5.75 0 0 0 1.6-11.27A8.75 8.75 0 0 0 8.62 11.4 6.75 6.75 0 0 0 8.5 25Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M11 19.5h10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="21" cy="19.5" r="2.6" fill="currentColor"/></svg><span>CloudPros</span></a>
+        <p>هندسة سحابة AWS والشبكات ومراكز البيانات للمؤسسات في جميع أنحاء المملكة العربية السعودية — من فريق واحد مسؤول في الرياض.</p>
+      </div>
+      <div class="footer__col">
+        <h2>الخدمات</h2>
+        <ul><li><a href="cloud-mig.html">الترحيل إلى السحابة والاستراتيجية</a></li><li><a href="service-devops-automation.html">DevOps والأتمتة</a></li><li><a href="service-security-compliance.html">الأمن والامتثال</a></li><li><a href="service-network-architecture.html">تصميم وهندسة الشبكات</a></li><li><a href="service-connectivity-solutions.html">حلول الربط والاتصال</a></li><li><a href="service-infrastructure-maintenance.html">صيانة البنية التحتية لتقنية المعلومات</a></li><li><a href="service-data-center.html">تصميم وبناء مراكز البيانات</a></li><li><a href="service-cctv.html">أنظمة المراقبة بالكاميرات</a></li><li><a href="service-meeting-rooms.html">حلول قاعات الاجتماعات</a></li></ul>
+      </div>
+      <div class="footer__col">
+        <h2>الشركة</h2>
+        <ul>
+          <li><a href="about.html">من نحن</a></li>
+          <li><a href="teammembers.html">فريق القيادة</a></li>
+          <li><a href="blog.html">المقالات</a></li>
+          <li><a href="contact.html">تواصل معنا</a></li>
+          <li><a href="signin.html">دخول العملاء</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h2>التواصل</h2>
+        <ul>
+          <li>الرياض، المملكة العربية السعودية</li>
+          <li><a href="mailto:info@cloudpros.com">info@cloudpros.com</a></li>
+          <li><a href="tel:+966568783539" dir="ltr">+966 56 878 3539</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__news">
+      <div>
+        <h2>ملاحظات عن السحابة والبنية التحتية، مرة كل شهر</h2>
+        <p>إرشادات عملية من مهندسينا. بلا رسائل مزعجة، ويمكنك إلغاء الاشتراك في أي وقت.</p>
+      </div>
+      <form class="news-form" action="../newsletter.php" method="post" data-async-form novalidate>
+        <input type="hidden" name="lang" value="ar">
+        <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <label class="sr-only" for="news-email">البريد الإلكتروني</label>
+        <div class="news-form__row">
+          <input class="input" id="news-email" type="email" name="email" required autocomplete="email" placeholder="you@company.com" data-msg-required="أدخل بريدك الإلكتروني." data-msg-type="أدخل بريدًا إلكترونيًا صحيحًا، مثل name@company.com.">
+          <button class="btn btn--primary" type="submit"><span class="spinner" aria-hidden="true"></span><span>اشترك</span></button>
+        </div>
+        <p class="field__error" data-error-for="news-email" id="news-email-error"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/></svg><span></span></p>
+        <div class="alert alert--success" role="status" data-form-success><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg><span>تم اشتراكك. ترقّب العدد القادم.</span></div>
+        <div class="alert alert--error" role="alert" data-form-failure><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/></svg><span>تعذّر إتمام اشتراكك الآن. حاول مرة أخرى بعد قليل.</span></div>
+      </form>
+    </div>
+    <div class="footer__legal">
+      <p>© 2026 CloudPros. جميع الحقوق محفوظة.</p>
+      <ul><li><a href="privacy.html">سياسة الخصوصية</a></li></ul>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

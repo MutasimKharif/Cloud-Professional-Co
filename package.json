@@ -1,62 +1,18 @@
 {
-  "name": "unifiedtransform",
-  "title": "UnifiedTransform",
-  "version": "0.4.0",
-  "homepage": "https://github.com/rawify/UnifiedTransform.js",
-  "bugs": {
-    "url": "https://github.com/rawify/UnifiedTransform.js/issues"
-  },
-  "description": "The RAW library to work with CSS transform strings",
-  "keywords": [
-    "css",
-    "transform",
-    "matrix",
-    "math",
-    "translate",
-    "rotate",
-    "scale",
-    "2d"
-  ],
-  "private": false,
-  "main": "./dist/unifiedtransform.js",
-  "module": "./dist/unifiedtransform.mjs",
-  "types": "./unifiedtransform.d.ts",
-  "browser": "./dist/unifiedtransform.min.js",
-  "unpkg": "./dist/unifiedtransform.min.js",
-  "readmeFilename": "README.md",
-  "exports": {
-    ".": {
-      "types": "./unifiedtransform.d.ts",
-      "require": "./dist/unifiedtransform.js",
-      "import": "./dist/unifiedtransform.mjs"
-    }
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:rawify/UnifiedTransform.js.git"
-  },
-  "funding": {
-    "type": "github",
-    "url": "https://github.com/sponsors/rawify"
-  },
-  "author": {
-    "name": "Robert Eisele",
-    "email": "robert@raw.org",
-    "url": "https://raw.org/"
-  },
-  "license": "MIT",
-  "engines": {
-    "node": "*"
-  },
-  "directories": {
-    "test": "tests"
-  },
+  "name": "cloudpros-website",
+  "private": true,
+  "version": "2.0.0",
+  "description": "CloudPros marketing site: static HTML (English + Arabic) generated from build/, plus a small PHP backend.",
+  "type": "module",
   "scripts": {
-    "test": "mocha tests/*.js",
-    "build": "crude-build UnifiedTransform"
+    "build": "node build/build.mjs",
+    "images": "node build/images.mjs",
+    "serve": "php -S localhost:8080"
   },
   "devDependencies": {
-    "crude-build": "^0.1.2",
-    "mocha": "*"
+    "sharp": "^0.34.0"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

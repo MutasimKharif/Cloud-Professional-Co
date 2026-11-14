@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /adminpanel.php
+Disallow: /userdashboard.php
+Disallow: /api.php

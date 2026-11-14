@@ -1,0 +1,154 @@
+{
+  "dc-build": {
+    "w": 1024,
+    "h": 1024,
+    "variants": [
+      640,
+      1024
+    ]
+  },
+  "dc-raised-floor": {
+    "w": 1024,
+    "h": 1024,
+    "variants": [
+      640,
+      1024
+    ]
+  },
+  "dc-ems": {
+    "w": 1024,
+    "h": 1024,
+    "variants": [
+      640,
+      1024
+    ]
+  },
+  "dc-fire": {
+    "w": 1024,
+    "h": 1024,
+    "variants": [
+      640,
+      1024
+    ]
+  },
+  "dc-cooling": {
+    "w": 1024,
+    "h": 1024,
+    "variants": [
+      640,
+      1024
+    ]
+  },
+  "dc-ups": {
+    "w": 1024,
+    "h": 1024,
+    "variants": [
+      640,
+      1024
+    ]
+  },
+  "mt-lifecycle": {
+    "w": 1024,
+    "h": 1024,
+    "variants": [
+      640,
+      1024
+    ]
+  },
+  "mt-monitoring": {
+    "w": 1024,
+    "h": 1024,
+    "variants": [
+      640,
+      1024
+    ]
+  },
+  "mt-patching": {
+    "w": 1024,
+    "h": 1024,
+    "variants": [
+      640,
+      1024
+    ]
+  },
+  "mt-backup": {
+    "w": 1024,
+    "h": 1024,
+    "variants": [
+      640,
+      1024
+    ]
+  },
+  "mt-support": {
+    "w": 1024,
+    "h": 1024,
+    "variants": [
+      640,
+      1024
+    ]
+  },
+  "cctv-install": {
+    "w": 1024,
+    "h": 1024,
+    "variants": [
+      640,
+      1024
+    ]
+  },
+  "cctv-remote": {
+    "w": 1024,
+    "h": 1024,
+    "variants": [
+      640,
+      1024
+    ]
+  },
+  "cctv-integration": {
+    "w": 1024,
+    "h": 1024,
+    "variants": [
+      640,
+      1024
+    ]
+  },
+  "mig-assessment": {
+    "w": 1408,
+    "h": 768,
+    "variants": [
+      640,
+      1200
+    ]
+  },
+  "mig-data": {
+    "w": 668,
+    "h": 436,
+    "variants": [
+      640,
+      668
+    ]
+  },
+  "devops-platform": {
+    "w": 1024,
+    "h": 1024,
+    "variants": [
+      640,
+      1024
+    ]
+  },
+  "devops-desk": {
+    "w": 1024,
+    "h": 1024,
+    "variants": [
+      640,
+      1024
+    ]
+  },
+  "team-mutasim": {
+    "w": 768,
+    "h": 1063,
+    "variants": [
+      640,
+      768
+    ]
+  }
+}

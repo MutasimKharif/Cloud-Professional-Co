@@ -69,11 +69,32 @@ jobs:
         if: steps.check_files.outputs.files_exists == 'true'
         run: composer validate --no-check-publish && composer install --prefer-dist --no-progress
 
+      - name: Check the app name is set
+        run: |
+          if [ "${{ env.AZURE_WEBAPP_NAME }}" = "your-app-name" ]; then
+            echo "::error::Set AZURE_WEBAPP_NAME at the top of this workflow to your App Service name."
+            exit 1
+          fi
+
+      # Publish only what the web server needs. Source photos, the page generator,
+      # SQL files and docs stay in the repository and are not reachable on the site.
+      - name: Stage public files
+        run: |
+          mkdir -p "$RUNNER_TEMP/site"
+          rsync -a ./ "$RUNNER_TEMP/site/" \
+            --exclude='.git/' --exclude='.github/' --exclude='.preview/' \
+            --exclude='build/' --exclude='node_modules' --exclude='assets/images/' \
+            --exclude='database/*.sql' --exclude='*.md' \
+            --exclude='package.json' --exclude='package-lock.json' \
+            --exclude='config.example.php' --exclude='config.local.php' --exclude='.env' \
+            --exclude='.gitignore'
+          du -sh "$RUNNER_TEMP/site"
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: php-app
-          path: .
+          path: ${{ runner.temp }}/site
 
   deploy:
     permissions:

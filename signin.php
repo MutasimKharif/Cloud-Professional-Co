@@ -1,82 +1,62 @@
 <?php
-// Start the session at the very beginning.
-session_start();
+/** Client / admin sign in. Rate-limited per IP; regenerates the session on success. */
+declare(strict_types=1);
+require __DIR__ . '/includes/bootstrap.php';
 
-// --- DATABASE CREDENTIALS ---
-$servername = "localhost";
-$username = "root";
-$password = "Moe5rief$"; // Your database password
-$dbname = "moedb";
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    redirect_page('signin.html');
+}
 
-// --- DATABASE CONNECTION (using PDO for security) ---
+$username = clean_text($_POST['username'] ?? '', 50);
+$password = (string) ($_POST['password'] ?? '');
+if ($username === '' || $password === '') {
+    redirect_page('signin.html', ['error' => 'emptyfields']);
+}
+
 try {
-    $pdo = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8mb4", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    // For a real-world application, you would log this error and show a generic message.
-    die("Database connection failed: " . $e->getMessage());
-}
+    $pdo = db();
+    $ip = client_ip();
 
-// --- MAIN SCRIPT LOGIC ---
-
-// Only process POST requests.
-if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    header("Location: signin.html");
-    exit();
-}
-
-$form_username = trim($_POST['username']);
-$form_password = $_POST['password'];
-
-// Validate that input is not empty.
-if (empty($form_username) || empty($form_password)) {
-    header("Location: signin.html?error=emptyfields");
-    exit();
-}
-
-// Prepare and execute the database query to prevent SQL injection.
-$stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
-$stmt->execute([$form_username]);
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-// 1. Check if a user with that username exists.
-// 2. Verify the submitted password against the stored hash.
-if ($user && password_verify($form_password, $user['password_hash'])) {
-    
-    // 3. Check if the user's account has been approved by an admin.
-    if ($user['approved'] == 1) {
-        // SUCCESS: Credentials are valid and account is approved.
-        
-        // Regenerate session ID for security.
-        session_regenerate_id(true);
-        
-        // Store user info in the session.
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['username'] = $user['username'];
-        $_SESSION['role'] = $user['role'];
-
-        // Update the last_login timestamp.
-        $updateStmt = $pdo->prepare("UPDATE users SET last_login = NOW() WHERE id = ?");
-        $updateStmt->execute([$user['id']]);
-
-        // Redirect based on user role.
-        if ($user['role'] === 'admin') {
-            header("Location: adminpanel.html");
-        } else {
-            // Redirect standard users to their own dashboard.
-            header("Location: userdashboard.php");
-        }
-        exit();
-        
-    } else {
-        // ERROR: Credentials are correct, but the account is not yet approved.
-        header("Location: signin.html?error=notapproved");
-        exit();
+    // Lock out after 10 failed attempts from one IP in 15 minutes.
+    $q = $pdo->prepare('SELECT COUNT(*) FROM login_attempts WHERE ip_address = ? AND attempted_at > (NOW() - INTERVAL 15 MINUTE)');
+    $q->execute([$ip]);
+    if ((int) $q->fetchColumn() >= 10) {
+        redirect_page('signin.html', ['error' => 'locked']);
     }
-    
-} else {
-    // ERROR: Invalid username or password.
-    header("Location: signin.html?error=invalidcredentials");
-    exit();
+
+    $stmt = $pdo->prepare('SELECT id, username, password_hash, role, approved FROM users WHERE username = ? LIMIT 1');
+    $stmt->execute([$username]);
+    $user = $stmt->fetch();
+
+    // Verify against a dummy hash when the user doesn't exist, so timing doesn't reveal valid usernames.
+    $hash = $user['password_hash'] ?? '$2y$10$usesomesillystringfore7hnbRJHxXVLeakoG8K30oukPsA.ztMG';
+    $valid = password_verify($password, $hash) && $user;
+
+    if (!$valid) {
+        $pdo->prepare('INSERT INTO login_attempts (ip_address, username) VALUES (?, ?)')->execute([$ip, $username]);
+        redirect_page('signin.html', ['error' => 'invalidcredentials']);
+    }
+    if ((int) $user['approved'] !== 1) {
+        redirect_page('signin.html', ['error' => 'notapproved']);
+    }
+
+    if (password_needs_rehash($user['password_hash'], PASSWORD_DEFAULT)) {
+        $pdo->prepare('UPDATE users SET password_hash = ? WHERE id = ?')->execute([password_hash($password, PASSWORD_DEFAULT), $user['id']]);
+    }
+    $pdo->prepare('DELETE FROM login_attempts WHERE ip_address = ?')->execute([$ip]);
+    $pdo->prepare('UPDATE users SET last_login = NOW() WHERE id = ?')->execute([$user['id']]);
+
+    start_session();
+    session_regenerate_id(true);
+    $_SESSION['user_id'] = (int) $user['id'];
+    $_SESSION['username'] = $user['username'];
+    $_SESSION['role'] = $user['role'];
+    $_SESSION['lang'] = req_lang();
+    unset($_SESSION['csrf']);
+
+    header('Location: ' . ($user['role'] === 'admin' ? 'adminpanel.php' : 'userdashboard.php'), true, 303);
+    exit;
+} catch (Throwable $e) {
+    error_log('[signin] ' . $e->getMessage());
+    redirect_page('signin.html', ['error' => 'servererror']);
 }
-?>

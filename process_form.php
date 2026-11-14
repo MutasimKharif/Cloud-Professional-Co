@@ -1,114 +1,62 @@
 <?php
-// --- FILE: process-form.php ---
+/**
+ * Contact form handler. Accepts the form from contact.html (and ar/contact.html),
+ * stores it in the `contacts` table, and answers with JSON (fetch) or a redirect (no JS).
+ */
+declare(strict_types=1);
+require __DIR__ . '/includes/bootstrap.php';
 
-// **SECURITY:** Set headers to only allow JSON responses and prevent direct access.
-header('Content-Type: application/json');
+$ar = req_lang() === 'ar';
+$fail = static function (int $status, string $en, string $arMsg, string $code) use ($ar): never {
+    if (wants_json()) {
+        json_out($status, ['status' => 'error', 'message' => $ar ? $arMsg : $en]);
+    }
+    redirect_page('contact.html', ['status' => 'failed', 'reason' => $code]);
+};
 
-// --- 1. DATABASE CONFIGURATION ---
-// IMPORTANT: For production, move these credentials to a secure configuration file
-// outside of the public web root.
-$db_host = 'localhost';     // Or your database host
-$db_user = 'Mutasim'; // Your database username
-$db_pass = 'Moe5rief$'; // Your database password
-$db_name = 'moedb';         // Your database name
-
-// --- 2. ESTABLISH DATABASE CONNECTION ---
-// Using mysqli for a secure connection
-$conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
-
-// Check connection for errors
-if ($conn->connect_error) {
-    // A professional, non-revealing error message for the user
-    http_response_code(500); // Internal Server Error
-    echo json_encode([
-        'status' => 'error',
-        'message' => 'A server error occurred. Please try again later.'
-    ]);
-    // Log the detailed error for the admin, but don't show it to the user.
-    // error_log("Database Connection Error: " . $conn->connect_error);
-    exit();
-}
-
-// --- 3. VALIDATE REQUEST METHOD ---
-// Only allow POST requests
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405); // Method Not Allowed
-    echo json_encode([
-        'status' => 'error',
-        'message' => 'Invalid request method.'
-    ]);
-    exit();
+    header('Allow: POST');
+    $fail(405, 'Invalid request method.', 'طريقة الطلب غير صالحة.', 'method');
 }
 
-// --- 4. RETRIEVE AND SANITIZE FORM DATA ---
-// Trim whitespace from all inputs and sanitize to prevent XSS attacks.
-$name = trim(htmlspecialchars($_POST['name'] ?? ''));
-$email = trim(htmlspecialchars($_POST['email'] ?? ''));
-$company = trim(htmlspecialchars($_POST['company'] ?? ''));
-$contact_number = trim(htmlspecialchars($_POST['contact_number'] ?? ''));
-$message = trim(htmlspecialchars($_POST['message'] ?? ''));
-
-// --- 5. SERVER-SIDE VALIDATION ---
-if (empty($name) || empty($email) || empty($message)) {
-    http_response_code(400); // Bad Request
-    echo json_encode([
-        'status' => 'error',
-        'message' => 'Please fill in all required fields (Name, Email, Message).'
-    ]);
-    exit();
+// Honeypot: real visitors never see or fill this field.
+if (!empty($_POST['website'])) {
+    wants_json() ? json_out(200, ['status' => 'success']) : redirect_page('contact.html', ['status' => 'sent']);
 }
 
+$name = clean_text($_POST['name'] ?? '', 100);
+$email = clean_text($_POST['email'] ?? '', 100);
+$company = clean_text($_POST['company'] ?? '', 100);
+$phone = clean_text($_POST['phone'] ?? '', 30);
+$message = clean_text($_POST['message'] ?? '', 5000);
+
+if ($name === '' || $email === '' || mb_strlen($message) < 10) {
+    $fail(422, 'Please fill in your name, email and a short message.', 'يرجى إدخال اسمك وبريدك الإلكتروني ورسالة قصيرة.', 'fields');
+}
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    http_response_code(400); // Bad Request
-    echo json_encode([
-        'status' => 'error',
-        'message' => 'Please provide a valid email address.'
-    ]);
-    exit();
+    $fail(422, 'Please enter a valid email address.', 'يرجى إدخال بريد إلكتروني صحيح.', 'email');
+}
+if ($phone !== '' && !preg_match('/^[0-9+()\s-]{7,30}$/', $phone)) {
+    $fail(422, 'Please enter a valid phone number.', 'يرجى إدخال رقم هاتف صحيح.', 'phone');
 }
 
-
-// --- 6. PREPARE AND EXECUTE SQL INSERTION ---
-// Using prepared statements to prevent SQL injection attacks.
-$sql = "INSERT INTO contact_messages (name, email, company, contact_number, message) VALUES (?, ?, ?, ?, ?)";
-
-$stmt = $conn->prepare($sql);
-
-if ($stmt === false) {
-    // Handle SQL preparation error
-    http_response_code(500);
-    echo json_encode([
-        'status' => 'error',
-        'message' => 'An internal error occurred. Please try again.'
-    ]);
-    // error_log("SQL Prepare Error: " . $conn->error);
-    exit();
+try {
+    $pdo = db();
+    // Basic flood control: max 5 messages per IP per hour.
+    $ip = client_ip();
+    $recent = $pdo->prepare('SELECT COUNT(*) FROM contacts WHERE ip_address = ? AND submission_date > (NOW() - INTERVAL 1 HOUR)');
+    $recent->execute([$ip]);
+    if ((int) $recent->fetchColumn() >= 5) {
+        $fail(429, 'Too many messages from your connection. Please email us instead.', 'رسائل كثيرة من اتصالك. يرجى مراسلتنا عبر البريد بدلًا من ذلك.', 'rate');
+    }
+    $stmt = $pdo->prepare('INSERT INTO contacts (full_name, email, company_name, phone, message, lang, ip_address) VALUES (?, ?, ?, ?, ?, ?, ?)');
+    $stmt->execute([$name, $email, $company ?: null, $phone ?: null, $message, req_lang(), $ip]);
+} catch (Throwable $e) {
+    error_log('[contact] ' . $e->getMessage());
+    $fail(500, 'Your message didn’t send. Please try again, or email info@cloudpros.com.', 'لم تُرسل رسالتك. حاول مرة أخرى أو راسلنا على info@cloudpros.com.', 'server');
 }
 
-// Bind parameters to the SQL query
-// 'sssss' denotes that all 5 parameters are strings.
-$stmt->bind_param('sssss', $name, $email, $company, $contact_number, $message);
-
-// Execute the statement and check for success
-if ($stmt->execute()) {
-    // Success
-    http_response_code(200); // OK
-    echo json_encode([
-        'status' => 'success',
-        'message' => 'Thank you! Your message has been sent successfully.'
-    ]);
-} else {
-    // Execution failed
-    http_response_code(500);
-    echo json_encode([
-        'status' => 'error',
-        'message' => 'Failed to send message. Please try again.'
-    ]);
-    // error_log("SQL Execute Error: " . $stmt->error);
+if (wants_json()) {
+    json_out(200, ['status' => 'success']);
 }
-
-// --- 7. CLOSE RESOURCES ---
-$stmt->close();
-$conn->close();
-
-?>
+redirect_page('contact.html', ['status' => 'sent']);

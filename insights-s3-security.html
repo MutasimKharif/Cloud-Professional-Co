@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Securing your S3 buckets: a practical guide | CloudPros</title>
+  <meta name="description" content="Most S3 data exposures come from configuration, not from S3 itself. Seven settings and checks that keep your buckets private — and prove it.">
+  
+  <meta name="theme-color" content="#0B0F15">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CloudPros">
+  <meta property="og:title" content="Securing your S3 buckets: a practical guide | CloudPros">
+  <meta property="og:description" content="Most S3 data exposures come from configuration, not from S3 itself. Seven settings and checks that keep your buckets private — and prove it.">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="assets/og/cloudpros-en.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/site.css">
+  <script src="assets/js/site.js" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Securing your S3 buckets: a practical guide","description":"Most S3 data exposures come from configuration, not from S3 itself. Seven settings and checks that keep your buckets private — and prove it.","datePublished":"2026-11-14","inLanguage":"en","author":{"@type":"Organization","name":"CloudPros"},"publisher":{"@type":"Organization","name":"CloudPros"}}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header" data-header>
+  <div class="container site-header__bar">
+    <a class="brand" href="index.html" aria-label="CloudPros home"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false"><path d="M8.5 25h15.25a5.75 5.75 0 0 0 1.6-11.27A8.75 8.75 0 0 0 8.62 11.4 6.75 6.75 0 0 0 8.5 25Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M11 19.5h10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="21" cy="19.5" r="2.6" fill="currentColor"/></svg><span>CloudPros</span></a>
+    <nav class="nav" aria-label="Main"><ul class="nav__list"><li><a class="nav__link" href="services.html">Services</a></li><li><a class="nav__link" href="about.html">About</a></li><li><a class="nav__link" href="teammembers.html">Team</a></li><li><a class="nav__link" href="blog.html" aria-current="page">Insights</a></li><li><a class="nav__link" href="contact.html">Contact</a></li></ul></nav>
+    <div class="header-actions">
+      <a class="lang-link" href="ar/insights-s3-security.html" hreflang="ar" lang="ar"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m10.5 21 5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 0 1 6-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 0 1-3.827-5.802"/></svg><span>العربية</span></a>
+      <a class="lang-link header-cta" href="signin.html"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg><span>Sign in</span></a>
+      <a class="btn btn--primary btn--sm header-cta" href="contact.html">Talk to an engineer</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav" data-menu-btn>
+        <span class="sr-only">Menu</span><svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg><svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 18 18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-nav" id="mobile-nav" hidden data-mobile-nav>
+    <nav aria-label="Mobile"><ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li><li><a href="teammembers.html">Team</a></li><li><a href="blog.html" aria-current="page">Insights</a></li><li><a href="contact.html">Contact</a></li>
+      <li><a href="signin.html">Sign in</a></li>
+    </ul></nav>
+    <a class="btn btn--primary" href="contact.html">Talk to an engineer</a>
+  </div>
+</header>
+<main id="main">
+<section class="page-hero">
+  <div class="container page-hero__inner">
+    <nav aria-label="Breadcrumb"><ol class="breadcrumb"><li><a href="index.html">Home</a></li><li><a href="blog.html">Insights</a></li><li><span aria-current="page">Securing your S3 buckets: a practical guide</span></li></ol></nav>
+    <p class="eyebrow">Cloud security</p>
+    <h1>Securing your S3 buckets: a practical guide</h1>
+    <p class="lead">Most S3 data exposures come from configuration, not from S3 itself. Seven settings and checks that keep your buckets private — and prove it.</p>
+    <p class="byline"><span>By the CloudPros team</span><time datetime="2026-11-14">14 November 2026</time><span>7 min read</span></p>
+    
+  </div>
+</section>
+<section class="section">
+  <div class="container article">
+    <article class="article__body">
+<p>Amazon S3 is one of the most reliable services AWS runs, yet “exposed S3 bucket” keeps appearing in breach reports. The reason is almost always configuration: a bucket made public for a quick test, an old access control list nobody remembers, or a policy that grants far more than it needs to.</p>
+<p>Since 2023, new buckets are safer by default — Block Public Access is on, access control lists (ACLs) are disabled, and new objects are encrypted with S3-managed keys. But buckets created before then keep their old settings, and every default can be switched off. Here is what we check on every AWS account we work on.</p>
+
+<h2>1. Block public access for the whole account</h2>
+<p>Block Public Access can be set per bucket, but the account-level setting overrides all of them and stops anyone from making a bucket public by mistake. Turn on all four options:</p>
+<pre tabindex="0"><code>aws s3control put-public-access-block \
+  --account-id 111122223333 \
+  --public-access-block-configuration \
+  BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true</code></pre>
+<p>If you use AWS Organizations, apply it to every account and add a service control policy that prevents it being turned off. Need to serve a public website from S3? Put Amazon CloudFront in front with <strong>Origin Access Control</strong>, so the bucket stays private and only CloudFront can read it.</p>
+
+<h2>2. Turn off ACLs</h2>
+<p>ACLs are an older permission system that sits alongside bucket policies and is easy to overlook. Set Object Ownership to <strong>Bucket owner enforced</strong>: ACLs stop having any effect, and access is decided only by policies you can read and review in one place.</p>
+
+<h2>3. Grant the least access that works</h2>
+<ul>
+  <li>Give each application its own IAM role with access to the specific bucket and prefix it needs — not <code>s3:*</code> on <code>*</code>.</li>
+  <li>Avoid <code>"Principal": "*"</code> in bucket policies unless it is tightly restricted by conditions, such as a specific VPC endpoint with <code>aws:SourceVpce</code>.</li>
+  <li>To share a file temporarily, use a presigned URL that expires, rather than opening the bucket.</li>
+  <li>Run <strong>IAM Access Analyzer</strong>: it lists every bucket that is shared publicly or with another AWS account, so you can confirm each one is intended.</li>
+</ul>
+
+<h2>4. Require encryption in transit</h2>
+<p>Add a statement to every bucket policy that denies requests not made over TLS:</p>
+<pre tabindex="0"><code>{
+  "Sid": "DenyInsecureTransport",
+  "Effect": "Deny",
+  "Principal": "*",
+  "Action": "s3:*",
+  "Resource": [
+    "arn:aws:s3:::example-bucket",
+    "arn:aws:s3:::example-bucket/*"
+  ],
+  "Condition": { "Bool": { "aws:SecureTransport": "false" } }
+}</code></pre>
+
+<h2>5. Choose the right encryption at rest</h2>
+<p>S3-managed encryption (SSE-S3) is on by default and is fine for much data. Use <strong>SSE-KMS with a customer managed key</strong> when you need to decide who can decrypt the data, separately from who can read the bucket, and to see every use of the key in AWS CloudTrail. Enable <strong>S3 Bucket Keys</strong> with it to cut the number of KMS requests — and their cost.</p>
+
+<h2>6. Protect against deletion and ransomware</h2>
+<ul>
+  <li>Turn on <strong>versioning</strong>, so overwritten or deleted objects can be recovered, and add lifecycle rules so old versions don’t grow forever.</li>
+  <li>For backups, records and anything you must keep, use <strong>Object Lock</strong> in compliance mode: nobody — including administrators — can delete or change the data until the retention period ends.</li>
+  <li>Replicate critical data to a bucket in a separate account. If the data must stay in Saudi Arabia, check where the copy lands before you switch replication on.</li>
+</ul>
+
+<h2>7. Log and watch</h2>
+<p>Settings drift. Someone will eventually change a policy, so make sure you would notice:</p>
+<ul>
+  <li><strong>CloudTrail data events</strong> for sensitive buckets record who read or changed which object.</li>
+  <li><strong>Amazon GuardDuty S3 Protection</strong> flags unusual access, such as reads from known malicious addresses or sudden mass downloads.</li>
+  <li><strong>Amazon Macie</strong> finds personal and sensitive data in your buckets — useful when the PDPL requires you to know where personal data lives.</li>
+  <li><strong>AWS Config</strong> rules such as <code>s3-bucket-public-read-prohibited</code> and <code>s3-bucket-ssl-requests-only</code> report any bucket that drifts from your baseline.</li>
+</ul>
+
+<h2>Where to start</h2>
+<p>If you only do two things this week, turn on account-level Block Public Access and run IAM Access Analyzer. Together they close the most common exposure and show you everything that is shared today. The rest can follow as a short project — and is exactly the kind of evidence auditors ask for under the NCA’s cloud controls.</p></article>
+    <aside class="article__aside" aria-label="Summary and related services">
+      <div class="takeaways">
+        <h2>Key takeaways</h2>
+        <ul><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4.5 12.75 6 6 9-13.5"/></svg><span>Block public access for the whole account, not bucket by bucket.</span></li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4.5 12.75 6 6 9-13.5"/></svg><span>Disable ACLs and control access with policies only.</span></li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4.5 12.75 6 6 9-13.5"/></svg><span>Deny any request that doesn’t use TLS.</span></li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4.5 12.75 6 6 9-13.5"/></svg><span>Use KMS keys when you need to control and audit who can decrypt.</span></li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4.5 12.75 6 6 9-13.5"/></svg><span>Turn on versioning, and Object Lock for data you must not lose.</span></li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4.5 12.75 6 6 9-13.5"/></svg><span>Log object access and let GuardDuty, Macie and Config watch for you.</span></li></ul>
+      </div>
+      <a class="card card--link" href="service-security-compliance.html">
+    <span class="card__icon"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg></span>
+    <h3>Security & compliance</h3>
+    <p>Posture reviews, IAM, threat detection and audit-ready controls.</p>
+    <span class="card__foot link-arrow">Learn more<svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg></span>
+  </a><a class="card card--link" href="cloud-mig.html">
+    <span class="card__icon"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 16.5V9.75m0 0 3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z"/></svg></span>
+    <h3>Cloud migration & strategy</h3>
+    <p>Assessment, migration plan and a low-disruption move to AWS.</p>
+    <span class="card__foot link-arrow">Learn more<svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg></span>
+  </a>
+    </aside>
+  </div>
+</section>
+<section class="cta-band">
+  <div class="container cta-band__inner">
+    <h2>Want a second pair of eyes on yours?</h2>
+    <p>Tell us what you run today and an engineer will reply with where we’d start.</p>
+    <div class="btn-row">
+      <a class="btn btn--primary" href="contact.html">Talk to an engineer<svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg></a>
+      <a class="btn btn--secondary" href="blog.html">More articles</a>
+    </div>
+    <p class="cta-band__contact"><a href="tel:+966568783539" dir="ltr">+966 56 878 3539</a><span aria-hidden="true">·</span><a href="mailto:info@cloudpros.com">info@cloudpros.com</a></p>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a class="brand" href="index.html"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false"><path d="M8.5 25h15.25a5.75 5.75 0 0 0 1.6-11.27A8.75 8.75 0 0 0 8.62 11.4 6.75 6.75 0 0 0 8.5 25Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M11 19.5h10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="21" cy="19.5" r="2.6" fill="currentColor"/></svg><span>CloudPros</span></a>
+        <p>AWS cloud, networking and data center engineering for organizations across Saudi Arabia — from one accountable team in Riyadh.</p>
+      </div>
+      <div class="footer__col">
+        <h2>Services</h2>
+        <ul><li><a href="cloud-mig.html">Cloud migration & strategy</a></li><li><a href="service-devops-automation.html">DevOps & automation</a></li><li><a href="service-security-compliance.html">Security & compliance</a></li><li><a href="service-network-architecture.html">Network architecture & design</a></li><li><a href="service-connectivity-solutions.html">Connectivity solutions</a></li><li><a href="service-infrastructure-maintenance.html">IT infrastructure maintenance</a></li><li><a href="service-data-center.html">Data center design & build</a></li><li><a href="service-cctv.html">CCTV surveillance</a></li><li><a href="service-meeting-rooms.html">Meeting room solutions</a></li></ul>
+      </div>
+      <div class="footer__col">
+        <h2>Company</h2>
+        <ul>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="teammembers.html">Leadership team</a></li>
+          <li><a href="blog.html">Insights</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="signin.html">Client sign in</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h2>Contact</h2>
+        <ul>
+          <li>Riyadh, Saudi Arabia</li>
+          <li><a href="mailto:info@cloudpros.com">info@cloudpros.com</a></li>
+          <li><a href="tel:+966568783539" dir="ltr">+966 56 878 3539</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__news">
+      <div>
+        <h2>Cloud and infrastructure notes, once a month</h2>
+        <p>Practical guidance from our engineers. No spam; unsubscribe any time.</p>
+      </div>
+      <form class="news-form" action="newsletter.php" method="post" data-async-form novalidate>
+        <input type="hidden" name="lang" value="en">
+        <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <label class="sr-only" for="news-email">Email address</label>
+        <div class="news-form__row">
+          <input class="input" id="news-email" type="email" name="email" required autocomplete="email" placeholder="you@company.com" data-msg-required="Enter your email address." data-msg-type="Enter a valid email, like name@company.com.">
+          <button class="btn btn--primary" type="submit"><span class="spinner" aria-hidden="true"></span><span>Subscribe</span></button>
+        </div>
+        <p class="field__error" data-error-for="news-email" id="news-email-error"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/></svg><span></span></p>
+        <div class="alert alert--success" role="status" data-form-success><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg><span>You're subscribed. Look out for the next issue.</span></div>
+        <div class="alert alert--error" role="alert" data-form-failure><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/></svg><span>We couldn't subscribe you just now. Please try again in a moment.</span></div>
+      </form>
+    </div>
+    <div class="footer__legal">
+      <p>© 2026 CloudPros. All rights reserved.</p>
+      <ul><li><a href="privacy.html">Privacy policy</a></li></ul>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
