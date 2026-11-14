@@ -1,164 +1,205 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deata Center - CloudPros</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
-
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Applying the new font and styles -->
-    <style>
-        body { 
-            font-family: 'Inter', sans-serif; 
-        }
-        /* Custom prose styles for better heading contrast with the new font */
-        .prose h2, .prose h3 {
-            font-weight: 700;
-            color: #1f2937; /* A darker gray for better contrast */
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data center design &amp; build | CloudPros</title>
+  <meta name="description" content="End-to-end data center services: greenfield builds, environmental monitoring, precision cooling (CRAC/CRAH), clean-agent fire suppression (FM-200, Novec 1230), and UPS and power distribution.">
+  
+  <meta name="theme-color" content="#0B0F15">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CloudPros">
+  <meta property="og:title" content="Data center design &amp; build | CloudPros">
+  <meta property="og:description" content="End-to-end data center services: greenfield builds, environmental monitoring, precision cooling (CRAC/CRAH), clean-agent fire suppression (FM-200, Novec 1230), and UPS and power distribution.">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="assets/og/cloudpros-en.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/site.css">
+  <script src="assets/js/site.js" defer></script>
 </head>
-<body class="bg-white text-gray-800">
-
-    <!-- Your Standard Header Goes Here -->
-    <header class="bg-white shadow-md sticky top-0 z-40">
-        <!-- Paste your full header code here -->
-    </header>
-
- <!-- Hero Section with Background Image -->
-        <div class="relative bg-gray-900">
-            <div class="absolute inset-0">
-                <img src="assets/images/devops-cityscape.jpg" alt="Futuristic cityscape with data flowing from a central cloud" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-slate-800 mix-blend-multiply" aria-hidden="true"></div>
-            </div>
-            <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8 text-center">
-                <p class="text-base font-semibold text-[#FF9900] uppercase tracking-wider">Our Comprehensive Data Center Services</p>
-                <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">End-to-End Data Center Solutions
-</h1>
-                <p class="mt-6 max-w-3xl mx-auto text-xl text-gray-300">We design, build, and maintain mission-critical data center environments with a focus on reliability, efficiency, and security.</p>
-            </div>
-        </div>
-
-
-        <div class="py-16 lg:py-24">
-            <div class="container mx-auto px-4 max-w-4xl">
-                
-                <!-- Feature Image Section -->
-
-                                 <!-- Feature Block 1: Comprehensive Data Center-->
-                    <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
-                        <div class="prose max-w-none text-gray-700">
-                            <h3>Our Comprehensive Data Center Services</h3>
-                            <p>A modern data center is the heart of your IT operations. CloudPros provides a full spectrum of services to ensure your physical infrastructure is robust, resilient, and ready to meet the demands of your business. We handle every aspect of the data center lifecycle.</p>
-                        </div>
-                        <img src="assets/images/Datacenter-build.jpg" alt="An infographic detailing network architecture components like VPC and DNS." class="rounded-lg shadow-xl w-full h-auto">
-                    </div>
-                    
-
-
-
-     <!-- Feature Block 2: IT Data Center Build -->
-                    <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
-                        <img src="assets/images/datacenter-building.png" alt="A diagram illustrating a dedicated, high-speed Direct Connect link between a data center and AWS." class="rounded-lg shadow-xl w-full h-auto md:order-first">
-                        <div class="prose max-w-none text-gray-700">
-                            <h3>IT Data Center Build</h3>
-                            <p>We manage greenfield data center projects from the ground up, including site selection, architectural design, and construction, ensuring the final facility meets industry best practices and your specific operational requirements.</p>
-
-                        </div>
-                    </div>
-
-   <!-- Feature Block 3: Environmental Monitoring System (EMS) -->
-                    <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
-                        <div class="prose max-w-none text-gray-700">
-                            <h3>VPC Peering</h3>
-                            <p>Protect your critical hardware with a state-of-the-art EMS. We deploy sensors to monitor temperature, humidity, airflow, water leaks, and power usage, providing real-time alerts to prevent environmental threats from causing downtime.</p>
-                        </div>
-                         <img src="assets/images/EMS.png" alt="A diagram showing two separate VPCs within AWS connected directly via VPC Peering." class="rounded-lg shadow-xl w-full h-auto">
-                    </div>
-
-
-
-   <!-- Feature Block 4: Fire Fighting System -->
-                     <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
-                        <img src="assets/images/firefight.png" alt="A dashboard showing network performance graphs and cost analysis charts." class="rounded-lg shadow-xl w-full h-auto md:order-first">
-                        <div class="prose max-w-none text-gray-700">
-                            <h3>Fire Fighting System</h3>
-                            <p>Safety is paramount. We install advanced fire suppression systems, such as clean agent (FM-200, Novec 1230) solutions, that extinguish fires quickly without damaging sensitive electronic equipment, ensuring business continuity.</p>
-                        </div>
-                    </div>
-
-        <!-- Feature Block 5: Air Precision Cooling System -->
-           <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
-                        <div class="prose max-w-none text-gray-700">
-                         <h3>Air Precision Cooling System</h3>
-                    <p>High-density computing requires specialized cooling. We design and install Computer Room Air Conditioning (CRAC) and Air Handling (CRAH) units to maintain precise temperature and humidity levels, guaranteeing optimal performance and longevity of your servers.</p></div>
-                        <img src="assets/images/HVAC.png" alt=" An infographic detailing network architecture components like VPC and DNS." class="rounded-lg shadow-xl w-full h-auto">
-                    </div>
-
-<!-- Feature Block 4: UPS & Power Solutions -->
-                     <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
-                        <img src="assets/images/firefight.png" alt="A dashboard showing network performance graphs and cost analysis charts." class="rounded-lg shadow-xl w-full h-auto md:order-first">
-                        <div class="prose max-w-none text-gray-700">
-                            <h3>Fire Fighting System</h3>
-                            <p>>Uninterruptible Power Supply (UPS) systems are critical for uptime. We provide and configure robust UPS solutions, generators, and power distribution units (PDUs) to deliver clean, consistent power and protect against outages.</p>
-                        </div>
-                    </div>
-
-    <!-- CTA Section -->
-                <div class="text-center mt-16 lg:mt-24 bg-gray-50 p-10 rounded-xl">
-                    <h2 class="text-3xl font-bold text-gray-800">Build a Resilient Foundation for Your IT</h2>
-                    <p class="text-lg text-gray-600 mt-2">Let's discuss your data center requirements.</p>
-                    <a href="contact.html" class="mt-6 inline-block bg-[#FF9900] text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-[#E68A00] transition-all duration-300">
-                        Get a Free Consultation
-                    </a>
-                </div>
-            </div>
-        </div>
-    </main>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header" data-header>
+  <div class="container site-header__bar">
+    <a class="brand" href="index.html" aria-label="CloudPros home"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false"><path d="M8.5 25h15.25a5.75 5.75 0 0 0 1.6-11.27A8.75 8.75 0 0 0 8.62 11.4 6.75 6.75 0 0 0 8.5 25Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M11 19.5h10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="21" cy="19.5" r="2.6" fill="currentColor"/></svg><span>CloudPros</span></a>
+    <nav class="nav" aria-label="Main"><ul class="nav__list"><li><a class="nav__link" href="services.html">Services</a></li><li><a class="nav__link" href="about.html">About</a></li><li><a class="nav__link" href="teammembers.html">Team</a></li><li><a class="nav__link" href="blog.html">Insights</a></li><li><a class="nav__link" href="contact.html">Contact</a></li></ul></nav>
+    <div class="header-actions">
+      <a class="lang-link" href="ar/service-data-center.html" hreflang="ar" lang="ar"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m10.5 21 5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 0 1 6-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 0 1-3.827-5.802"/></svg><span>العربية</span></a>
+      <a class="lang-link header-cta" href="signin.html"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg><span>Sign in</span></a>
+      <a class="btn btn--primary btn--sm header-cta" href="contact.html">Book a consultation</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav" data-menu-btn>
+        <span class="sr-only">Menu</span><svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg><svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 18 18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-nav" id="mobile-nav" hidden data-mobile-nav>
+    <nav aria-label="Mobile"><ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li><li><a href="teammembers.html">Team</a></li><li><a href="blog.html">Insights</a></li><li><a href="contact.html">Contact</a></li>
+      <li><a href="signin.html">Sign in</a></li>
+    </ul></nav>
+    <a class="btn btn--primary" href="contact.html">Book a consultation</a>
+  </div>
+</header>
+<main id="main">
+<section class="page-hero">
+  <div class="container page-hero__inner">
+    <nav aria-label="Breadcrumb"><ol class="breadcrumb"><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="services.html#data-center">Data centers</a></li><li><span aria-current="page">Data center design & build</span></li></ol></nav>
+    <p class="eyebrow">Data centers</p>
+    <h1>Data center design & build</h1>
+    <p class="lead">We design, build and maintain mission-critical data center environments with a focus on reliability, efficiency and security — every system, from the floor tiles up.</p>
+    <div class="btn-row mt-3"><a class="btn btn--primary" href="contact.html">Discuss your facility<svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg></a></div>
+  </div>
+</section>
+<section class="section section--tight"><div class="container"><div class="section-head section-head--row" style="margin-bottom:0"><div class="stack-4"><p class="eyebrow">The whole lifecycle</p><h2>The heart of your IT operations</h2></div><p class="lead">A data center is only as reliable as its weakest system. We handle every part of the facility so power, cooling, fire protection and monitoring are designed to work together.</p></div></div></section>
+<section class="section" style="padding-top:0" aria-labelledby="included-h">
+  <div class="container">
+    <h2 class="sr-only" id="included-h">What’s included</h2>
+    <div class="features">
+      <article class="feature" id="build">
+  <div class="feature__body">
+    <span class="eyebrow feature__index">01</span>
+    <h3>Data center build</h3>
+    <p>We manage greenfield projects from the ground up — site selection, architectural design and construction — so the finished facility meets industry best practice and your operational requirements.</p>
+    <ul class="checks"><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4.5 12.75 6 6 9-13.5"/></svg><span>Raised floors, cabling and containment</span></li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4.5 12.75 6 6 9-13.5"/></svg><span>Rack layout and capacity planning</span></li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4.5 12.75 6 6 9-13.5"/></svg><span>Handover documentation</span></li></ul>
+  </div>
+  <div class="feature__media"><figure class="media media--square"><img src="assets/img/dc-build-1024.webp" srcset="assets/img/dc-build-640.webp 640w, assets/img/dc-build-1024.webp 1024w" sizes="(min-width: 960px) 560px, 100vw" width="1024" height="1024" alt="Engineers in high-visibility vests working inside a data center aisle" loading="lazy" decoding="async"></figure></div>
+</article>
+<article class="feature" id="ems">
+  <div class="feature__body">
+    <span class="eyebrow feature__index">02</span>
+    <h3>Environmental monitoring system (EMS)</h3>
+    <p>Sensors for temperature, humidity, airflow, water leaks and power usage, with real-time alerts that stop environmental problems before they cause downtime.</p>
     
-    <!-- Footer: Copy from your other pages -->
-  <footer class="bg-gray-800 text-white">
-        <div class="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
-             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                <div class="col-span-1 lg:col-span-4">
-                   <a href="index.html" class="flex items-center space-x-2 mb-4">
-                        <svg class="h-8 w-8 text-[#FF9900]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
-                        <span class="text-2xl font-bold">CloudPros</span>
-                    </a>
-                    <p class="text-gray-400 max-w-md">Your expert partner for AWS cloud and on-premise IT solutions.</p>
-                     <div class="mt-6 flex space-x-6">
-                        <a href="#" class="text-gray-400 hover:text-white"><span class="sr-only">Twitter</span><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg></a>
-                        <a href="#" class="text-gray-400 hover:text-white"><span class="sr-only">LinkedIn</span><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg></a>
-                    </div>
-                </div>
-                <div class="col-span-1 lg:col-span-2">
-                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li><a href="privacy.html" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
-                        <li><a href="blog.html" class="text-gray-400 hover:text-white">Blog</a></li>
-                    </ul>
-                </div>
-                <div class="col-span-1 lg:col-span-6">
-                     <h3 class="text-lg font-semibold mb-4">Subscribe to Our Newsletter</h3>
-                     <p class="text-gray-400 mb-4 text-sm">Get the latest insights on cloud technology and security delivered to your inbox.</p>
-                     <form id="newsletter-form" class="flex flex-col sm:flex-row gap-2">
-                        <label for="newsletter-email" class="sr-only">Email address</label>
-                        <input type="email" id="newsletter-email" required class="w-full px-4 py-2 rounded-md bg-gray-700 text-white border-gray-600 focus:ring-[#FF9900] focus:border-[#FF9900]" placeholder="Enter your email">
-                        <button type="submit" class="bg-[#FF9900] text-white font-bold py-2 px-6 rounded-md hover:bg-[#E68A00] transition-colors">Subscribe</button>
-                    </form>
-                </div>
-              </div>
-            <div class="mt-8 border-t border-gray-700 pt-8 text-center text-gray-500">
-                <p>© 2025 CloudPros. All rights reserved.</p>
-            </div>
+  </div>
+  <div class="feature__media"><figure class="media media--square"><img src="assets/img/dc-ems-1024.webp" srcset="assets/img/dc-ems-640.webp 640w, assets/img/dc-ems-1024.webp 1024w" sizes="(min-width: 960px) 560px, 100vw" width="1024" height="1024" alt="Environmental monitoring display mounted on a server rack showing temperature and humidity" loading="lazy" decoding="async"></figure></div>
+</article>
+<article class="feature" id="cooling">
+  <div class="feature__body">
+    <span class="eyebrow feature__index">03</span>
+    <h3>Precision cooling</h3>
+    <p>High-density computing needs specialized cooling. We design and install CRAC and CRAH units that hold temperature and humidity precisely, for performance and a longer life for your servers.</p>
+    
+  </div>
+  <div class="feature__media"><figure class="media media--square"><img src="assets/img/dc-cooling-1024.webp" srcset="assets/img/dc-cooling-640.webp 640w, assets/img/dc-cooling-1024.webp 1024w" sizes="(min-width: 960px) 560px, 100vw" width="1024" height="1024" alt="Row of precision cooling units in a data hall" loading="lazy" decoding="async"></figure></div>
+</article>
+<article class="feature" id="fire">
+  <div class="feature__body">
+    <span class="eyebrow feature__index">04</span>
+    <h3>Fire suppression</h3>
+    <p>Clean-agent systems such as FM-200 and Novec 1230 that put out fires quickly without damaging sensitive electronics, protecting both equipment and business continuity.</p>
+    
+  </div>
+  <div class="feature__media"><figure class="media media--square"><img src="assets/img/dc-fire-1024.webp" srcset="assets/img/dc-fire-640.webp 640w, assets/img/dc-fire-1024.webp 1024w" sizes="(min-width: 960px) 560px, 100vw" width="1024" height="1024" alt="Clean-agent fire suppression discharging in a data center aisle" loading="lazy" decoding="async"></figure></div>
+</article>
+<article class="feature" id="power">
+  <div class="feature__body">
+    <span class="eyebrow feature__index">05</span>
+    <h3>UPS & power</h3>
+    <p>Uninterruptible power supplies, generators and power distribution units sized and configured to deliver clean, consistent power and ride through outages.</p>
+    
+  </div>
+  <div class="feature__media"><figure class="media media--square"><img src="assets/img/dc-ups-1024.webp" srcset="assets/img/dc-ups-640.webp 640w, assets/img/dc-ups-1024.webp 1024w" sizes="(min-width: 960px) 560px, 100vw" width="1024" height="1024" alt="UPS and generator equipment installed in a data center" loading="lazy" decoding="async"></figure></div>
+</article>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-head"><p class="eyebrow">Related</p><h2>Often delivered together</h2></div>
+    <div class="grid grid--3">
+      <a class="card card--link" href="service-infrastructure-maintenance.html">
+    <span class="card__icon"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21.75 6.75a4.5 4.5 0 0 1-4.884 4.484c-1.076-.091-2.264.071-2.95.904l-7.152 8.684a2.548 2.548 0 1 1-3.586-3.586l8.684-7.152c.833-.686.995-1.874.904-2.95a4.5 4.5 0 0 1 6.336-4.486l-3.276 3.276a3.004 3.004 0 0 0 2.25 2.25l3.276-3.276c.256.565.398 1.192.398 1.852Z"/></svg></span>
+    <h3>IT infrastructure maintenance</h3>
+    <p>Monitoring, patching, hardware lifecycle, backup and support.</p>
+    <span class="card__foot link-arrow">Learn more<svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg></span>
+  </a><a class="card card--link" href="service-connectivity-solutions.html">
+    <span class="card__icon"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg></span>
+    <h3>Connectivity solutions</h3>
+    <p>Site-to-Site VPN, Direct Connect and VPC peering.</p>
+    <span class="card__foot link-arrow">Learn more<svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg></span>
+  </a><a class="card card--link" href="service-cctv.html">
+    <span class="card__icon"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z"/></svg></span>
+    <h3>CCTV surveillance</h3>
+    <p>IP camera systems, remote viewing and ongoing maintenance.</p>
+    <span class="card__foot link-arrow">Learn more<svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg></span>
+  </a>
+    </div>
+  </div>
+</section>
+<section class="cta-band">
+  <div class="container cta-band__inner">
+    <h2>Tell us what you run today. We’ll show you the next step.</h2>
+    <p>A short call with one of our engineers to understand your environment and where we can help.</p>
+    <div class="btn-row">
+      <a class="btn btn--primary" href="contact.html">Book a consultation<svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg></a>
+      <a class="btn btn--secondary" href="services.html">Browse services</a>
+    </div>
+    <p class="cta-band__contact"><a href="tel:+966568783539" dir="ltr">+966 56 878 3539</a><span aria-hidden="true">·</span><a href="mailto:info@cloudpros.com">info@cloudpros.com</a></p>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a class="brand" href="index.html"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false"><path d="M8.5 25h15.25a5.75 5.75 0 0 0 1.6-11.27A8.75 8.75 0 0 0 8.62 11.4 6.75 6.75 0 0 0 8.5 25Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M11 19.5h10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="21" cy="19.5" r="2.6" fill="currentColor"/></svg><span>CloudPros</span></a>
+        <p>AWS cloud, networking and data center engineering for organizations across Saudi Arabia — from one accountable team in Riyadh.</p>
+      </div>
+      <div class="footer__col">
+        <h2>Services</h2>
+        <ul><li><a href="cloud-mig.html">Cloud migration & strategy</a></li><li><a href="service-devops-automation.html">DevOps & automation</a></li><li><a href="service-security-compliance.html">Security & compliance</a></li><li><a href="service-network-architecture.html">Network architecture & design</a></li><li><a href="service-connectivity-solutions.html">Connectivity solutions</a></li><li><a href="service-infrastructure-maintenance.html">IT infrastructure maintenance</a></li><li><a href="service-data-center.html">Data center design & build</a></li><li><a href="service-cctv.html">CCTV surveillance</a></li><li><a href="service-meeting-rooms.html">Meeting room solutions</a></li></ul>
+      </div>
+      <div class="footer__col">
+        <h2>Company</h2>
+        <ul>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="teammembers.html">Leadership team</a></li>
+          <li><a href="blog.html">Insights</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="signin.html">Client sign in</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h2>Contact</h2>
+        <ul>
+          <li>Riyadh, Saudi Arabia</li>
+          <li><a href="mailto:info@cloudpros.com">info@cloudpros.com</a></li>
+          <li><a href="tel:+966568783539" dir="ltr">+966 56 878 3539</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__news">
+      <div>
+        <h2>Cloud and infrastructure notes, once a month</h2>
+        <p>Practical guidance from our engineers. No spam; unsubscribe any time.</p>
+      </div>
+      <form class="news-form" action="newsletter.php" method="post" data-async-form novalidate>
+        <input type="hidden" name="lang" value="en">
+        <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <label class="sr-only" for="news-email">Email address</label>
+        <div class="news-form__row">
+          <input class="input" id="news-email" type="email" name="email" required autocomplete="email" placeholder="you@company.com" data-msg-required="Enter your email address." data-msg-type="Enter a valid email, like name@company.com.">
+          <button class="btn btn--primary" type="submit"><span class="spinner" aria-hidden="true"></span><span>Subscribe</span></button>
         </div>
-    </footer>
-<script src="script.js"></script>
+        <p class="field__error" data-error-for="news-email" id="news-email-error"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/></svg><span></span></p>
+        <div class="alert alert--success" role="status" data-form-success><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg><span>You're subscribed. Look out for the next issue.</span></div>
+        <div class="alert alert--error" role="alert" data-form-failure><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/></svg><span>We couldn't subscribe you just now. Please try again in a moment.</span></div>
+      </form>
+    </div>
+    <div class="footer__legal">
+      <p>© 2026 CloudPros. All rights reserved.</p>
+      <ul><li><a href="privacy.html">Privacy policy</a></li></ul>
+    </div>
+  </div>
+</footer>
 </body>
 </html>
