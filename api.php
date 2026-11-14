@@ -1,109 +1,90 @@
 <?php
-// api.php - The central backend for the admin panel.
+/**
+ * Admin JSON API used by adminpanel.php.
+ * Every request requires a signed-in admin session; changes also require the CSRF token
+ * in the X-CSRF-Token header.
+ */
+declare(strict_types=1);
+require __DIR__ . '/includes/bootstrap.php';
 
-header('Content-Type: application/json');
-
-// --- DATABASE CREDENTIALS ---
-$servername = "localhost";
-$username = "root";
-$password = "Moe5rief$"; // Your database password
-$dbname = "moedb";
-
-// --- DATABASE CONNECTION (using PDO for security) ---
-try {
-    $pdo = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8mb4", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    http_response_code(500);
-    echo json_encode(['error' => 'Database connection failed: ' . $e->getMessage()]);
-    exit();
+start_session();
+if (!is_admin()) {
+    json_out(401, ['error' => 'Sign in as an administrator.']);
 }
 
-// --- ROUTING (determine what action to perform) ---
-$action = $_GET['action'] ?? '';
 $method = $_SERVER['REQUEST_METHOD'];
+$action = (string) ($_GET['action'] ?? '');
 
-if ($method === 'GET') {
-    // --- HANDLE DATA FETCHING ---
-    switch ($action) {
-        case 'get_stats':
-            $stats = [
-                'requests' => $pdo->query("SELECT count(*) FROM users WHERE approved = 0")->fetchColumn(),
-                'messages' => $pdo->query("SELECT count(*) FROM contacts")->fetchColumn(),
-                'users' => $pdo->query("SELECT count(*) FROM users WHERE approved = 1 AND role = 'user'")->fetchColumn(),
-                'admins' => $pdo->query("SELECT count(*) FROM users WHERE approved = 1 AND role = 'admin'")->fetchColumn(),
-            ];
-            echo json_encode($stats);
-            break;
-        case 'get_requests':
-            $stmt = $pdo->query("SELECT id, username, email, CONCAT(first_name, ' ', last_name) as fullName, created_at as requestDate FROM users WHERE approved = 0 ORDER BY created_at DESC");
-            echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
-            break;
-        case 'get_messages':
-            $stmt = $pdo->query("SELECT id, full_name as name, email, company_name as company, submission_date as received, message FROM contacts ORDER BY submission_date DESC");
-            echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
-            break;
-        case 'get_users':
-            $stmt = $pdo->query("SELECT id, username, email, CONCAT(first_name, ' ', last_name) as fullName, created_at as dateJoined FROM users WHERE approved = 1 AND role = 'user' ORDER BY created_at DESC");
-            echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
-            break;
-        case 'get_admins':
-            $stmt = $pdo->query("SELECT id, username, email, CONCAT(first_name, ' ', last_name) as fullName, last_login as lastLogin FROM users WHERE approved = 1 AND role = 'admin' ORDER BY created_at DESC");
-            echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
-            break;
-        default:
-            http_response_code(400);
-            echo json_encode(['error' => 'Invalid GET action']);
+try {
+    $pdo = db();
+
+    if ($method === 'GET') {
+        switch ($action) {
+            case 'get_stats':
+                json_out(200, [
+                    'requests' => (int) $pdo->query('SELECT COUNT(*) FROM users WHERE approved = 0')->fetchColumn(),
+                    'messages' => (int) $pdo->query('SELECT COUNT(*) FROM contacts')->fetchColumn(),
+                    'users' => (int) $pdo->query("SELECT COUNT(*) FROM users WHERE approved = 1 AND role = 'user'")->fetchColumn(),
+                    'admins' => (int) $pdo->query("SELECT COUNT(*) FROM users WHERE approved = 1 AND role = 'admin'")->fetchColumn(),
+                    'subscribers' => (int) $pdo->query('SELECT COUNT(*) FROM newsletter_subscribers')->fetchColumn(),
+                ]);
+            case 'get_requests':
+                json_out(200, $pdo->query("SELECT id, username, email, CONCAT(first_name, ' ', last_name) AS fullName, created_at AS date FROM users WHERE approved = 0 ORDER BY created_at DESC LIMIT 500")->fetchAll());
+            case 'get_messages':
+                json_out(200, $pdo->query('SELECT id, full_name AS name, email, company_name AS company, phone, message, lang, submission_date AS date FROM contacts ORDER BY submission_date DESC LIMIT 500')->fetchAll());
+            case 'get_users':
+                json_out(200, $pdo->query("SELECT id, username, email, CONCAT(first_name, ' ', last_name) AS fullName, created_at AS date, last_login AS lastLogin FROM users WHERE approved = 1 AND role = 'user' ORDER BY created_at DESC LIMIT 500")->fetchAll());
+            case 'get_admins':
+                json_out(200, $pdo->query("SELECT id, username, email, CONCAT(first_name, ' ', last_name) AS fullName, created_at AS date, last_login AS lastLogin FROM users WHERE approved = 1 AND role = 'admin' ORDER BY created_at DESC")->fetchAll());
+            case 'get_subscribers':
+                json_out(200, $pdo->query('SELECT id, email, lang, subscribed_at AS date FROM newsletter_subscribers ORDER BY subscribed_at DESC LIMIT 1000')->fetchAll());
+            default:
+                json_out(400, ['error' => 'Unknown action.']);
+        }
     }
-} elseif ($method === 'POST') {
-    // --- HANDLE ACTIONS ---
-    $data = json_decode(file_get_contents('php://input'), true);
-    $id = $data['id'] ?? null;
 
-    if ($id === null) {
-        http_response_code(400);
-        echo json_encode(['error' => 'Item ID is required.']);
-        exit();
+    if ($method !== 'POST') {
+        header('Allow: GET, POST');
+        json_out(405, ['error' => 'Method not allowed.']);
+    }
+    if (!check_csrf($_SERVER['HTTP_X_CSRF_TOKEN'] ?? null)) {
+        json_out(403, ['error' => 'Your session expired. Reload the page and try again.']);
+    }
+
+    $data = json_decode(file_get_contents('php://input') ?: '[]', true) ?: [];
+    $id = filter_var($data['id'] ?? null, FILTER_VALIDATE_INT);
+    if (!$id) {
+        json_out(400, ['error' => 'A valid item id is required.']);
     }
 
     switch ($action) {
         case 'approve_request':
-            $stmt = $pdo->prepare("UPDATE users SET approved = 1 WHERE id = ?");
-            $stmt->execute([$id]);
-            echo json_encode(['success' => true, 'message' => "User {$id} approved."]);
-            break;
+            $pdo->prepare('UPDATE users SET approved = 1 WHERE id = ? AND approved = 0')->execute([$id]);
+            json_out(200, ['success' => true]);
         case 'deny_request':
-            $stmt = $pdo->prepare("DELETE FROM users WHERE id = ? AND approved = 0");
-            $stmt->execute([$id]);
-            echo json_encode(['success' => true, 'message' => "Request {$id} denied."]);
-            break;
+            $pdo->prepare('DELETE FROM users WHERE id = ? AND approved = 0')->execute([$id]);
+            json_out(200, ['success' => true]);
         case 'delete_item':
-            $type = $data['type'] ?? '';
-            $table = '';
-            if ($type === 'messages') $table = 'contacts';
-            if ($type === 'users' || $type === 'admins') $table = 'users';
-
-            if ($table) {
-                // Safety check: Prevent deleting the last admin.
-                if ($type === 'admins') {
-                    $count = $pdo->query("SELECT count(*) FROM users WHERE role = 'admin'")->fetchColumn();
-                    if ($count <= 1) {
-                        http_response_code(400);
-                        echo json_encode(['error' => 'Cannot delete the last administrator.']);
-                        exit();
-                    }
-                }
-                $stmt = $pdo->prepare("DELETE FROM {$table} WHERE id = ?");
-                $stmt->execute([$id]);
-                echo json_encode(['success' => true, 'message' => "Item {$id} from {$type} deleted."]);
-            } else {
-                 http_response_code(400);
-                 echo json_encode(['error' => 'Invalid item type for deletion.']);
+            $tables = ['messages' => 'contacts', 'users' => 'users', 'admins' => 'users', 'subscribers' => 'newsletter_subscribers'];
+            $type = (string) ($data['type'] ?? '');
+            if (!isset($tables[$type])) {
+                json_out(400, ['error' => 'Unknown item type.']);
             }
-            break;
+            if ($type === 'admins') {
+                if ($id === (int) $_SESSION['user_id']) {
+                    json_out(400, ['error' => 'You can’t delete your own account while signed in.']);
+                }
+                if ((int) $pdo->query("SELECT COUNT(*) FROM users WHERE role = 'admin'")->fetchColumn() <= 1) {
+                    json_out(400, ['error' => 'You can’t delete the last administrator.']);
+                }
+            }
+            $table = $tables[$type]; // whitelisted above
+            $pdo->prepare("DELETE FROM {$table} WHERE id = ?")->execute([$id]);
+            json_out(200, ['success' => true]);
         default:
-            http_response_code(400);
-            echo json_encode(['error' => 'Invalid POST action']);
+            json_out(400, ['error' => 'Unknown action.']);
     }
+} catch (Throwable $e) {
+    error_log('[api] ' . $e->getMessage());
+    json_out(500, ['error' => 'Server error. Check the application logs.']);
 }
-?>

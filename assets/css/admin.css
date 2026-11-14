@@ -1,0 +1,23 @@
+/* Admin panel — builds on site.css tokens. */
+.admin main { padding-bottom: var(--s-9); }
+.admin-stats { display: grid; gap: var(--s-3); grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+.admin-stat { display: grid; gap: 4px; text-align: start; padding: var(--s-5); border-radius: var(--r-md); border: 1px solid var(--line); background: var(--surface); cursor: pointer; color: var(--text); font: inherit; transition: border-color .15s; }
+.admin-stat:hover { border-color: var(--line-strong); }
+.admin-stat__k { font: 500 var(--fs-label)/1.4 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); }
+.admin-stat__v { font: 700 2rem/1.1 var(--font-display); }
+.admin-tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); overflow-x: auto; }
+.admin-tabs button { appearance: none; border: 0; background: none; padding: 12px 16px; font: 600 .9375rem var(--font-text); color: var(--text-2); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; white-space: nowrap; }
+.admin-tabs button[aria-selected="true"] { color: var(--text); border-bottom-color: var(--signal); }
+.admin-table-wrap { overflow-x: auto; margin-top: var(--s-4); border: 1px solid var(--line); border-radius: var(--r-md); background: var(--surface); }
+.admin-table { width: 100%; border-collapse: collapse; font-size: .9375rem; }
+.admin-table th { text-align: start; font: 500 var(--fs-label)/1.4 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); padding: 12px 16px; border-bottom: 1px solid var(--line); background: var(--surface-2); white-space: nowrap; }
+.admin-table td { padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.admin-table tr:last-child td { border-bottom: 0; }
+.admin-table .actions { display: flex; gap: 8px; justify-content: flex-end; white-space: nowrap; }
+.admin-table .clip { max-width: 360px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text-2); }
+.btn--danger { background: transparent; color: var(--error); border-color: color-mix(in srgb, var(--error) 50%, transparent); }
+.btn--danger:hover { background: color-mix(in srgb, var(--error) 8%, transparent); }
+.admin-empty { padding: var(--s-8) var(--s-5); text-align: center; color: var(--text-2); }
+.admin-dialog { border: 1px solid var(--line); border-radius: var(--r-md); background: var(--surface); color: var(--text); padding: var(--s-6); width: min(560px, calc(100vw - 32px)); }
+.admin-dialog::backdrop { background: rgb(5 7 11 / .6); }
+.admin-dialog .msg { white-space: pre-wrap; color: var(--text-2); max-height: 50vh; overflow: auto; }

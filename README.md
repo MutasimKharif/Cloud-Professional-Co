@@ -1,128 +1,90 @@
-# Cloud Professional Co
+# CloudPros website
 
-**CloudPros for Cloud Solutions Website**
+Marketing site and client area for **CloudPros** — AWS cloud, networking and data
+center engineering, Riyadh. English at `/`, Arabic (right-to-left) at `/ar/`.
 
-A professional website showcasing cloud solutions and services by Cloud Professional Co.
+- **Front end:** static HTML generated from `build/`, one stylesheet
+  (`assets/css/site.css`), a small script (`assets/js/site.js`). No CDN, no
+  framework, self-hosted fonts. Design rules live in [`DESIGN.md`](DESIGN.md).
+- **Back end:** plain PHP 8.1+ with PDO/MySQL for the contact form, newsletter,
+  client sign-up/sign-in and the admin panel.
 
----
-
-## 📋 Overview
-
-Cloud Professional Co is a web-based platform dedicated to providing comprehensive cloud solutions and professional services. This repository contains the source code for our company website built with HTML, PHP, and CSS.
-
-## 🛠️ Technology Stack
-
-- **Frontend**: HTML (93.1%), CSS (0.1%)
-- **Backend**: PHP (6.8%)
-- **Architecture**: Server-side web application
-
-## 📁 Project Structure
+## Project layout
 
 ```
-Cloud-Professional-Co/
-├── index.html              # Main landing page
-├── assets/                 # Static assets (CSS, images, etc.)
-├── pages/                  # Additional web pages
-├── includes/               # PHP includes and components
-├── config/                 # Configuration files
-└── README.md               # This file
+index.html, services.html, …     generated pages (English) — don't edit by hand
+ar/*.html                        generated pages (Arabic)
+build/                           page sources and the generator
+  pages/*.mjs                    content for every page, English + Arabic side by side
+  lib.mjs                        layout, header/footer, shared components, service list
+  diagrams.mjs                   the SVG diagrams
+  images.mjs                     converts photos in assets/images/ to WebP in assets/img/
+assets/css, assets/js            styles and scripts (site + admin)
+assets/fonts                     Inter, Archivo, IBM Plex Mono, IBM Plex Sans Arabic (SIL OFL)
+assets/img                       optimized photos used by the pages
+assets/images                    original source photos (not served by any page)
+includes/bootstrap.php           config, DB connection, sessions, CSRF helpers
+process_form.php                 contact form → `contacts` table
+newsletter.php                   footer sign-up → `newsletter_subscribers`
+signup.php / signin.php / signout.php
+adminpanel.php + api.php         admin dashboard (admins only, CSRF-protected)
+database/schema.sql              tables
+database/create-admin.php        CLI script to create the first administrator
 ```
 
-## ✨ Features
+## Editing content
 
-- Professional company website
-- Cloud solutions showcase
-- Service offerings display
-- Contact and inquiry forms
-- Responsive design elements
-- Server-side PHP functionality
+1. Change the text in `build/pages/*.mjs` (each string is `t('English', 'Arabic')`),
+   or the service list in `build/lib.mjs`.
+2. Run `npm run build`. It regenerates every page in both languages.
+3. Commit the source **and** the generated `.html` files — the server needs no build step.
 
-## 🚀 Getting Started
+To add photos, put the original in `assets/images/`, map it in
+`build/images.mjs`, then run `npm install` once and `npm run images`.
 
-### Prerequisites
+Set your live domain so pages get canonical URLs, hreflang links, a sitemap and
+absolute social-preview URLs:
 
-- PHP 7.0 or higher
-- A web server (Apache, Nginx, etc.)
-- Modern web browser
-
-### Installation
-
-1. Clone the repository:
 ```bash
-git clone https://github.com/MutasimKharif/Cloud-Professional-Co.git
-cd Cloud-Professional-Co
+SITE_URL=https://www.your-domain.com npm run build
 ```
 
-2. Set up your web server to point to this directory
+## Running locally
 
-3. Configure PHP settings as needed in the `config/` directory
+```bash
+cp config.example.php config.local.php   # fill in your local MySQL details
+mysql -u root -p -e "CREATE DATABASE cloudpros CHARACTER SET utf8mb4"
+mysql -u root -p cloudpros < database/schema.sql
+php database/create-admin.php            # first administrator
+php -S localhost:8080                    # then open http://localhost:8080
+```
 
-4. Access the website through your web server
+## Deploying (Azure App Service, PHP 8)
 
-## 📖 Usage
+1. **Rotate the old database password.** Earlier versions of this repository
+   contained it in plain text, and it remains in the git history.
+2. In the App Service, set these application settings (environment variables):
+   `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASS`, and `DB_SSL_CA` if your
+   MySQL requires TLS. Use a dedicated database user with only
+   SELECT/INSERT/UPDATE/DELETE on this database — not `root`.
+3. Run `database/schema.sql` against the database. If you are upgrading the old
+   `moedb` database, read the notes at the bottom of that file (it also removes
+   the old sample admin with a published password).
+4. Create your admin with `php database/create-admin.php` (from the App Service
+   SSH console or locally against the same database).
+5. Deploy with `.github/workflows/azure-webapps-php.yml` — set `AZURE_WEBAPP_NAME`
+   and the `AZURE_WEBAPP_PUBLISH_PROFILE` secret first.
 
-- Navigate to the homepage (`index.html`)
-- Browse through available cloud solutions
-- Fill out contact forms for inquiries
-- View service details and pricing information
+## Security notes
 
-## 🔧 Configuration
+- No credentials in the repository; `config.local.php` is git-ignored.
+- Passwords are hashed with `password_hash`; sign-in is rate-limited per IP
+  (10 failures / 15 min) and regenerates the session.
+- The admin API rejects anyone who isn't a signed-in admin, and every change
+  requires a CSRF token.
+- Forms have server-side validation, a honeypot field and basic flood limits.
+- All database queries use prepared statements.
 
-Configuration files are located in the `config/` directory. Update these files with:
-- Database credentials (if applicable)
-- Email settings
-- API endpoints
-- Other application-specific settings
+## Contact
 
-## 📝 File Naming Conventions
-
-- HTML files: `lowercase-with-hyphens.html`
-- PHP files: `camelCase.php` or `lowercase.php`
-- CSS files: `lowercase-with-hyphens.css`
-- Assets: Organized by type in subdirectories
-
-## 🎨 Coding Guidelines
-
-- **HTML**: Follow semantic HTML5 standards
-- **CSS**: Use external stylesheets, maintain consistent naming conventions
-- **PHP**: Follow PSR standards, use proper escaping for security, implement error handling
-
-## 🔒 Security
-
-- Sanitize all user inputs
-- Use prepared statements for database queries
-- Validate form submissions
-- Implement CSRF protection where applicable
-- Keep PHP and dependencies updated
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/your-feature`)
-3. Commit your changes (`git commit -m 'Add your feature'`)
-4. Push to the branch (`git push origin feature/your-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-MIT, Apache 2.0, etc.
-
-## 👥 Authors
-
-**MutasimKharif** - Project Lead
-
-## 📞 Contact
-
-For inquiries about Cloud Professional Co services: +966568783539
-
-## 🙏 Acknowledgments
-
-- [HTML5 Standards](https://html.spec.whatwg.org/)
-- [PHP Documentation](https://www.php.net/manual/)
-- [CSS Best Practices](https://developer.mozilla.org/en-US/docs/Web/CSS)
-
----
-
-**Last Updated**: May 24, 2026
-
-For more information, visit: [Cloud Professional Co](https://github.com/MutasimKharif/Cloud-Professional-Co)
+info@cloudpros.com · +966 56 878 3539
