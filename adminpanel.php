@@ -7,9 +7,7 @@ if (!is_admin()) {
     header('Location: signin.html', true, 303);
     exit;
 }
-header('Cache-Control: no-store');
-header('X-Frame-Options: DENY');
-header("Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; frame-ancestors 'none'");
+header('Cache-Control: no-store'); // security headers come from includes/bootstrap.php
 $user = htmlspecialchars((string) $_SESSION['username'], ENT_QUOTES, 'UTF-8');
 $token = csrf_token();
 ?><!doctype html>

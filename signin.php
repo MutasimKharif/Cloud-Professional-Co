@@ -1,14 +1,21 @@
 <?php
-/** Client / admin sign in. Rate-limited per IP; regenerates the session on success. */
+/**
+ * Client / admin sign in. Rate-limited per IP address and per username;
+ * regenerates the session on success.
+ */
 declare(strict_types=1);
 require __DIR__ . '/includes/bootstrap.php';
+
+/** Failed attempts allowed in the window, per IP address and (separately) per username. */
+const MAX_FAILURES = 10;
+const WINDOW_MINUTES = 15;
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     redirect_page('signin.html');
 }
 
 $username = clean_text($_POST['username'] ?? '', 50);
-$password = (string) ($_POST['password'] ?? '');
+$password = post_string('password');
 if ($username === '' || $password === '') {
     redirect_page('signin.html', ['error' => 'emptyfields']);
 }
@@ -17,10 +24,14 @@ try {
     $pdo = db();
     $ip = client_ip();
 
-    // Lock out after 10 failed attempts from one IP in 15 minutes.
-    $q = $pdo->prepare('SELECT COUNT(*) FROM login_attempts WHERE ip_address = ? AND attempted_at > (NOW() - INTERVAL 15 MINUTE)');
-    $q->execute([$ip]);
-    if ((int) $q->fetchColumn() >= 10) {
+    // Lock out an IP address that keeps failing, and a username that keeps failing from
+    // many addresses (so guessing an admin password from several machines doesn't work either).
+    $since = 'attempted_at > (NOW() - INTERVAL ' . WINDOW_MINUTES . ' MINUTE)';
+    $byIp = $pdo->prepare("SELECT COUNT(*) FROM login_attempts WHERE ip_address = ? AND {$since}");
+    $byIp->execute([$ip]);
+    $byUser = $pdo->prepare("SELECT COUNT(*) FROM login_attempts WHERE username = ? AND {$since}");
+    $byUser->execute([$username]);
+    if ((int) $byIp->fetchColumn() >= MAX_FAILURES || (int) $byUser->fetchColumn() >= MAX_FAILURES) {
         redirect_page('signin.html', ['error' => 'locked']);
     }
 
@@ -34,6 +45,7 @@ try {
 
     if (!$valid) {
         $pdo->prepare('INSERT INTO login_attempts (ip_address, username) VALUES (?, ?)')->execute([$ip, $username]);
+        $pdo->exec('DELETE FROM login_attempts WHERE attempted_at < (NOW() - INTERVAL 1 DAY)');
         redirect_page('signin.html', ['error' => 'invalidcredentials']);
     }
     if ((int) $user['approved'] !== 1) {
@@ -43,7 +55,7 @@ try {
     if (password_needs_rehash($user['password_hash'], PASSWORD_DEFAULT)) {
         $pdo->prepare('UPDATE users SET password_hash = ? WHERE id = ?')->execute([password_hash($password, PASSWORD_DEFAULT), $user['id']]);
     }
-    $pdo->prepare('DELETE FROM login_attempts WHERE ip_address = ?')->execute([$ip]);
+    $pdo->prepare('DELETE FROM login_attempts WHERE ip_address = ? OR username = ?')->execute([$ip, $user['username']]);
     $pdo->prepare('UPDATE users SET last_login = NOW() WHERE id = ?')->execute([$user['id']]);
 
     start_session();
@@ -52,6 +64,7 @@ try {
     $_SESSION['username'] = $user['username'];
     $_SESSION['role'] = $user['role'];
     $_SESSION['lang'] = req_lang();
+    $_SESSION['last_seen'] = time();
     unset($_SESSION['csrf']);
 
     header('Location: ' . ($user['role'] === 'admin' ? 'adminpanel.php' : 'userdashboard.php'), true, 303);

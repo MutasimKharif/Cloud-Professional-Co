@@ -53,8 +53,12 @@ CREATE TABLE IF NOT EXISTS login_attempts (
   username VARCHAR(50) DEFAULT NULL,
   attempted_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
-  KEY idx_login_attempts_ip_time (ip_address, attempted_at)
+  KEY idx_login_attempts_ip_time (ip_address, attempted_at),
+  KEY idx_login_attempts_user_time (username, attempted_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Already created the tables before November 2026? Add the per-username sign-in index with:
+--   ALTER TABLE login_attempts ADD KEY idx_login_attempts_user_time (username, attempted_at);
 
 -- Upgrading from the old `moedb` schema? The old `contacts` table is compatible;
 -- add the new columns with:

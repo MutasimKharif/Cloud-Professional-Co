@@ -51,7 +51,10 @@ try {
         json_out(403, ['error' => 'Your session expired. Reload the page and try again.']);
     }
 
-    $data = json_decode(file_get_contents('php://input') ?: '[]', true) ?: [];
+    $data = json_decode(file_get_contents('php://input') ?: '[]', true);
+    if (!is_array($data)) {
+        $data = [];
+    }
     $id = filter_var($data['id'] ?? null, FILTER_VALIDATE_INT);
     if (!$id) {
         json_out(400, ['error' => 'A valid item id is required.']);
@@ -65,9 +68,16 @@ try {
             $pdo->prepare('DELETE FROM users WHERE id = ? AND approved = 0')->execute([$id]);
             json_out(200, ['success' => true]);
         case 'delete_item':
-            $tables = ['messages' => 'contacts', 'users' => 'users', 'admins' => 'users', 'subscribers' => 'newsletter_subscribers'];
+            // Each type deletes only its own rows: "users" can never remove an administrator,
+            // so the checks below can't be skipped by sending an admin's id as a client.
+            $targets = [
+                'messages' => ['contacts', ''],
+                'users' => ['users', " AND role = 'user'"],
+                'admins' => ['users', " AND role = 'admin'"],
+                'subscribers' => ['newsletter_subscribers', ''],
+            ];
             $type = (string) ($data['type'] ?? '');
-            if (!isset($tables[$type])) {
+            if (!isset($targets[$type])) {
                 json_out(400, ['error' => 'Unknown item type.']);
             }
             if ($type === 'admins') {
@@ -78,8 +88,12 @@ try {
                     json_out(400, ['error' => 'You can’t delete the last administrator.']);
                 }
             }
-            $table = $tables[$type]; // whitelisted above
-            $pdo->prepare("DELETE FROM {$table} WHERE id = ?")->execute([$id]);
+            [$table, $only] = $targets[$type]; // fixed strings from the list above
+            $del = $pdo->prepare("DELETE FROM {$table} WHERE id = ?{$only}");
+            $del->execute([$id]);
+            if ($del->rowCount() === 0) {
+                json_out(404, ['error' => 'That item no longer exists.']);
+            }
             json_out(200, ['success' => true]);
         default:
             json_out(400, ['error' => 'Unknown action.']);
