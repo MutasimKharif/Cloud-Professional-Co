@@ -12,8 +12,8 @@ $middle = clean_text($_POST['middle_name'] ?? '', 50);
 $last = clean_text($_POST['last_name'] ?? '', 50);
 $username = clean_text($_POST['username'] ?? '', 50);
 $email = mb_strtolower(clean_text($_POST['email'] ?? '', 100));
-$password = (string) ($_POST['password'] ?? '');
-$confirm = (string) ($_POST['confirm_password'] ?? '');
+$password = post_string('password');
+$confirm = post_string('confirm_password');
 
 if ($first === '' || $last === '' || $username === '' || $email === '' || $password === '' || empty($_POST['privacy'])) {
     redirect_page('signup.html', ['error' => 'emptyfields']);

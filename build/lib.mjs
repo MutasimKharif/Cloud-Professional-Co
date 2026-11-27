@@ -104,6 +104,11 @@ const NAV = [
   ['contact', { en: 'Contact', ar: 'تواصل معنا' }],
 ];
 
+// Only this site's own files may load. Keep in step with .htaccess and includes/bootstrap.php.
+// (frame-ancestors only works as an HTTP header, so .htaccess sends it.)
+const CSP = "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; "
+  + "connect-src 'self'; font-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'";
+
 function head(ctx, page) {
   const { lang, L, asset } = ctx;
   const title = page.slug === 'index' ? L(page.title) : `${L(page.title)} | CloudPros`;
@@ -123,6 +128,8 @@ function head(ctx, page) {
     : ['assets/fonts/inter-var.woff2', 'assets/fonts/archivo-var.woff2'];
   return `<head>
   <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="${CSP}">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(desc)}">

@@ -1,0 +1,49 @@
+# Checks every pull request and every push to main. Read-only: it never deploys
+# anything and gets no secrets.
+name: Checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      # Set this repository variable only if you build with a live domain (see README).
+      SITE_URL: ${{ vars.SITE_URL }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: PHP syntax
+        run: |
+          php -v | head -n 1
+          find . -name '*.php' -not -path './node_modules/*' -print0 | xargs -0 -n1 php -l
+
+      - name: No passwords or keys committed
+        run: |
+          if git ls-files | grep -E '(^|/)(config\.local\.php|\.env)$'; then
+            echo "::error::A local settings file is committed. Remove it and change the passwords in it."
+            exit 1
+          fi
+
+      - name: Generated pages match build/
+        run: |
+          node --version
+          node build/build.mjs > /dev/null
+          if [ -n "$(git status --porcelain)" ]; then
+            git status --short
+            echo "::error::The pages are out of date. Run 'npm run build' and commit the generated .html files."
+            exit 1
+          fi

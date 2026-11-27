@@ -8,6 +8,8 @@ center engineering, Riyadh. English at `/`, Arabic (right-to-left) at `/ar/`.
   framework, self-hosted fonts. Design rules live in [`DESIGN.md`](DESIGN.md).
 - **Back end:** plain PHP 8.1+ with PDO/MySQL for the contact form, newsletter,
   client sign-up/sign-in and the admin panel.
+- **Hosting:** Apache on WampServer (Windows). See
+  [`deploy/wamp/README.md`](deploy/wamp/README.md).
 
 ## Project layout
 
@@ -22,6 +24,7 @@ build/                           page sources and the generator
   service-details.mjs            per-service "at a glance", deliverables and FAQ
   diagrams.mjs                   the SVG diagrams
   images.mjs                     converts photos in assets/images/ to WebP in assets/img/
+  package.mjs                    copies only the server's files into dist/cloudpros/
 assets/css, assets/js            styles and scripts (site + admin)
 assets/fonts                     Inter, Archivo, IBM Plex Mono, IBM Plex Sans Arabic (SIL OFL)
 assets/img                       optimized photos used by the pages
@@ -33,6 +36,8 @@ signup.php / signin.php / signout.php
 adminpanel.php + api.php         admin dashboard (admins only, CSRF-protected)
 database/schema.sql              tables
 database/create-admin.php        CLI script to create the first administrator
+.htaccess                        Apache rules: blocks private files, adds security headers
+deploy/wamp/                     WampServer guide and virtual host example
 ```
 
 ## Editing content
@@ -41,6 +46,7 @@ database/create-admin.php        CLI script to create the first administrator
    or the service list in `build/lib.mjs`.
 2. Run `npm run build`. It regenerates every page in both languages.
 3. Commit the source **and** the generated `.html` files — the server needs no build step.
+   A check on every pull request fails if the generated pages don't match `build/`.
 
 ### Adding real projects ("Selected work")
 
@@ -65,8 +71,11 @@ SITE_URL=https://www.your-domain.com npm run build
 ```
 
 Without `SITE_URL` the build still writes a `robots.txt`, just without a sitemap.
+If you set it, also add it as a repository variable named `SITE_URL`
+(Settings → Secrets and variables → Actions → Variables) so the pull-request check
+builds the same pages.
 
-## Running locally
+## Running locally for development
 
 ```bash
 cp config.example.php config.local.php   # fill in your local MySQL details
@@ -76,35 +85,41 @@ php database/create-admin.php            # first administrator
 php -S localhost:8080                    # then open http://localhost:8080
 ```
 
-## Deploying (Azure App Service, PHP 8)
+PHP's built-in server ignores `.htaccess`, so use it only on your own PC.
 
-1. **Rotate the old database password.** Earlier versions of this repository
-   contained it in plain text, and it remains in the git history.
-2. In the App Service, set these application settings (environment variables):
-   `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASS`, and `DB_SSL_CA` if your
-   MySQL requires TLS. Use a dedicated database user with only
-   SELECT/INSERT/UPDATE/DELETE on this database — not `root`.
-3. Run `database/schema.sql` against the database. If you are upgrading the old
-   `moedb` database, read the notes at the bottom of that file (it also removes
-   the old sample admin with a published password).
-4. Create your admin with `php database/create-admin.php` (from the App Service
-   SSH console or locally against the same database).
-5. Deploy with `.github/workflows/azure-webapps-php.yml` — set `AZURE_WEBAPP_NAME`
-   and the `AZURE_WEBAPP_PUBLISH_PROFILE` secret first (the workflow stops with a
-   clear error while the name is still `your-app-name`). It publishes only the
-   public files — about 3.5 MB — and leaves out `build/`, the original photos in
-   `assets/images/`, SQL files and docs. Run `database/schema.sql` from your own
-   machine or the Azure portal.
+## Deploying (WampServer)
+
+Full steps are in [`deploy/wamp/README.md`](deploy/wamp/README.md). In short:
+
+1. **Change the old database password** wherever it is still used. Earlier versions
+   of this repository contained it in plain text, and it remains in the git history.
+2. `npm run build`, then `npm run package`, and copy the contents of
+   `dist/cloudpros/` to the web folder (for example `C:\wamp64\www\cloudpros`).
+3. Add the virtual host from `deploy/wamp/cloudpros-vhost.conf`. It needs
+   `AllowOverride All` so `.htaccess` can block private files.
+4. Create the database and a dedicated MySQL user (SELECT/INSERT/UPDATE/DELETE only,
+   never `root`), import `database/schema.sql`, and fill in `config.local.php`.
+5. Create your admin with `php database\create-admin.php`, then turn on HTTPS.
 
 ## Security notes
 
-- No credentials in the repository; `config.local.php` is git-ignored.
-- Passwords are hashed with `password_hash`; sign-in is rate-limited per IP
-  (10 failures / 15 min) and regenerates the session.
+- No credentials in the repository; `config.local.php` is git-ignored and Apache
+  refuses to serve it.
+- Passwords are hashed with `password_hash`. Sign-in is rate-limited per IP and per
+  username (10 failures each / 15 min) and regenerates the session. Signed-in sessions
+  end after 30 minutes without activity.
+- The visitor IP used for rate limits comes from the connection itself, not from
+  headers the visitor can fake. `TRUSTED_PROXIES` covers a reverse proxy, if you add one.
 - The admin API rejects anyone who isn't a signed-in admin, and every change
   requires a CSRF token.
 - Forms have server-side validation, a honeypot field and basic flood limits.
 - All database queries use prepared statements.
+- Every response carries a Content-Security-Policy (only the site's own files may load),
+  `nosniff`, frame blocking and a referrer policy; HSTS is added over HTTPS. PHP errors
+  are never shown to visitors.
+- `.htaccess` blocks the page generator, SQL and admin scripts, PHP includes, original
+  photos, docs, git data and settings files.
+- Report a vulnerability privately: see [`SECURITY.md`](SECURITY.md).
 
 ## Contact
 

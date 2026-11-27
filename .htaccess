@@ -1,0 +1,45 @@
+# CloudPros: Apache rules (WampServer or any Apache 2.4).
+# They only work when the site's folder has "AllowOverride All"; see deploy/wamp/README.md.
+
+Options -Indexes
+DirectoryIndex index.html index.php
+AddDefaultCharset UTF-8
+
+# These paths assume the site is the root of its own virtual host, as in deploy/wamp/.
+ErrorDocument 404 /404.html
+ErrorDocument 403 /404.html
+
+# --- Never serve sources, notes, settings or tooling -------------------------------
+# Folders: the page generator, SQL/admin scripts, PHP includes, original photos,
+# deployment notes, git data and npm packages.
+<If "%{REQUEST_URI} =~ m#/(\.git|\.github|build|database|includes|deploy|node_modules|dist)(/|$)#i">
+    Require all denied
+</If>
+<If "%{REQUEST_URI} =~ m#/assets/images(/|$)#i">
+    Require all denied
+</If>
+
+# Files: hidden files (.env, .gitignore, .htaccess), docs, SQL, build scripts, package
+# files, logs, backups and the PHP settings files.
+<FilesMatch "(^\.|\.(md|sql|mjs|json|lock|log|bak|old|orig|swp|ini|yml|yaml|sh|ps1|bat|zip)$|^config\.(local|example)\.php$)">
+    Require all denied
+</FilesMatch>
+
+# --- PHP: never show errors to visitors ------------------------------------------
+<IfModule php_module>
+    php_flag display_errors Off
+    php_flag log_errors On
+</IfModule>
+
+# --- Security headers (WampServer loads mod_headers by default) -----------------
+<IfModule mod_headers.c>
+    Header unset X-Powered-By
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "DENY"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+    # Same policy as includes/bootstrap.php and build/lib.mjs.
+    Header set Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; font-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'"
+    # Only over HTTPS. Browsers then refuse plain HTTP for this site for a year.
+    Header set Strict-Transport-Security "max-age=31536000" "expr=%{HTTPS} == 'on'"
+</IfModule>
